@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block maintitle %}Internal error{% endblock %}
+
+{% block title %}
+	<h1>Internal error</h1>
+	<p>Something went wrong</p>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		<div class="page-header">
+			<h1>We are sorry, but something went terribly wrong.</h1>
+		</div>
+		<p>
+			You can do anything about it.
+		</p>
+		<p>
+			You gan go to <a href="javascript:history.go(-1);">the last visited page</a>, or to <a href="{{ path('index') }}">home</a>.
+		</p>
+		<div class="clear"></div>
+	</div>
+{% endblock %}

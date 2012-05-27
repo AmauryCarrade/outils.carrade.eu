@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block maintitle %}QRCode Generator | Opera extensions{% endblock %}
+
+{% block title %}
+	<h1>QRCode Generator</h1>
+	<p>An Opera extension</p>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		<div class="page-header">
+			<h1>What's that?</h1>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<p>
+					This is an add-on for Opera browser who shows a QRCode of the current page in a popup. 
+					Then, you can quickly transfer a webpage from your browser to your smartphone, for example.
+				</p>
+				<p>
+					A problem with this add-on? <a href="{{ path('contact') }}">Contact me</a> ;) .
+				</p>
+			</div>
+			<div class="span6">
+				<div class="alert alert-block">
+					<h4 class="alert-heading">Warning</h4>
+					Due to a failure in Opera 11.x API about tabs access, <strong>this add-on is only compatible with <a href="http://www.opera.com/browser/next/">Opera 12+</a></strong>.
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="well">
+		<div class="page-header">
+			<h1>Download, install and enjoy! <small>How can I integrate this to my Opera browser?</small></h1>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<h2>Download & install</h2>
+				<p>You can download this add-on by following this link:</p>
+				<p class="center"><br />
+					<a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.0.oex" class="btn btn-primary">
+						<span class="icon-download"></span> 
+						Download <strong>QRCode Generator</strong>
+					</a><br />
+					<small>File size: 45 Ko</small>
+				</p>
+
+				<p>You can also download this add-on on the official add-ons website:</p>
+				<p class="center"><br />
+					<a href="#" class="btn btn-primary disabled">
+						<span class="icon-download"></span> 
+						Coming soon — Waiting for review
+					</a><br />
+				</p>
+				<p>Current version is <strong>1.0</strong>.</p>
+				<p>This add-on is licensed under an  <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 License</a>.</p>
+			</div>
+			<div class="span6">
+				<h2>Enjoy!</h2>
+				<p>Then, when you are in a webpage, just click the small QRCode on the toolbar ;) .</p>
+				<div class="thumbnail pull-right">
+					<img src="{{ app.request.basePath }}/files/Opera/QRCode/Screenshot.png" alt="Screenshot of this add-on">
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block maintitle %}File upload{% endblock %}
+
+{% block title %}
+	<h1>File upload</h1>
+	<p>Upload what I want</p>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		{% if flash is not null %}
+			<div class="alert alert-{{ flash.type }}">
+				<strong>{{ flash.title }}</strong> {{ flash.text|raw }}
+			</div>
+		{% endif %}
+		
+		<form method="post" action="" enctype="multipart/form-data" class="form-horizontal">
+		    <div class="control-group">
+		        <label class="control-label" for="filetoupload">File/image to upload:</label>
+		        <div class="controls">
+		            <input type="file" name="filetoupload" class="input-xlarge" id="filetoupload" />
+		            <input type="hidden" name="MAX_FILE_SIZE" value="256000000" />
+		        </div>
+		    </div>
+		    <div class="control-group">
+		        <label class="control-label" for="password">Password: </label>
+		        <div class="controls">
+		            <input type="password" name="password" id="password" />&nbsp;&nbsp;&nbsp;
+		            <input type="submit" value="Send" class="btn btn-primary" />
+		        </div>
+		    </div>
+		</form>
+
+		<p class="pull-right">
+	        Self-hosting php script based on the version of <a href="http://sebsauvage.net/wiki/doku.php?id=php:filehosting">sebsauvage.net</a>
+	    </p>
+	    <div class="clear"></div>
+	</div>
+{% endblock %}

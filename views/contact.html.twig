@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block maintitle %}Contact{% endblock %}
+
+{% block title %}
+	<h1>Contact</h1>
+	<p>Get in touch!</p>
+{% endblock %}
+
+{% block content %}
+	<div class="well">
+		<div class="page-header">
+			<h1>Contact <small>Do you want speak to me?</small></h1>
+		</div>
+		{% if flash is not null %}
+			<div class="alert alert-{{ flash.type }} visible-phone">
+				<strong>{{ flash.title }}</strong> {{ flash.text|raw }}
+			</div>
+		{% endif %}
+		<div class="row-fluid">
+			<div class="span6">
+				<p>
+					<span class="label label-info">English</span> If you want to contact me, please use the form.<br />
+					Prefer to write in English, French or Spanish. All other languages will be automatically translated with a tool like Google Translate, as well as the response.<br 
+					>
+					If you wish to contact me through a secure connection, use my <a href="{{ path('pgp') }}">PGP/GPG public key</a>.<br /><br />
+				</p>
+				<p>
+					<span class="label label-info">Français</span> Si vous désirez me contacter, merci d'utiliser le formulaire.<br />
+					Préférez écrire en anglais, français ou espagnol. Toute autre langue sera automatiquement traduite à l'aide d'un outil tel Google Translate, de même que la réponse.<br 
+					>
+					Si vous désirez me contacter par un canal sécurisé, utilisez ma <a href="{{ path('pgp') }}">clef publique PGP/GPG</a>.<br /><br />
+				</p>
+				<p>
+					<span class="label label-info">Español</span> Si desea ponerse en contacto conmigo, gracias por utilizar el formulario.<br />
+					Prefiero escribir en inglés, francés o español. Cualquier otro idioma serán traducidas automáticamente usando una herramienta como Google Translate, así como la respuesta.<br />
+					Si desea ponerse en contacto conmigo a través de una conexión segura, utiliza mi <a href="{{ path('pgp') }}">clave pública PGP/GPG</a>.
+				</p>
+			</div>
+			<hr class="visible-phone" />
+			<div class="span6">
+				{% if flash is not null %}
+					<div class="alert alert-{{ flash.type }} hidden-phone">
+						<strong>{{ flash.title }}</strong> {{ flash.text|raw }}
+					</div>
+				{% endif %}
+
+				<form method="post" action="" enctype="multipart/form-data" class="form-vertical">
+				    <div class="control-group">
+				        <label class="control-label" for="name">Name</label>
+				        <div class="controls">
+				            <input type="text" name="name"  id="name" class="span6" {% if postClean.name is defined %}value="{{ postClean.name }}" {% endif %}/>
+				        </div>
+				    </div>
+				    <div class="control-group">
+				        <label class="control-label" for="mail">E-mail address</label>
+				        <div class="controls">
+				            <input type="mail" name="mail"  id="mail" class="span6" {% if postClean.mail is defined %}value="{{ postClean.mail }}" {% endif %}/>
+				        </div>
+				    </div>
+				    <div class="control-group">
+				        <label class="control-label" for="object">Object</label>
+				        <div class="controls">
+				            <input type="text" name="object"  id="object" class="span6" placeholder="Optionnal" {% if postClean.object is defined %}value="{{ postClean.object }}" {% endif %}/>
+				        </div>
+				    </div>
+				    <div class="control-group">
+				        <label class="control-label" for="message">Message</label>
+				        <div class="controls">
+				            <textarea name="message"  id="message" class="span6" rows="6">{% if postClean.message is defined %}{{ postClean.message }}{% endif %}</textarea>
+				        </div>
+				    </div>
+				    <div class="control-group">
+				        <label class="control-label" for="recaptcha_response_field">Are you human? Please copy the text below.</label>
+				        <div class="controls">
+				            <script type="text/javascript">
+				            	var RecaptchaOptions = {
+									theme : 'clean'
+								};
+				            </script>
+				            {{ reCaptchaHTML|raw }}
+				        </div>
+				    </div>
+				    <div class="control-group">
+				        <div class="controls"><br />
+				            <input type="submit" value="Send your message" class="btn btn-primary"/>
+				        </div>
+				    </div>
+				</form>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+
+{% endblock %}

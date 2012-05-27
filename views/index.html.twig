@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block maintitle %}Home{% endblock %}
+
+{% block title %}
+	<h1>You're welcome!</h1>
+	<p>I'm a French web developer</p>
+{% endblock %}
+
+{% block content %}
+	<div class="row-fluid">
+		<div class="span7">
+			<div class="well">
+				<div class="page-header">
+					<h1>Me <small>Who am I?</small></h1>
+				</div>
+				<p>
+					Hello! My name is Amaury Carrade, but Internet also know me as Jean-Claude Bubbendorf.<br />
+					I'm a young free-lance French web developer. I also love music (any kind of music, from classical to rock), and I'm curious about everything.
+				</p>
+				<p>
+					Also, I love two other domains: free software and security. I try to use as much as possible free softwares (XAMPP, Filezilla, Git, LibreOffice, VLC, GIMP, TrueCrypt...) — but I do not refuse the good proprietary software (Opera, Sublime Text...)!
+				</p>
+				<p>
+					And I try to protect me by using a maximal security every time, everywhere. My hard discs are encrypted, I sign my mails, and more. You can also find <a href="{{ path('pgp') }}">my PGP/GPG public key here</a>.
+				</p>
+				<p>
+					<a href="{{ path('projects') }}" class="btn btn-primary"><span class="icon-pushpin"></span> Projects</a>
+					<a href="{{ path('contact') }}" class="btn btn-info"><span class="icon-comments"></span> Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="http://github.com/Bubbendorf/" class="btn"><span class="icon-github-alt"></span> On Github</a>
+					<a href="http://twitter.com/JC_Bubbendorf" class="btn"><span class="icon-twitter-alt"></span> On Twitter</a>
+					
+				</p>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="well">
+				<div class="page-header">
+					<h1>What <small>What I can do for you?</small></h1>
+				</div>
+				<h3>What I can do</h3>
+				<ul>
+					<li>Any kind of website, from showcase site to e-commerce website;</li>
+					<li>Web applications;</li>
+					<li>Configuration of a content management system, such as Drupal, Joomla!, WordPress or Prestashop;</li>
+					<li>Development of plugins for these <abbr title="Content Management System">CMS</abbr>;</li>
+					<li>More small projects, like optimization of a website actually in production, or a jQuery plugins;</li>
+					<li>And much more...</li>
+				</ul>
+				<h3>I work with...</h3>
+				<ul>
+					<li>Symfony2 or Silex, to be sure the website I develop is secured (security is a central point for me);</li>
+					<li>jQuery, to make reactive user interfaces more easily and in less time;</li>
+					<li>You — I want to create what YOU want;</li>
+					<li>Tea and some music ;) .</li>
+				</ul>
+				<h3>But do not expect me to...</h3>
+				<ul>
+					<li>Create some web-designs. I'm not a web designer — but I can work with a designer if you want.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock %}
