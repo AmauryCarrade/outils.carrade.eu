@@ -6,3 +6,5 @@
 /paste
 /files
 /paste
+*.sublime-workspace
+*.sublime-project

@@ -89,7 +89,7 @@
 			)
 		),
 
-		'OPERAqrcODEe' => array(
+		'OperaQRCode' => array(
 			'size'     => 'small',
 			'title'    => 'QRCode Generator',
 			'subtitle' => 'An Opera add-on who generates a QRCode of the current page',
@@ -120,8 +120,8 @@
 			'infos' => array(
 				'Type'            => 'Opera add-on',
 				'License'         => '<a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>',
-				'Current version' => '1.0',
-				'Compatibility'   => 'Opera 12+'
+				'Current version' => '1.1',
+				'Compatibility'   => 'Opera 11+'
 			)
 		),
 
