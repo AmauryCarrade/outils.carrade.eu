@@ -100,11 +100,10 @@
 				</p>',
 			'buttons'  => array(
 				'opera' => array(
-					'text'  => 'In the application directory of Opera (when available)',
-					'url'   => '#',
+					'text'  => 'On the Extensions Catalog of Opera',
+					'url'   => 'https://addons.opera.com/extensions/details/qrcode-generator/',
 					'icon'  => 'list-alt',
-					'type'  => 'primary',
-					'class' => 'disabled'
+					'type'  => 'primary'
 				),
 				'support' => array(
 					'text' => 'Support page',

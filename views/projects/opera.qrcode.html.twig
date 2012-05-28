@@ -37,10 +37,13 @@
 				</p>
 			</div>
 			<div class="span6">
-				<div class="alert alert-success alert-block">
-					<h4 class="alert-heading">Compatibility with Opera 11.x</h4>
-					Compatibility with Opera 11.x have been fixed on the last version (1.1).
-				</div>
+				<h3>Features</h3>
+				<ul>
+					<li>Generates a QRCode from the URL of the current website by clicking on a button.</li>
+					<li>Download the generated QRCode as an image by clicking the QRCode.</li>
+				</ul>
+				<h3>Languages</h3>
+				This add-on is translated in English and French.
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -56,35 +59,44 @@
 				<h2>Download &amp; install</h2>
 				<p>You can download this add-on by following this link:</p>
 				<p class="center"><br />
-					<a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.1.oex" class="btn btn-primary">
+					<a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.2.oex" class="btn btn-primary">
 						<span class="icon-download"></span> 
-						Download <strong>QRCode Generator</strong>
+						<span class="noOpera">Download</span> <span class="noJS">and/or</span> <span class="onlyOpera">Install</span> <strong>QRCode Generator</strong>
 					</a><br />
 					<small>File size: 45 Ko</small>
 				</p>
 
 				<p>You can also download this add-on on the official add-ons website:</p>
 				<p class="center"><br />
-					<a href="https://addons.opera.com/fr/extensions/details/qrcode-generator/?display=en#feedback-container" class="btn btn-primary">
+					<a href="https://addons.opera.com/extensions/details/qrcode-generator/" class="btn btn-primary">
 						<span class="icon-download"></span> 
-						<strong>QRCode Generator</strong> on Opera's website
+						<strong>QRCode Generator 1.1</strong> on the Extensions Catalog
 					</a><br />
 				</p>
-				<p>Current version is <strong>1.1</strong>.</p>
+				<p>Current version is <strong>1.2</strong>.</p>
 				<p>This add-on is licensed under an  <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 License</a>.</p>
-
-				<h3>Changelog</h3>
+				<p class="hidden-phone">
+					<br />
+					<br />
+					<br />
+				</p>
+				<h4>Changelog</h4>
 				<dl class="dl-horizontal">
+					<dt>1.2</dt>
+					<dd>
+						You can now download the generated QRCode by clicking the QRCode.<br />
+						<small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/b3385e0d46baafb8a1ab73a828a72ce7d3e3d713">On Github</a> | <a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.2.oex">Download <span class="onlyOpera">or Install</span></a></small>
+					</dd>
 					<dt>1.1</dt>
 					<dd>
 						Fixed compatibility with Opera 11.x.<br />
-						<small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/b3385e0d46baafb8a1ab73a828a72ce7d3e3d713">On Github</a> | <a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.1.oex">Download</a></small>
+						<small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/b3385e0d46baafb8a1ab73a828a72ce7d3e3d713">On Github</a> | <a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.1.oex">Download <span class="onlyOpera">or Install</span></a></small>
 					</dd>
 
 					<dt>1.0</dt>
 					<dd>
 						Initial version. Only compatible with Opera 12.x.<br />
-						<small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/088846005c49d72281680148887d9853ca40050b">On Github</a> | <a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.0.oex">Download</a></small>
+						<small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/088846005c49d72281680148887d9853ca40050b">On Github</a> | <a href="{{ app.request.basePath }}/files/Opera/QRCode/QRCode-1.0.oex">Download <span class="onlyOpera">or Install</span></a></small>
 					</dd>
 				</dl>
 			</div>
@@ -100,4 +112,20 @@
 	</div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.noJS').hide();
+
+			var nav = navigator.userAgent;
+			if(nav.indexOf('Opera') > -1) {
+				$('.noOpera').hide();
+			}
+			else {
+				$('.onlyOpera').hide();
+			}
+		});
+	</script>
 {% endblock %}
