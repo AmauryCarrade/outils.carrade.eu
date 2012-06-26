@@ -1,11 +1,9 @@
-
 /.htaccess-Redirect
 /credentials.php
 /redirect.html
 /redirectLinks.html
 /paste
 /files
-/paste
 *.sublime-workspace
 *.sublime-project
 /NoGit
