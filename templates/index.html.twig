@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Accueil{% endblock %}
+
+{% block content_title %}Site web d'Amaury Carrade{% endblock %}
+{% block content_subtitle %}Bienvenue{% endblock %}
+{% block content_header %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="text-center" style="margin-top: 40px; margin-bottom: 60px;">
+            <p>
+                <a href="http://shaarli.amaury.carrade.eu" style="font-size: 25px; font-weight: thin;" class="noEffect">
+                    Mes liens
+                </a><br />
+                <em>Je publie ici tout ce que je croise sur le web et que je trouve intéressant, principalement des contenus scientifiques et technologiques, d'actualité ou non.</em>
+
+                <br /><br /><br /><br />
+
+                <a href="http://shaarli.amaury.carrade.eu" style="font-size: 25px; font-weight: thin;" class="noEffect">
+                    Mon blog&nbsp;?
+                </a><br />
+                <em>Et non, je n'ai pas (encore&nbsp;?) de blog «&nbsp;dédié&nbsp;». Cependant, j'utilise ma plateforme de liens pour, lorsque l'envie m'en prend, publier des articles un peu plus longs. Cela reste assez rare actuellement, faute d'inspiration et de temps ;) .</em>
+            </p>
+        </div>
+
+        <h2 style="margin-bottom: 20px;">Outils et services</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="https://paste.carrade.eu">Pastebin (ZeroBin)</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Un <em>pastebin</em> en ligne (une instance de ZeroBin) pour lequel l'hébergeur (moi) n'a
+                            aucune connaissance de ce qui est stocké.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="https://autoblogs.carrade.eu">Ferme d'autoblogs</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Afin de luter préventivement contre la censure, j'héberge une ferme d'autoblogs, dupliquant
+                            en continu ce qui y es publié.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="https://free.carrade.eu">Proxy web (OranjeProxy)</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Un simple proxy web pour outrepasser les bloqueurs dans une école ou une entreprise.
+                            Marche essentiellement sur les sites classiques, moins sur les sites au contenu très riche
+                            (vidéos, cartes...).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="#">Minecraft &middot; Historique</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Un outil permettant de retracer l'historique d'un compte Minecraft, ainsi que de récupérer
+                            d'autres infos sur un tel compte.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="#">Minecraft &middot; Ping</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Permet de contacter un serveur Minecraft et de récupérer toutes les informations
+                            qu'il expose d'une façon ou d'une autre.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"><a href="#">Bukkit &middot; Permissions</a></h3>
+                    </header>
+                    <div class="panel-body">
+                        <p>
+                            Un outil pour développeurs de plugins Bukkit, permettant de faciliter l'écriture du fichier
+                            listant les permissions, avec génération des permissions intermédiaires et de tout le nécessaire
+                            à partir d'un format plus simple.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="col-md-6">
+        <div class="btn-group btn-group-justified" role="group" aria-label="Social">
+            <a href="#" class="btn btn-primary">Contact</a>
+            <a href="https://github.com/AmauryCarrade" class="btn btn-default">GitHub</a>
+            <a href="https://twitter.com/AmauryPi" class="btn btn-default">Twitter</a>
+        </div>
+
+        <div style="margin-top: 40px;" class="text-justify">
+            <p>
+                Salut ! Mon nom est Amaury Carrade, mais vous m'avez peut-être croisé sur internet sous le nom de
+                “J-C Bubbendorf” <span class="text-muted">(y'a longtemps)</span>.
+            </p>
+            <p>
+                Je suis ce genre de personnes curieuses par nature : je m'intéresse à tout. Je veux dire : si vous me
+                parlez de peinture, d'astrophysique, de maths, d'histoire, de physique quantique, de cordes (que ce soit
+                pour théoriser ou se pendre), ou d'informatique, ça m'intéresse. Oui oui.<br />
+
+                Je suis d'ailleurs&nbsp;—&nbsp;en partie pour cette raison&nbsp;—&nbsp;actuellement étudiant en physique,
+                après avoir fait deux années de classes préparatoires dans le même domaine.
+            </p>
+            <p>
+                Je m'intéresse aussi à d'autres domaines, principalement le logiciel libre et la sécurité (que ce soit de
+                mes données, de <a href="#">mes mails</a> ou de mes sites). Je tente dans la mesure du possible d'utiliser
+                des logiciels libres (<a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>,
+                <a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a>, <a href="http://git-scm.com/">Git</a>,
+                <a href="http://www.libreoffice.org/">LibreOffice</a>, <a href="http://www.videolan.org/vlc/">VLC</a>,
+                <a href="http://gimp.org/">GIMP</a>, <a href="http://www.truecrypt.org/">TrueCrypt</a>...) — sans m'y
+                limiter (<a href="http://opera.com/">Opera</a>, <a href="http://www.sublimetext.com/">Sublime Text</a>...).
+            </p>
+        </div>
+
+        <h3 style="margin-top: 40px;">Bricolages</h3>
+
+        <div class="text-justify">
+            <p>
+                En termes informatiques, je me débrouille correctement dans l'usage de quelques technologies, essentiellement
+                des choses comm Java, Python, Javascript, PHP...&nbsp;—&nbsp;tout en restant ouvert à d'autres technologies
+                que je connais moins.
+            </p>
+            <p>
+                <strong>L'essentiel de ce que je bidouille en code est <a href="https://github.com/AmauryCarrade">sur GitHub</a>.</strong>
+                Si je devais lister quelques projets, ça donnerait...
+            </p>
+            <ul>
+                <li><strong><a href="https://github.com/AmauryCarrade/OranjeProxy">OranjeProxy</a></strong>, proxy pour outrepasser les filtres des écoles/entreprises.</li>
+                <li><strong><a href="https://github.com/AmauryCarrade/FeedExtender">FeedExtender</a></strong>, un petit outil pour récupérer les flux complets à partir d'un flux tronqué. <span style="color: grey;">(Encore en version &alpha;.)</span></li>
+                <li><strong><a href="#">QRCode Generator</a></strong>, une petite extension sans prétention utilisée pour me familiariser à la création d'extensions pour Opera et à faire des tests de sites sur mobile. <a href="https://github.com/AmauryCarrade/OperaQRCode" style="color: grey !important;">(Sur GitHub.)</a></li>
+                <li><strong><a href="#">Textarea Autoresize</a></strong>, un tout petit plugin pour jQuery qui fait ce que son nom laisse suggérer. <span style="color: grey;">(Pas sur GitHub.)</span></li>
+                <li class="text-muted"><strong><a href="https://github.com/Asilane" class="text-muted">Asilane</a></strong>, une alternative libre à l'assistant virtuel d'Apple Siri. Projet abandonné...</li>
+            </ul>
+            <p style="margin-top: 30px;">
+                J'ai également quelques projets liés à l'univers de <a href="https://minecraft.net">Minecraft</a>. Administrateur
+                <a href="https://zcraft.fr">d'un serveur avec une communauté en or</a>, j'ai fait quelques développements
+                autour de ce jeu, notamment :
+            </p>
+            <ul>
+                <li><strong><a href="https://zeps.carrade.eu">le ZéPS</a></strong>, un calculateur d'itinéraire pour notre (trop) complexe réseau de transports, réalisé en coopération avec <a href="http://florian.cassayre.me/">Florian Cassayre</a> (<a href="https://github.com/zDevelopers/ZePS-GUI" class="text-muted">voir la source</a>) ;</li>
+                <li><strong><a href="https://github.com/zDevelopers/zLib">la ZLib</a></strong>, une bibliothèque de développement simplifiant considérablement le travail autour de plugins Bukkit/Spigot ; </li>
+                <li><strong><a href="https://github.com/zDevelopers">pas mal d'autres trucs</a></strong> listés sur cette page, en collaboration avec quelques amis rencontré sur le serveur sus-cité.</li>
+            </ul>
+        </div>
+    </aside>
+</div>
+{% endblock %}
