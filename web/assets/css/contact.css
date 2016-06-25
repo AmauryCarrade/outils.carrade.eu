@@ -1,0 +1,22 @@
+/* Mail protection */
+
+#mail_arobazheux {
+    text-align: center;
+    font-size: 21px;
+    /* direction: rtl; */
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+#mail_arobazheux::before {
+    content: 'amaury';
+}
+#mail_arobazheux::after {
+    content: 'carrade.eu';
+}
+
+#mail_arobazheux_fai::before {
+    content: 'amaury.carrade';
+}
+#mail_arobazheux_fai::after {
+    content: 'free.fr';
+}

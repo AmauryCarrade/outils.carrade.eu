@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Contact{% endblock %}
+{% block content_title %}☏ Contact{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basepath }}/assets/css/contact.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2>Par courriel</h2>
+        <p id="mail_arobazheux" class="tooltip-top" title="Vous ne pouvez pas copier-coller l'adresse, c'est normal. C'est une conséquence du filtre anti-spam.">@</p>
+        <p>
+            Vous pouvez me contacter par courriel en utilisant cette adresse. De préférence en anglais ou en français (mais je me débrouille un peu en espagnol).<br />
+            Sachez également que je suis les <a href="http://sl4.org/crocker.html">règles de Crocker</a>, donc inutile de vous perdre en formules diplomatiques :-) .
+        </p>
+        <p>
+            Voir aussi ma <a href="{{ path('pgp') }}">clef publique GPG</a>.
+        </p>
+        <hr />
+        <p class="small">
+            You can contact me using this adress. Prefer to write in English or French (but I speak Spanish too).<br />
+            I follow the <a href="http://sl4.org/crocker.html">Crocker's rules</a>.<br /><br />
+            See also my <a href="{{ path('pgp') }}">GPG public key</a>.
+        </p>
+    </div>
+
+    <hr class="visible-xs-block visible-sm-block" />
+
+    <div class="col-md-6">
+        <h2>Via IRC</h2>
+
+        <p>
+            Je suis parfois sur IRC (les pseudos Amaury, sur EpiKNet, et AmauryPi, sur Freenode, me sont réservés). <br />
+            Cependant, si vous voulez me contacter par ce biais, envoyez moi un message avant, car je suis souvent déconnecté...
+        </p>
+        <p>
+            Je suis cela dit connecté quasiment tout le temps sur le réseau <code>irc.zcraft.fr</code> en tant qu'Amaury
+            <small>(ou rarement AmauryPi)</small>.
+        </p>
+
+        <p>&nbsp;</p>
+
+        <h2>Sur Twitter</h2>
+
+        <p>
+            Vous pouvez me mentionner sur Twitter (compte <a href="https://twitter.com/AmauryPi">@AmauryPi</a>).
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -13,4 +13,11 @@ $(function()
             }
         }, 20);
     });
+
+    prettyPrint();
+
+    $('.tooltip-top')   .tooltip();
+    $('.tooltip-left')  .tooltip({ placement: 'left'   });
+    $('.tooltip-right') .tooltip({ placement: 'right'  });
+    $('.tooltip-bottom').tooltip({ placement: 'bottom' });
 });

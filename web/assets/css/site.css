@@ -13,7 +13,7 @@
 
 body {
     padding-bottom: 40px;
-    color: #5a5a5a;
+    color: #323232;
 
     /* Required for full-width blocks */
     overflow-x: hidden;
@@ -29,6 +29,11 @@ body {
     min-height: 100vh;
 }
 
+@media (min-width:1400px) {
+    .container {
+        width: 1280px;
+    }
+}
 
 /* NAVBAR
 -------------------------------------------------- */
@@ -216,7 +221,7 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
     text-align: justify;
 }
 
-h1:first-child {
+h1:first-child, h2:first-child, h3:first-child {
     margin-top: 0;
 }
 
@@ -295,6 +300,16 @@ code {
     border-top: solid #ccc 1px;
 
     color: white;
+}
+
+.use-firefox {
+    margin-top: 60px;
+}
+.use-firefox .tooltip {
+    margin-top: 14px;
+}
+.use-firefox .tooltip .tooltip-arrow {
+    display: none;
 }
 
 

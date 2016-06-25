@@ -37,9 +37,16 @@ $app['twig']->getExtension('core')->setTimezone('Europe/Paris');
 // Routing
 
 $app
-    ->get('/', 'AmauryCarrade\\Controllers\\HomeController::homepage')
-    ->bind('ac.homepage');
+    ->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
+    ->bind('homepage');
 
+$app
+    ->get('/contact.html', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
+    ->bind('contact');
+
+$app
+    ->get('/pgp.html', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
+    ->bind('pgp');
 
 // Boot
 
