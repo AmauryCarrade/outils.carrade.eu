@@ -21,4 +21,35 @@ class MainPagesController
     {
         return $app['twig']->render('pgp.html.twig');
     }
+
+
+    public function list_projects(Application $app)
+    {
+        $projects_file = $app['contents_folder'] . '/projects.json';
+
+        if (!file_exists($projects_file))
+            $app->abort(404);
+
+        $projects = json_decode(file_get_contents($projects_file));
+
+        return $app['twig']->render('projects.html.twig', array(
+            'projects' => $projects
+        ));
+    }
+
+    public function show_project(Application $app, $category, $name)
+    {
+        $category = str_replace('..', '', $category);
+        $name = str_replace('..', '', $name);
+
+        try
+        {
+            return $app['twig']->render('@content/projects/' . $category . '/' . $name . '.html.twig');
+        }
+        catch (\Twig_Error_Loader $e)
+        {
+            $app->abort(404);
+            return null;
+        }
+    }
 }

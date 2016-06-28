@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Projets{% endblock %}
+{% block content_title %}Projets{% endblock %}
+{% block content_subtitle %}Le gros de mes bidouillages numériques. Il en manque potentiellement quelques uns.{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basepath }}/assets/css/projects.css" rel="stylesheet" />
+{% endblock %}
+
+{% block container_content %}
+    <div class="row">
+        <aside class="col-md-4">
+            <div class="list-group">
+                {% for category in projects %}
+                    <a class="list-group-item projects-categories" href="#{{ category.slug }}">
+                        <span class="badge">{{ category.projects|length }}</span>
+                        {{ category.category }}
+                    </a>
+                {% endfor %}
+            </div>
+        </aside>
+        <div class="col-md-8">
+            {% for category in projects %}
+                <div class="panel panel-default" id="{{ category.slug }}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ category.category }}</h3>
+                    </div>
+
+                    {% for project in category.projects %}
+                        {% set slug = "" %}
+                        {% if project.slug %}{% set slug = category.slug ~ "-" ~ project.slug %}{% endif %}
+
+                        <div class="panel-body project"{% if slug %} id="{{ slug }}"{% endif %}>
+                            <header class="row">
+                                <h2 class="{% if slug %}col-md-9 col-sm-9{% else %}col-md-12 col-sm-12{% endif %} col-xs-12">
+                                    {{ project.project }} <small>{{ project.subtitle }}</small>
+                                </h2>
+                                {% if slug %}
+                                    <aside class="col-md-3 col-sm-3 hidden-xs text-right">
+                                        <a href="#{{ slug }}" class="text-muted">Permalien</a>
+                                    </aside>
+                                {% endif %}
+                            </header>
+                            <div class="row">
+                                <article class="col-md-8 col-sm-9">
+                                    <p class="text-justify">
+                                        {{ project.description|join('\n')|raw }}
+                                    </p>
+                                    {% if project.links %}
+                                        <div class="project-buttons">
+                                            {% for link in project.links %}
+                                                <a href="{{ link.link|replace({'{root}': global.request.baseUrl}) }}" class="btn {% if link.primary %}btn-primary{% else %}btn-default{% endif %}">
+                                                    {{ link.text }}
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </article>
+                                <aside class="col-md-4 col-sm-3 project-meta">
+                                    <dl class="dl-horizontal">
+                                        {% if project.type %}
+                                            <dt>Type</dt>
+                                            <dd>{{ project.type }}</dd>
+                                        {% endif %}
+
+                                        {% if project.version %}
+                                            <dt>Version</dt>
+                                            <dd>{{ project.version }}</dd>
+                                        {% endif %}
+
+                                        {% if project.status %}
+                                            <dt>État</dt>
+                                            <dd>{{ project.status }}</dd>
+                                        {% endif %}
+
+                                        {% if project.compatibility %}
+                                            <dt>Compatibilité</dt>
+                                            <dd>{{ project.compatibility|raw }}</dd>
+                                        {% endif %}
+
+                                        {% if project.license %}
+                                            <dt>Licence</dt>
+                                            <dd>
+                                                {% if project.license_link %}
+                                                    <a href="{{ project.license_link }}">{{ project.license }}</a>
+                                                {% else %}
+                                                    {{ project.license|raw }}
+                                                {% endif %}
+                                            </dd>
+                                        {% endif %}
+                                    </dl>
+                                </aside>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+.project {
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 26px;
+}
+.project:last-child {
+    border-bottom: none;
+}
+
+.project dt {
+    max-width: 45%;
+}
+.project dd {
+    margin-left: 50%;
+}
+.project h2 {
+    margin-bottom: 20px;
+}
+.project .project-buttons {
+    margin-top: 28px;
+}
+
+.projects-categories .badge {
+    background-color: #888;
+    border-radius:5px;
+
+    position: relative;
+    top: 2px;
+}
+
+@media (max-width: 768px) {
+    .project aside.project-meta {
+        padding-top: 30px;
+    }
+}

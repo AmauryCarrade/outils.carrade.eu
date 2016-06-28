@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Textarea autoResize jQuery plugin{% endblock %}
+
+{% block content_title %}autoResize();{% endblock %}
+{% block content_subtitle %}A simple jQuery plugin{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .dl-horizontal dt {
+            width: 50px;
+        }
+        .dl-horizontal dd {
+            margin-left: 60px;
+        }
+        small {
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ global.request.basePath }}/js/jquery.textareaAutoResize.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#demoNoOptions').autoResize();
+            $('#demoAnimate').autoResize({
+                animate: {
+                    enabled: true,
+                    duration: 'fast'
+                }
+            });
+            $('#demoMaxHeight').autoResize({
+                maxHeight: '100px'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>What's that?</h1>
+    <p>
+        This plugin is a really simple plugin which automatically resize the focused textarea on-the-fly, based on the contents height.<br />
+        Just like Facebook, if you want.
+    </p>
+    <p>There are a few options to adapt this plugin to yours needs. You can:</p>
+    <ul>
+        <li>add animation while resizing;</li>
+        <li>set a maximum height.</li>
+    </ul>
+
+    <h2>How it work?</h2>
+    <p>
+        The principle is really simple. Rather than bother to calculate the size of the textarea, we let the browser do it. When the textarea's content is modified, we put it on an hidden div who have the same CSS properties as the textarea.<br />
+        Then, we get the height of this div, and we apply it to the textarea.
+    </p>
+
+    <h1>Download &amp; install <small>How can I integrate this to my website?</small></h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Download</h2>
+            <p>You can download the (very small) script by following this link:</p>
+            <p class="text-center"><br />
+                <a href="{{ global.request.basePath }}/js/jquery.textareaAutoResize.js" class="btn btn-primary">
+                    <span class="icon-download"></span>
+                    Download <strong>jquery.textareaAutoResize.js</strong>
+                </a><br />
+                <small>File size: 4 Ko</small>
+            </p>
+            <p>Current version is <strong>1.1</strong>.</p>
+            <p>This script is licensed under a <a href="http://www.gnu.org/licenses/lgpl.html">GNU LGPL v3 license</a>.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Install</h2>
+            <p>To install the script, just include it on your HTML page.</p>
+            <pre class="prettyprint">&lt;script src="js/jquery.textareaAutoResize.js"&gt;&lt;/script&gt;</pre>
+            <p>Then, add on your js file:</p>
+            <pre class="prettyprint">$('textarea').autoResize();</pre>
+            <p>This will enable the script for all textareas, using the default options (no animations and unlimited height).</p>
+        </div>
+    </div>
+
+    <h1>Usage <small>How can I use this <del>awesome</del> script?</small></h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Example of use</h2>
+            <p>This is a typical example of use of this script, will all options.</p>
+            <pre class="prettyprint">
+$('textarea').autoResize({
+    animate: {
+        enabled:  true,
+        duration: 'fast',
+        complete: function() {
+            // Do something
+        },
+        step: function(now, fx) {
+            // Do something else
+        }
+    },
+    maxHeight: '500px'
+});</pre>
+        </div>
+        <div class="col-md-6">
+            <h2>All options</h2>
+            <p>All available options are presented below.</p>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>animate.enabled</code></td>
+                    <td>
+                        This will add animation while resizing the textarea.<br />
+                        The default value is <code>false</code>.<br /><br />
+                        <span class="label label-info">Heads up!</span> This option is affected by the <code>jQuery.fx.off</code> property.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>animate.duration</code></td>
+                    <td>
+                        This option sets the duration of the animation. Possibles values are "slow", "normal", "fast" or a numeric value in ms.<br />
+                        The default value is <code>100</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>animate.complete</code></td>
+                    <td>
+                        This option sets a function to call once the animation is complete.<br />
+                        The default value is <code>null</code> (no callback).
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>animation.step</code></td>
+                    <td>
+                        This option sets a function to be called after each step of the animation.<br />
+                        It accepts two arguments: <code>now</code> and <code>fx</code>.
+                        <ul>
+                            <li><code>now</code>: the numeric value of the property being animated at each step;</li>
+                            <li><code>fx</code>: a reference to the <code>jQuery.fx</code> prototype object, which contains a number of properties such as <code>elem</code> for the animated element, <code>start</code> and <code>end</code> for the first and last value of the animated property, respectively, and <code>prop</code> for the property being animated.</li>
+                        </ul>
+                        The default value is <code>null</code> (no callback).<br /><br />
+                        <span class="label label-info">Heads up!</span> You can find more informations by visiting <a href="http://api.jquery.com/animate/">the jQuery.animate() documentation page</a>.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>maxHeight</code></td>
+                    <td>
+                        This option sets a maximal height for the textarea.<br />
+                        If this option is enabled, the textarea will be resized only if his height is lesser than this maximal height. Yes, it's logic.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h1>Demo <small>Try it yourself!</small></h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>With defaults options</h2>
+            <textarea id="demoNoOptions" class="form-control" placeholder="Tip something..." style="margin-bottom: 10px;"></textarea>
+            <pre class="prettyprint">$('textarea').autoResize();</pre>
+        </div>
+        <div class="col-md-4">
+            <h2>Animation</h2>
+            <textarea id="demoAnimate" class="form-control" placeholder="Tip something..." style="margin-bottom: 10px;"></textarea>
+            <pre class="prettyprint">
+$('textarea').autoResize({
+    animate: {
+        enabled: true,
+        duration: 'fast'
+    }
+});</pre>
+        </div>
+        <div class="col-md-4">
+            <h2>Maximal height</h2>
+            <textarea id="demoMaxHeight" class="form-control" placeholder="Tip something..." style="margin-bottom: 10px;"></textarea>
+            <pre class="prettyprint">
+$('textarea').autoResize({
+    maxHeight: '100px'
+});</pre>
+        </div>
+    </div>
+{% endblock %}

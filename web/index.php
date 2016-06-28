@@ -1,4 +1,6 @@
 <?php
+use Silex\Application;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
@@ -31,22 +33,39 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path'       => __DIR__ . '/../templates'
 ));
 
+$loader = new \Twig_Loader_Filesystem();
+$loader->addPath(__DIR__ . '/../contents', 'content');
+
+$app['twig']->getLoader()->addLoader($loader);
 $app['twig']->getExtension('core')->setTimezone('Europe/Paris');
+
+$app['root_folder'] = __DIR__ . '/..';
+$app['contents_folder'] = $app['root_folder'] . '/contents';
+
+
+// Middlewares
+
+$app->before('AmauryCarrade\\Middlewares\\RedirectionMiddleware::handle', Application::EARLY_EVENT);
 
 
 // Routing
 
-$app
-    ->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
+$app->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
     ->bind('homepage');
 
-$app
-    ->get('/contact.html', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
+$app->get('/contact.html', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
     ->bind('contact');
 
-$app
-    ->get('/pgp.html', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
+$app->get('/pgp.html', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
     ->bind('pgp');
+
+
+$app->get('/projects.html', 'AmauryCarrade\\Controllers\\MainPagesController::list_projects')
+    ->bind('projects');
+
+$app->get('/projects/{category}/{name}.html', 'AmauryCarrade\\Controllers\\MainPagesController::show_project')
+    ->bind('show_project');
+
 
 // Boot
 
