@@ -764,7 +764,7 @@
                 "slug": "auth-donw-warning",
 
                 "description": [
-                    "La connexion à un serveur Minecraft passe par un service d'authentification de Mojang qui, s'il est indisponible, rendent impossible l'accès au serveur. Ce plugin avertit les joueurs en jeu si ce service tombe (ce qu'est fréquent...) : à ces moments, s'ils se déconnectent, ils ne peuvent plus revenir."
+                    "La connexion à un serveur Minecraft passe par un service d'authentification de Mojang qui, s'il est indisponible, rend impossible l'accès au serveur de jeu. Ce plugin avertit les joueurs en jeu si ce service tombe (ce qu'est fréquent...) : à ces moments, s'ils se déconnectent, ils ne peuvent plus revenir."
                 ],
 
                 "type": "Plugin Bukkit",
