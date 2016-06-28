@@ -19,12 +19,24 @@
     margin-top: 28px;
 }
 
-.projects-categories .badge {
+.projects-category .badge {
     background-color: #888;
     border-radius:5px;
 
     position: relative;
     top: 2px;
+}
+
+#projects-categories.affix {
+    top: 5px;
+    width: 25%;
+}
+
+@media (max-width: 992px) {
+    #projects-categories.affix {
+        position: relative !important;
+        width: inherit !important;
+    }
 }
 
 @media (max-width: 768px) {

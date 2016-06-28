@@ -11,16 +11,16 @@
 {% block container_content %}
     <div class="row">
         <aside class="col-md-4">
-            <div class="list-group">
+            <div class="list-group" id="projects-categories" data-spy="affix" data-offset-top="210">
                 {% for category in projects %}
-                    <a class="list-group-item projects-categories" href="#{{ category.slug }}">
+                    <a class="list-group-item projects-category" href="#{{ category.slug }}">
                         <span class="badge">{{ category.projects|length }}</span>
                         {{ category.category }}
                     </a>
                 {% endfor %}
             </div>
         </aside>
-        <div class="col-md-8">
+        <div class="col-md-8" id="projects-container">
             {% for category in projects %}
                 <div class="panel panel-default" id="{{ category.slug }}">
                     <div class="panel-heading">
