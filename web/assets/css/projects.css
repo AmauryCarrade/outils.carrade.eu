@@ -27,15 +27,28 @@
     top: 2px;
 }
 
-#projects-categories.affix {
-    top: 5px;
-    width: 25%;
-}
-
 @media (max-width: 992px) {
     #projects-categories.affix {
         position: relative !important;
         width: inherit !important;
+    }
+}
+@media (min-width: 992px) {
+    #projects-categories.affix {
+        top: 5px;
+        width: 293px;
+    }
+}
+@media (min-width: 1200px) {
+    #projects-categories.affix {
+        top: 5px;
+        width: 360px;
+    }
+}
+@media (min-width: 1400px) {
+    #projects-categories.affix {
+        top: 5px;
+        width: 396px;
     }
 }
 
