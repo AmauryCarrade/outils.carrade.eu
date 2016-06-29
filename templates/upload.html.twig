@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Téléversement{% endblock %}
+{% block content_title %}Téléversement{% endblock %}
+{% block content_subtitle %}À usage personnel...{% endblock %}
+
+{% block content %}
+    {% if uploaded %}
+        {% if upload_success %}
+            <div class="alert alert-success">
+                <strong>Fichier téléversé.</strong>
+                Vous pouvez le retrouver à l'adresse <a href="{{ upload_url }}">{{ upload_url }}</a>.
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                <strong>{{ error_title }}</strong>
+                {{ error_text }}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <form action="{{ path('upload_process') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <div class="form-group">
+            <label for="uploaded_file" class="col-md-3 control-label">Sélectionnez un fichier</label>
+            <div class="col-md-7">
+                <input type="file" class="form-control" id="uploaded_file" name="uploaded_file" placeholder="Sélectionnez un fichier..." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url_file" class="col-md-3 control-label">À moins que vous ne préfériez une URL</label>
+            <div class="col-md-7">
+                <input type="url" class="form-control" id="url_file" name="url_file" placeholder="Entrez une URL (seulement si vous voulez récupérer un fichier distant)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-md-3 control-label">Le mot de passe ?</label>
+            <div class="col-md-5">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Entrez un mot de passe valide pour envoyer ce fichier" />
+            </div>
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary btn-large" value="Téléverser" />
+            </div>
+        </div>
+    </form>
+
+    <p class="text-muted text-right">
+        Script d'auto-hébergement basé sur la version de <a href="http://sebsauvage.net/wiki/doku.php?id=php:filehosting">sebsauvage.net</a> (...et très modifié).
+    </p>
+{% endblock %}

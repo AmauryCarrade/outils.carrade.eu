@@ -15,9 +15,9 @@ class RedirectionMiddleware
 
     public function handle(Request $request, Application $app)
     {
-        if (array_key_exists($request->getPathInfo(), RedirectionMiddleware::$redirection_map))
+        if (array_key_exists($request->getPathInfo(), self::$redirection_map))
         {
-            return $app->redirect($request->getBaseUrl() . RedirectionMiddleware::$redirection_map[$request->getPathInfo()], 301);
+            return $app->redirect($request->getBaseUrl() . self::$redirection_map[$request->getPathInfo()], 301);
         }
 
         return null;

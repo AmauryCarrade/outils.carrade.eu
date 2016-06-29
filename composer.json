@@ -11,7 +11,8 @@
         },
         "files": [
             "lib/functions_db.php",
-            "lib/functions_utils.php"
+            "lib/functions_utils.php",
+            "lib/Downloader.php"
         ]
     }
 }

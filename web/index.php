@@ -40,6 +40,7 @@ $app['twig']->getLoader()->addLoader($loader);
 $app['twig']->getExtension('core')->setTimezone('Europe/Paris');
 
 $app['root_folder'] = __DIR__ . '/..';
+$app['web_folder'] = __DIR__;
 $app['contents_folder'] = $app['root_folder'] . '/contents';
 
 
@@ -65,6 +66,13 @@ $app->get('/projects.html', 'AmauryCarrade\\Controllers\\MainPagesController::li
 
 $app->get('/projects/{category}/{name}.html', 'AmauryCarrade\\Controllers\\MainPagesController::show_project')
     ->bind('show_project');
+
+
+$app->get('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::upload_form')
+    ->bind('upload');
+
+$app->post('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::process_upload')
+    ->bind('upload_process');
 
 
 // Boot

@@ -8,6 +8,8 @@
 *.sublime-project
 /NoGit
 
+/web/paste
+/web/files
 
 
 # Created by https://www.gitignore.io/api/phpstorm,composer,symfony
