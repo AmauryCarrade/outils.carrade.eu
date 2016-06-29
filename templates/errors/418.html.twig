@@ -1,0 +1,21 @@
+{% extends 'errors/error.html.twig' %}
+
+{% block content_title %}Erreur 418{% endblock %}
+{% block content_subtitle %}Le serveur auquel vous tentez d'accéder est une théière.{% endblock %}
+
+{% block content %}
+<article>
+    <div class="pull-right tooltip-left" title="Voir aussi la section « Codes d'erreur ».">
+        <a href="https://fr.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol">
+            WTF?
+        </a>
+    </div>
+    <h1 style="margin-top: 0;">Ce serveur est une théière.</h1>
+    <p>
+        Par consquent, il ne peut vous délivrer de café. Désolé pour le dérangement.
+    </p>
+    <p>
+        Vous pouvez retourner à <a href="javascript:history.go(-1);">la dernière page visitée (si elle existe)</a>, ou à <a href="{{ path('homepage') }}">l'accueil</a>.
+    </p>
+</article>
+{% endblock %}

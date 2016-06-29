@@ -1,5 +1,6 @@
 <?php
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -47,6 +48,10 @@ $app['contents_folder'] = $app['root_folder'] . '/contents';
 // Middlewares
 
 $app->before('AmauryCarrade\\Middlewares\\RedirectionMiddleware::handle', Application::EARLY_EVENT);
+$app->error(function(\Exception $e, Request $request, $code) use ($app)
+{
+    return (new AmauryCarrade\Controllers\ErrorsController())->handle($e, $app, $request, $code);
+});
 
 
 // Routing
@@ -73,6 +78,10 @@ $app->get('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::upload_
 
 $app->post('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::process_upload')
     ->bind('upload_process');
+
+
+$app->get('/coffee.html', 'AmauryCarrade\\Controllers\\MainPagesController::coffee')
+    ->bind('coffee');
 
 
 // Boot

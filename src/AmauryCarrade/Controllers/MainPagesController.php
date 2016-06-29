@@ -22,6 +22,11 @@ class MainPagesController
         return $app['twig']->render('pgp.html.twig');
     }
 
+    public function coffee(Application $app)
+    {
+        $app->abort(418);
+    }
+
 
     public function list_projects(Application $app)
     {

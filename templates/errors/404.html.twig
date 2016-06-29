@@ -1,0 +1,13 @@
+{% extends 'errors/error.html.twig' %}
+
+{% block content_title %}Erreur 404 · Page introuvable{% endblock %}
+{% block content_subtitle %}Vous semblez perdu ?...{% endblock %}
+
+{% block content %}
+<article>
+    <h1>Cette page semble perdue dans l'espaaaaace <small>(et pourtant, on l'a cherchée)</small></h1>
+
+    <p>La page que vous cherchez n'a pas été trouvée. Elle a peut-être été déplacée, supprimée, torturée...</p>
+    <p>Vous pouvez <a href="javascript:history.go(-1);">retourner à la dernière page visitée</a>, si elle existe, ou <a href="{{ path('homepage') }}">à l'accueil</a>.</p>
+</article>
+{% endblock %}
