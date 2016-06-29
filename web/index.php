@@ -48,10 +48,14 @@ $app['contents_folder'] = $app['root_folder'] . '/contents';
 // Middlewares
 
 $app->before('AmauryCarrade\\Middlewares\\RedirectionMiddleware::handle', Application::EARLY_EVENT);
-$app->error(function(\Exception $e, Request $request, $code) use ($app)
+
+if (!$app['debug'])
 {
-    return (new AmauryCarrade\Controllers\ErrorsController())->handle($e, $app, $request, $code);
-});
+    $app->error(function (\Exception $e, Request $request, $code) use ($app)
+    {
+        return (new AmauryCarrade\Controllers\ErrorsController())->handle($e, $app, $request, $code);
+    });
+}
 
 
 // Routing
@@ -82,6 +86,17 @@ $app->post('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::proces
 
 $app->get('/coffee.html', 'AmauryCarrade\\Controllers\\MainPagesController::coffee')
     ->bind('coffee');
+
+
+$app->get('/minecraft/history', 'AmauryCarrade\\Controllers\\Tools\\MCHistoryController::history_home')
+    ->bind('tools.minecraft.history');
+
+$app->get('/minecraft/history/{identifier}/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCHistoryController::history')
+    ->value('format', 'html')
+    ->bind('tools.minecraft.history.results');
+
+$app->get('/tools/minecraft/history/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCHistoryController::history_legacy')
+    ->value('format', 'html');
 
 
 // Boot

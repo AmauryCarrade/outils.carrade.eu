@@ -215,6 +215,11 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
     border-radius: 5px;
 
     padding: 15px;
+
+    margin-top: 30px;
+}
+.container-content:first-child {
+    margin-top: 0;
 }
 
 .panel-body p {
@@ -302,6 +307,10 @@ code {
     border-top: solid #ccc 1px;
 
     color: white;
+}
+
+#page-footer a {
+    color: #FFFFFF;
 }
 
 .use-firefox {

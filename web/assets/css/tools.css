@@ -1,0 +1,64 @@
+h1 sup {
+    font-weight: normal;
+    font-size: 0.6em;
+}
+
+h2 {
+    margin-bottom: 25px;
+    margin-top: 0;
+}
+
+.small-title {
+    font-size: small;
+    letter-spacing: 1.5px;
+    word-spacing: 4px;
+    
+    font-variant: small-caps;
+    
+    margin-bottom: -1px;
+}
+
+.hidden-accessibility-label {
+    display: none;
+}
+
+.motd {
+    font-size: 1.7em;
+    background-color: #313131;
+    border-color: #161616;
+    color: white;
+    line-height: 22px;
+}
+.motd .span11 {
+    /*margin-left: -10px;*/
+}
+.motd .span1 {
+    text-align: center;
+}
+
+.server_favicon {
+    max-height: 40px;
+}
+
+td.no_data {
+    font-style: italic;
+}
+
+.ping-track-link-container {
+    position: relative;
+    top: -15px;
+    right: -10px;
+}
+
+.ping-track-link-container a {
+    color: white !important;
+}
+.ping-track-link-container a:hover {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.big_number {
+    margin-top: 12px;
+    font-size: 3em;
+}
