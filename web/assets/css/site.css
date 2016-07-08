@@ -267,6 +267,22 @@ article h5 {
     font-style: italic;
 }
 
+article p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+article div.text-center {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+article div.text-center:first-child {
+	margin-top: 0;
+}
+article div.text-center:last-child {
+	margin-bottom: 0;
+}
+
 article dl {
     margin: 20px 0 20px 15px;
     font-size: 1.2em;

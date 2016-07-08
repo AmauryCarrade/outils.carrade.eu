@@ -99,6 +99,10 @@ $app->get('/tools/minecraft/history/{format}', 'AmauryCarrade\\Controllers\\Tool
     ->value('format', 'html');
 
 
+$app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
+    ->bind('show_content');
+
+
 // Boot
 
 $app->run();

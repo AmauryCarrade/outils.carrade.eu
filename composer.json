@@ -2,7 +2,8 @@
     "require": {
         "silex/silex": "~2.0",
         "twig/twig": "~1.0",
-        "symfony/twig-bridge": "^2.0"
+        "symfony/twig-bridge": "^2.0",
+        "erusev/parsedown": "^1.6"
     },
 
     "autoload": {

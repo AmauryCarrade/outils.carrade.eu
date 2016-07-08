@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+{% block content_title %}{{ title }}{% endblock %}
+{% block content_subtitle %}{{ subtitle }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <article class="col-md-8 text-justify">
+        {{ content|raw }}
+    </article>
+    <aside class="col-md-4">
+        <!-- TODO sommaire -->
+    </aside>
+</div>
+{% endblock %}
+
