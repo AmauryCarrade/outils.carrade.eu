@@ -179,7 +179,7 @@
 
 {% block footer %}
     <p>
-        Serveur contacté le {{ "now"|date("d/m/Y à H:i:s") }}.<br /><br />
+        {% if data %}Serveur contacté le {{ "now"|date("d/m/Y à H:i:s") }}.<br /><br />{% endif %}
         Cet outil utilise <a href="http://wiki.vg/Server_List_Ping">le protocole de Mojang</a> et <a href="https://github.com/xPaw/PHP-Minecraft-Query/"> une API de xPaw</a>.<br />
         Des chatons vont mourir si vous abusez de ce service.
     </p>

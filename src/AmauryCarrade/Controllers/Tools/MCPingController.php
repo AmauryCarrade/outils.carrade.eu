@@ -39,7 +39,7 @@ class MCPingController
         $timeout = 5;
 
         $input = "";
-        $port = "";
+        $port = 25565;
 
         $data = array();
         $error = "";
@@ -48,17 +48,12 @@ class MCPingController
         if(!empty($ip))
         {
             $input = $ip;
-            $port;
 
             if(strpos($ip, ":") !== false)
             {
                 $exploded_ip = explode(":", $ip);
                 $ip = $exploded_ip[0];
                 $port = intval($exploded_ip[1]);
-            }
-            else
-            {
-                $port = 25565;
             }
 
             try
@@ -175,7 +170,7 @@ class MCPingController
 
         if($format == "json")
         {
-            $status_code;
+            $status_code = 200;
             $json = array();
 
             if(empty($input))
