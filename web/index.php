@@ -15,7 +15,7 @@ if (isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], array('1
 {
     $app['debug'] = true;
 }
-
+$app['debug'] = true;
 
 // Credentials
 
@@ -96,6 +96,17 @@ $app->get('/minecraft/history/{identifier}/{format}', 'AmauryCarrade\\Controller
     ->bind('tools.minecraft.history.results');
 
 $app->get('/tools/minecraft/history/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCHistoryController::history_legacy')
+    ->value('format', 'html');
+
+
+$app->get('/minecraft/ping', 'AmauryCarrade\\Controllers\\Tools\\MCPingController::ping_home')
+    ->bind('tools.minecraft.ping');
+
+$app->get('/minecraft/ping/{ip}/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCPingController::ping')
+    ->value('format', 'html')
+    ->bind('tools.minecraft.ping.results');
+
+$app->get('/tools/minecraft/ping/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCPingController::ping_legacy')
     ->value('format', 'html');
 
 

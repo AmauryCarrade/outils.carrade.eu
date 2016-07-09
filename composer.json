@@ -8,7 +8,8 @@
 
     "autoload": {
         "psr-4": {
-            "AmauryCarrade\\": "src/AmauryCarrade/"
+            "AmauryCarrade\\": "src/AmauryCarrade/",
+            "xPaw\\": "lib/xPaw"
         },
         "files": [
             "lib/functions_db.php",
@@ -17,3 +18,4 @@
         ]
     }
 }
+

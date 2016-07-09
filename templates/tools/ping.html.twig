@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{% if input %}{{input}} ⋅ {% endif %}Ping ⋅ Minecraft{% endblock %}
+
+{% block content_title %}
+	Ping {% if input %}sur {{ ip }}<sup>:{{ port }}</sup>{% else %}!{% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basePath }}/assets/css/tools.css" rel="stylesheet" />
+{% endblock %}
+
+{% block container_content %}
+<div class="container-content">
+    {% if data %}
+        {% if error %}
+        <div class="alert alert-danger">
+            <strong>Impossible de contacter le serveur !</strong> {{ error }}
+        </div>
+        {% endif %}
+    {% endif %}
+    
+    <div class="submit-form row">
+        <form style="margin-bottom: 0;" action="{{ path('tools.minecraft.ping') }}">
+            <div class="col-md-2"></div>
+            <div class="form-group col-md-8" style="margin-bottom: 0;">
+                <label class="sr-only" for="ip">Entrez l'IP du serveur à contacter...</label>
+                <div class="input-group">
+                    <input type="text" id="ip" name="ip" class="form-control" placeholder="Entrez l'IP du serveur à contacter..."{% if input %} value="{{ input }}"{% endif %} />
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-primary" value="Analyser le serveur" />
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </form>
+    </div>
+</div>
+
+{% if data and not error %}
+    <div class="container-content motd">
+        {% if tracked %}
+        <div class="pull-right ping-track-link-container">
+            <a href="{# path('tools.minecraft.stats', {'ips': input|lower}) TODO when stats page ready #}" class="tooltip-top" title="Historique">
+                <span class="icon-time"></span>
+            </a>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-1">
+                {% if data.favicon %}<img class="server_favicon" src="{{ data.favicon }}" alt="Icône du serveur" />{% endif %}
+            </div>
+            <div class="col-md-10">
+                {{ data.motd_html|raw }}
+            </div>
+        </div>
+    </div>
+
+    <div class="container-content">
+        <div class="row">
+		<div class="col-md-6">
+			<h2>Détails</h2>
+			
+            <h4 class="muted small-title">Joueurs connectés</h4>
+            <p class="lead">{{ data.online_players }} / {{ data.max_players }}</p>
+            
+            <h4 class="muted small-title">Temps de réponse</h4>
+            <p class="lead">{{ data.ping|number_format(2, ',', ' ') }} ms</p>
+            
+            {% if data.game_type %}
+            <h4 class="muted small-title">Type de jeu</h4>
+            <p class="lead">{{ data.game_type }}</p>
+            {% endif %}
+            
+            {% if data.main_map %}
+            <h4 class="muted small-title">Carte principale</h4>
+            <p class="lead">{{ data.main_map }}</p>
+            {% endif %}
+		</div>
+		
+		<hr class="visible-xs" />
+		
+		<div class="col-md-6">
+			<h2>Joueurs connectés</h2>
+
+			<table class="table table-striped table-bordered">
+                <tbody>
+                    {% for player_name in data.players %}
+                    
+                        <tr>
+                            <td>
+                                <div class="pull-right">
+                                    <a href="{{ path('tools.minecraft.history.results', {'identifier': player_name}) }}" class="tooltip-top" title="Afficher plus d'infos sur {{ player_name }}">
+                                        <span class="icon-tags"></span>
+                                    </a>
+                                </div>
+                                <img src="https://minotar.net/helm/{{ player_name }}/16.png" alt="Skin" />&nbsp;{{ player_name }}
+                            </td>
+                        </tr>
+                    
+                    {% else %}
+                    
+                        <tr>
+                            <td class="no_data">
+                                {% if data.online_players == 0 %}
+                                Aucun joueur connecté.
+                                {% else %}
+                                Ce serveur masque ses joueurs.
+                                {% endif %}
+                            </td>
+                        </tr>
+                    
+                    {% endfor %}
+                    
+                    {% if data.players|length != 0 and data.players|length < data.online_players %}
+                        
+                        {% set missing_players = data.online_players - data.players|length %}
+                        
+                        <tr>
+                            <td class="no_data">
+                                ...et {{ missing_players }} autre{% if missing_players > 1 %}s{% endif %}.
+                            </td>
+                        </tr>
+                        
+                    {% endif %}
+                </tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"></div>
+    </div>
+    
+    <div class="container-content">
+        <div class="row">
+			<div class="col-md-6">
+				<h2>Informations techniques</h2>
+		                        
+		        {% if data.version.software %}
+		        <h4 class="muted small-title">Serveur</h4>
+		        <p class="lead">{{ data.version.software }}</p>
+		        {% endif %}
+		        
+		        <h4 class="muted small-title">Version du serveur</h4>
+		        <p class="lead">{{ data.version.name }}</p>
+		        
+		        <h4 class="muted small-title">Protocole</h4>
+		        <p class="lead">Version {{ data.version.protocol }}</p>
+			
+				{% if data.plugins %}
+				<h4 class="muted small-title">Plugins installés</h4>
+				<p class="lead">{{ data.plugins|length }}</p>
+				{% endif %}
+			</div>
+		
+			{% if data.plugins %}
+		
+			<hr class="visible-xs" />
+		
+			<div class="col-md-6">
+				<h2>Plugins installés <span class="text-muted">({{ data.plugins|length }})</span></h2>
+
+				<table class="table table-striped table-bordered">
+		            <tbody>
+		                {% for plugin_name in data.plugins %}
+		                
+		                <tr>
+		                    <td>{{ plugin_name }}</td>
+		                </tr>
+		                
+		                {% endfor %}
+		            </tbody>
+				</table>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+    <p>
+        Serveur contacté le {{ "now"|date("d/m/Y à H:i:s") }}.<br /><br />
+        Cet outil utilise <a href="http://wiki.vg/Server_List_Ping">le protocole de Mojang</a> et <a href="https://github.com/xPaw/PHP-Minecraft-Query/"> une API de xPaw</a>.<br />
+        Des chatons vont mourir si vous abusez de ce service.
+    </p>
+{% endblock %}
+
