@@ -15,7 +15,6 @@ if (isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], array('1
 {
     $app['debug'] = true;
 }
-$app['debug'] = true;
 
 // Credentials
 
