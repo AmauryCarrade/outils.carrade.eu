@@ -42,7 +42,7 @@
         {% if tracked %}
         <div class="pull-right ping-track-link-container">
             <a href="{# path('tools.minecraft.stats', {'ips': input|lower}) TODO when stats page ready #}" class="tooltip-top" title="Historique">
-                <span class="icon-time"></span>
+                <span class="fa fa-clock-o"></span>
             </a>
         </div>
         {% endif %}
@@ -91,7 +91,7 @@
                             <td>
                                 <div class="pull-right">
                                     <a href="{{ path('tools.minecraft.history.results', {'identifier': player_name}) }}" class="tooltip-top" title="Afficher plus d'infos sur {{ player_name }}">
-                                        <span class="icon-tags"></span>
+                                        <span class="fa fa-tag"></span>
                                     </a>
                                 </div>
                                 <img src="https://minotar.net/helm/{{ player_name }}/16.png" alt="Skin" />&nbsp;{{ player_name }}
@@ -184,4 +184,3 @@
         Des chatons vont mourir si vous abusez de ce service.
     </p>
 {% endblock %}
-
