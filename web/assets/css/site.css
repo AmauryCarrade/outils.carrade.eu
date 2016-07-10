@@ -206,7 +206,10 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
 
     color: #1d1d1d;
 
-    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.9)
+    text-shadow: 0  1px 12px rgba(255, 255, 255, 0.9),
+                 0 -3px 6px  rgba(255, 255, 255, 0.9),
+                 0  3px 6px  rgba(255, 255, 255, 0.9),
+                 0 -1px 6px  rgba(255, 255, 255, 0.9);
 }
 
 .container-content {
