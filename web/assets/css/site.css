@@ -343,6 +343,30 @@ code {
 }
 
 
+/* MISC
+-------------------------------------------------- */
+
+.fake-input-large {
+    width: 100%;
+    height: 2.5em;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 0.45em;
+
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    background-color: white;
+
+    text-align: center;
+    font-family: 'Lucida Console', 'Courrier New', monospace;
+}
+
+.highlight-light {
+    color: rgb(144, 78, 30);
+}
+
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

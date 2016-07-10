@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 class RedirectionMiddleware
 {
     private static $redirection_map = array(
-        '/uuid' => '/minecraft/history'
+        '/uuid'        => '/minecraft/history',
+        '/ping'        => '/minecraft/ping',
+        '/don'         => '/donner.html',
+        '/donation'    => '/donner.html'
     );
 
 

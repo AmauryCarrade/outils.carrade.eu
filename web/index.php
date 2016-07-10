@@ -68,6 +68,10 @@ $app->get('/contact.html', 'AmauryCarrade\\Controllers\\MainPagesController::con
 $app->get('/pgp.html', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
     ->bind('pgp');
 
+$app->get('/donner.html', 'AmauryCarrade\\Controllers\\MainPagesController::don')
+    ->bind('don');
+
+
 
 $app->get('/projects.html', 'AmauryCarrade\\Controllers\\MainPagesController::list_projects')
     ->bind('projects');

@@ -129,8 +129,15 @@
 
         <footer id="page-footer">
             {% block global_footer %}
-                {% block footer %}{% endblock %}
-                <p>&copy; 2016 Amaury Carrade &middot; Creative Commons BY SA</p>
+                <div class="row">
+                    <div class="col-md-8">
+                        {% block footer %}{% endblock %}
+                        <p>&copy; 2016 Amaury Carrade &middot; Creative Commons BY SA</p>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <p><i class="fa fa-heart"></i> <a href="{{ path('don') }}">Faire un don</a></p>
+                    </div>
+                </div>
             {% endblock %}
 
             <div class="text-center use-firefox">

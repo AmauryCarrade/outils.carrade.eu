@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Faire un don{% endblock %}
+{% block content_title %}<i class="fa fa-heart-o"></i> Faire un don{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basepath }}/assets/css/contact.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <p class="lead" style="margin-bottom: 0;">Vous aimez mon travail, et souhaitez m'en remercier en me soutenant financièrement ?</p>
+    <p style="margin-bottom: 40px;">C'est très sympa de votre part ! Vous avez plusieurs options.</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2><i class="fa fa-paypal"></i> Via PayPal</h2>
+
+            <p class="text-justify">
+                Le plus classique, le plus connu. Permet d'utiliser une multitude de moyens, mais prend une commission si le transfert ne se fait pas via les fonds Paypal ou un compte banquaire.
+            </p>
+
+            <div class="text-center" style="margin-top: 40px;">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input type="hidden" name="hosted_button_id" value="P7JAF9M47E8LQ" />
+                    <input type="submit" value="Faire un don via PayPal" class="btn btn-primary" style="border-color: rgb(162, 88, 34); background-color: rgb(195, 130, 24); text-shadow: 0 0 1px #8c8c8c; font-size: 1.2em" />
+                    <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" style="border: none; width: 1px; height: 1px;" />
+                </form>
+            </div>
+        </div>
+
+        <hr class="visible-xs-block visible-sm-block" />
+
+        <div class="col-md-4">
+            <h2><i class="fa fa-bitcoin"></i> Via Bitcoin</h2>
+
+            <p class="text-justify">
+                Vous pouvez également utiliser la célèbre monnaie électronique et offrir quelques milli-bitcoins. Une solution bien plus dans l'air du temps.
+            </p>
+
+            <div class="fake-input-large" onclick="select_text(this);">1<span class="highlight-light">Amaury</span>NZHDyUv1c21Axqs3Eeg4Par2pAN</div>
+
+            <div class="text-center">
+                <img src="{{ global.request.basepath }}/static/QRCode-BTC-1AmauryNZHDyUv1c21Axqs3Eeg4Par2pAN.png" alt="QRCode pour l'adresse 1AmauryNZHDyUv1c21Axqs3Eeg4Par2pAN" />
+            </div>
+
+        </div>
+
+        <hr class="visible-xs-block visible-sm-block" />
+
+        <div class="col-md-4 text-muted">
+            <h2><i class="fa fa-cubes"></i> Pour Zcraft ?</h2>
+
+            <p class="text-justify">
+                Vous êtes un zcraftien et souhaitez faire un don à <a href="https://zcraft.fr">Zcraft</a> ?
+            </p>
+            <p class="text-justify">
+                Vous pouvez m'en envoyer un et préciser que vous voulez qu'il soit à destination du serveur. L'intégralité
+                des dons reçus le précisant seront reversés au fond de financement de Zcraft, et vous pourrez
+                <a href="https://forum.zcraft.fr/viewtopic.php?id=6045">le vérifier</a>.
+            </p>
+        </div>
+    </div>
+{% endblock %}
