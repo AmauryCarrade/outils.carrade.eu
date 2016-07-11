@@ -11,6 +11,11 @@
 /web/paste
 /web/files
 
+web/google*.html
+web/mywot*.html
+web/misc/
+web/PR/
+
 *~
 
 # Created by https://www.gitignore.io/api/phpstorm,composer,symfony
