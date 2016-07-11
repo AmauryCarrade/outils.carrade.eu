@@ -134,10 +134,8 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
     overflow: hidden;
     z-index: -1000;
 
-    background-position: center top;
     background-size: cover;
-
-    background-image: url('../img/top-banner-astro-1.png');
+    background: url('../img/top-banner-astro-1.jpg') center top;
 }
 
 #header-background-border {
