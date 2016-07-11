@@ -80,7 +80,7 @@
             <div>
                 <label for="raw_permissions" style="font-weight: normal; width: 100%;">
                     <p>Entrez une permission par ligne, sous la forme : </p>
-                    <pre class="col-md-12">permission.complete.jusquau.bout : attribution par défaut : Description de la permission</pre>
+                    <pre>permission.complete.jusquau.bout : attribution par défaut : Description de la permission</pre>
                     <p>...où l'attribution est <code>true</code>, <code>false</code>, <code>op</code> ou <code>non op</code>. Vous pouvez omettre l'attribution (et ne séparer que par <code>:</code>).</p>
                     <p>Ne rentrez pas les permissions intermédiaires (par exemple <code>permission.*</code>).</p>
                 </label>
@@ -89,7 +89,7 @@
             </div>
 
             <div style="margin-top: 20px;" class="checkbox">
-                <label class="checkbox">
+                <label>
                     <input type="checkbox" name="from_yml" value="" disabled>
                     Importer depuis un fichier <code>plugin.yml</code>
                     <span class="help-block">Si cette case est cochée, vous devez entrer un fichier <code>plugin.yml</code> contenant au moins la section <code>permissions</code> ; les permissions seront extraites et la section de permissions sera reconstruite, avec tous les héritages. Cette fonctionnalité n'est pas encore disponible.</span>

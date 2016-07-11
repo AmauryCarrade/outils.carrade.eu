@@ -84,20 +84,7 @@ body {
 }
 
 .brand {
-    height: 64px;
-    width: 100%;
-
-    position: absolute;
-    top: -30px;
-    left: 0;
-
-    margin: auto !important;
-    text-align: center;
-}
-
-.brand img {
-    height: 64px;
-    display: inline !important;
+    display: none;
 }
 
 .nav-brand {
@@ -374,6 +361,20 @@ code {
     .navbar-brand {
         display: block;
         text-align: left;
+
+        color: white;
+        text-shadow: 0  1px 12px rgba(255, 255, 255, 0.6),
+                     0 -3px 6px  rgba(255, 255, 255, 0.6),
+                     0  3px 6px  rgba(255, 255, 255, 0.6),
+                     0 -1px 6px  rgba(255, 255, 255, 0.6);
+
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+
+    .navbar-brand a, .navbar-brand a:hover {
+        color: white !important;
     }
 
     .navbar-header {
@@ -415,12 +416,13 @@ code {
     }
 
     #main-nav.collapsing > ul > li > a:hover, #main-nav.collapse.in > ul > li > a:hover {
-        background-color: rgba(104, 236, 121, 0.37);
+        background-color: rgba(188, 119, 60, 0.33);
     }
 
     #main-nav.collapsing > ul.pull-right, #main-nav.collapse.in > ul.pull-right {
         float: none !important;
         border-top: #9d9d9d solid 1px;
+        padding-top: 7px;
     }
 
     #main-nav.collapsing > ul > li > ul.dropdown-menu, #main-nav.collapse.in > ul > li > ul.dropdown-menu,
@@ -454,10 +456,6 @@ code {
         display: none !important;
     }
 
-    .brand {
-        top: -15px !important;
-        left: 10px;
-    }
     #main_logo img {
         height: 48px;
     }
