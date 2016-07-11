@@ -1,0 +1,1018 @@
+[
+    {
+        "category": "Web",
+        "slug": "web",
+
+        "projects": [
+            {
+                "project": "OranjeProxy",
+                "subtitle": "Proxy web en un fichier",
+                "slug": "oranje-proxy",
+
+                "description": "Un proxy web qui tient en un seul fichier, permettant d'outrepasser la censure dans les écoles ou les entreprises.",
+
+                "type": "Application PHP",
+                "version": "",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "GNU GPL v2+",
+                "license_link": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/OranjeProxy",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://free.carrade.eu",
+                        "text": "Instance en ligne",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "µRL Shortener",
+                "subtitle": "Racourcisseur d'URL en un fichier",
+                "slug": "url-shortener",
+
+                "description": "Un racourcisseur d'URLs compact, qui tient dans un seul fichier et stocke les données dans un fichier texte. Une micro-API est disponible, pour automatiser la création de liens courts via des scripts, API suivant les convensions usuelles du domaine.",
+
+                "type": "Application PHP",
+                "version": "0.1 bêta",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/URLShortener",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://l.carrade.eu",
+                        "text": "Instance en ligne",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "ZéPS",
+                "subtitle": "Approuvé par une moustache",
+                "slug": "zeps",
+
+                "description": [
+                    "Un générateur d'itinéraire spécialement optimisé pour les réseaux de transport Minecraftiens (actuellement essentiellement centré sur ceux dans le Nether).<br />",
+                    "Ce service a été réalisé en collaboration avec <a href=\"http://florian.cassayre.me/\">Florian Cassayre</a>."
+                ],
+
+                "type": "Application PHP",
+                "version": "1.2",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://zeps.carrade.eu",
+                        "text": "Utiliser en ligne",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://github.com/zDevelopers/ZePS-GUI",
+                        "text": "Source de l'interface",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "https://github.com/FlorianCassayre/ZePS-Core",
+                        "text": "Source du moteur",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Historique de compte Minecraft",
+                "subtitle": "",
+                "slug": "minecraft-history",
+
+                "description": "Un service permettant de retrouver l'historique d'un pseudo Minecraft, ainsi que quelques autres informations (UUID...).",
+
+                "type": "Application PHP",
+                "version": "1",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://amaury.carrade.eu/uuid",
+                        "text": "Utiliser en ligne",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Ping de serveur Minecraft",
+                "subtitle": "",
+                "slug": "minecraft-ping",
+
+                "description": "Un service affichant toutes les infos récupérable sur un serveur Minecraft : version, joueurs connectés, plugins, protocole...",
+
+                "type": "Application PHP",
+                "version": "1",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://amaury.carrade.eu/ping",
+                        "text": "Utiliser en ligne",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "amaury.carrade.eu",
+                "subtitle": "Ce site web",
+                "slug": "this-website",
+
+                "description": [
+                    "J'ai — bien évidemment — créé mon propre site web.<br />",
+                    "Il a été conçu avec <a href=\"http://silex.sensiolabs.org/\">Silex</a>, le micro-framework PHP basé sur Symfony."
+                ],
+
+                "type": "Site web",
+                "version": "2",
+                "compatibility": "PHP 5.3+",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/Website",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Scripts & outils",
+        "slug": "tools",
+
+        "projects": [
+            {
+                "project": "Coloration de chat",
+                "subtitle": "(non, pas l'animal...)",
+                "slug": "chat-highlighter",
+
+                "description": "Les logs de discussion c'est bien (coucou BashFR), mais avec les pseudos colorés c'est tout de même bien plus lisible. D'où ce script Python servant à les colorer. Plusieurs formats de sortie sont gérés (actuellement, BBCode et HTML).",
+
+                "type": "Script Python",
+                "version": "",
+                "compatibility": "Python 3",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/ChatLogHighlighter",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "PiBot",
+                "subtitle": "Un bot IRC. Pour le fun.",
+                "slug": "pibot",
+
+                "description": "Quelques vieilles tentatives pour faire un bot IRC extensible en Python. Je n'ai jamais tellement avancé ce projet, mais il n'est pas abandonné. Il attend son heure. C'est vraiment un petit projet sans prétention, fait pour le fun, en sachant pertinament que d'autres existent, bien plus puissant et connus, tel <a href=\"https://github.com/ProgVal/Limnoria\">Limnoria</a>.",
+
+                "type": "Programme Python",
+                "version": "",
+                "compatibility": "Python 3",
+                "status": "En pause",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/PiBot",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Tea",
+                "subtitle": "Un plugin Limnoria",
+                "slug": "limnoria-tea",
+
+                "description": [
+                    "J'aime le thé. Mais le site de <a href=\"http://mariagefreres.com/\">Mariage Frères</a> est mal foutu, et fort désagréable à l'usage sur mobile. ",
+                    "J'ai donc réalisé un plugin <a href=\"https://github.com/ProgVal/Limnoria\">Limnoria</a> qui récupère les infos d'infusion (et une description, si on veut) en parsant le site de Mariage Frères."
+                ],
+
+                "type": "Plugin Limnoria",
+                "version": "",
+                "compatibility": "Python 3.4",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/Limnoria-Plugin-Tea",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Extensions pour navigateurs",
+        "slug": "browsers-addons",
+
+        "projects": [
+            {
+                "project": "QRCode Generator",
+                "subtitle": "Un plugin pour Opera 12",
+                "slug": "qrcode",
+
+                "description": [
+                    "Un plugin pour le vieil Opera 12, qui génère un QRCode contenant le lien de la page courante.<br />",
+                    "Initialement un petit projet pour expérimenter le développement de plugins pour Opera, il a finalement été téléchargé près de 10 000 fois sur le dépôt de plugins du navigateur. Ce qui n'est pas mal."
+                ],
+
+                "type": "Plugin Opera 12",
+                "version": "",
+                "compatibility": "Opera 11-12",
+                "status": "Stable",
+
+                "license": "Apache 2.0",
+                "license_link": "http://www.apache.org/licenses/LICENSE-2.0.html",
+
+                "links": [
+                    {
+                        "link": "https://addons.opera.com/extensions/details/qrcode-generator/",
+                        "text": "Sur le catalogue d'extensions d'Opera",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://github.com/Bubbendorf/OperaQRCode",
+                        "text": "Sur GitHub",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "{root}/projects/opera/qrcode.html",
+                        "text": "Support",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Outils pour développeurs",
+        "slug": "developers",
+
+        "projects": [
+            {
+                "project": "zLib",
+                "subtitle": "Bukkit en plus complet",
+                "slug": "zlib",
+
+                "description": [
+                    "Une bibliothèque visant à considérablement simplifier le développement de plugins Bukkit / Spigot pour Minecraft 1.8.3+.<br /><br />",
+                    "Énormément d'outils et de composants complets ont été ajoutés, de la gestion simplifiée des dépendances, des titres et autres possibilités de Minecraft non-accessible directement via l'API Bukkit, à des gestionnaires complets de configuration, de commandes, des générateurs de GUIs et des outils pour gérer la compatibilité avec de futures versions sans casser les anciennes...<br /><br />",
+                    "Cette bibliothèque a été réalisée en collaboration avec <a href=\"https://github.com/orgs/zDevelopers/people\">les  zDevelopers</a> (notamment ProkopyL et Florian Cassayre)."
+                ],
+
+                "type": "Bibliothèque Java",
+                "version": "0.99",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Actif",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/zLib",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/zLib/javadoc/",
+                        "text": "Documentation",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/zLib/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Génération de code",
+                "subtitle": "...pour plugins Bukkit",
+                "slug": "bukkit-code-gen",
+
+                "description": [
+                    "Actuellement deux générateurs de code : <ul>",
+                    "<li>un outil permettant de générer une base de plugin, évitant la fastidieuse tâche d'en commencer un : tout le travail casse-pieds est automatiquement généré, à la suite d'un court questionnaire&nbsp;; </li>",
+                    "<li>un générateur des classes de description des fichiers de configuration de zLib (voir ci dessus).</li>",
+                    "</ul>"
+                ],
+
+                "type": "Scripts Python",
+                "version": "",
+                "compatibility": "Python 3",
+                "status": "Stable",
+
+                "license": "CeCILL v2",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/zLib-CodeGen-Utils",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Minecraft Tutorials API",
+                "subtitle": "",
+                "slug": "tutorials-api",
+
+                "description": [
+                    "Une bibliothèque permettant d'afficher des tutoriels en jeu aux joueurs, en utilisant des titres.<br />",
+                    "Plusieurs “chapitres” sont gérés, affichant le texte de différent points de vue. Ces points peuvent être en l'air : les joueurs sont complètement immobilisés sur place, de façon à ne pas pouvoir bouger ne serais-ce que d'un pixel."
+                ],
+
+                "type": "Bibliothèque Java",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+<br />zLib 0.99+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://gist.github.com/AmauryCarrade/449d3a893f98fc25cbbc",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Textarea auto-resizer",
+                "subtitle": "",
+                "slug": "textarea-resizer",
+
+                "description": [
+                    "Un plugin jQuery permettant d'adapter la taille d'une textarea à son contenu, en temps réel."
+                ],
+
+                "type": "Plugin jQuery",
+                "version": "1.1",
+                "compatibility": "",
+                "status": "Stable",
+
+                "license": "GNU LGPL v3",
+                "license_link": "http://www.gnu.org/licenses/lgpl.html",
+
+                "links": [
+                    {
+                        "link": "{root}/projects/jquery/autoResize.html",
+                        "text": "Démo & documentation",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Calculus anti-spam",
+                "subtitle": "",
+                "slug": "calculus-anti-spam",
+
+                "description": [
+                    "Un anti-spam basé sur la résolution d'un petit calcul affiché en français, de manière plus difficilement interprétable par un robot, et généré aléatoirement."
+                ],
+
+                "type": "Script PHP",
+                "version": "1.0",
+                "compatibility": "PHP 5+",
+                "status": "Stable",
+
+                "license": "Apache 2.0",
+                "license_link": "http://www.apache.org/licenses/LICENSE-2.0.html",
+
+                "links": [
+                    {
+                        "link": "https://gist.github.com/AmauryCarrade/6150438",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Plugins Bukkit (pour Minecraft)",
+        "slug": "bukkit",
+
+        "projects": [
+            {
+                "project": "BelovedBlocks",
+                "subtitle": "",
+                "slug": "beloved-blocks",
+
+                "description": [
+                    "Un plugin qui permet de placer à nouveau des blocs supprimés du jeu, tels que des doubles dalles lisses ou des blocs de sable pleins. Le plugin ajoute des crafts permettant de les obtenir en survie, et deux outils permettant de modifier des blocs déjà existant."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.2",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Actif",
+
+                "license": "GNU GPL v3",
+                "license_link": "https://www.gnu.org/licenses/gpl.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/BelovedBlocks",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/BelovedBlocks/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "http://dev.bukkit.org/bukkit-plugins/beloved-blocks/",
+                        "text": "BukkitDev",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "ImageOnMap",
+                "subtitle": "",
+                "slug": "imageonmap",
+
+                "description": [
+                    "Un plugin permettant d'afficher n'importe quelle image sur une carte Minecraft, directement en jeu. Ce qui augmente pas mal les possibilités de création pour les joueurs.<br /><br />",
+                    "J'ai essentiellement contribué à la version 2 d'ImageOnMap, son renouveau, avec <a href=\"https://github.com/ProkopyL\">ProkopyL</a>."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Actif",
+
+                "license": "GNU GPL v3",
+                "license_link": "https://www.gnu.org/licenses/gpl.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/ImageOnMap",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/ImageOnMap/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "http://dev.bukkit.org/bukkit-plugins/imageonmap/",
+                        "text": "BukkitDev",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "zBanque",
+                "subtitle": "",
+                "slug": "zbanque",
+
+                "description": [
+                    "Un gestionnaire de banque Minecraft, permettant de centraliser les stocks sur une interface tant en jeu qu'en ligne, couplé avec une interface web stockant les données dans une base. La présence de plusieurs blanques simultanément est supportée.<br /><br />",
+                    "Ce projet est réalisé en coopération avec <a href=\"https://github.com/Coutume\">moribus</a>, qui s'occupe de la <a href=\"https://github.com/Coutume/zBanque-WebServices\">partie web &amp; webservices</a>."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.10+",
+                "status": "Actif",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/zBanque-Bukkit",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://jenkins.carrade.eu/job/zBanque/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "UHCReloaded",
+                "subtitle": "",
+                "slug": "uhcreloaded",
+
+                "description": [
+                    "Un plugin UHC assez complet.<br />",
+                    "Il gère notamment les parties de manière complète, les équipes, plein d'options pour retoucher le jeu vanilla, la téléportation aléatoire, l'affichage de l'état dans un <em>scoreboard</em> ou ailleurs, les gains à la mort, le mode spectateur, de nouvelles recettes, de quoi rendre l'utilisation du jeu facile (GUIs, astuces...), et plein d'autres choses."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.2",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Actif",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/UHPlugin",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/UltraHardcoreReloaded/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "http://dev.bukkit.org/bukkit-plugins/uhc/",
+                        "text": "BukkitDev",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "https://www.spigotmc.org/resources/ultrahardcore-reloaded.1622/",
+                        "text": "SpigotMC",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Balls of Steel",
+                "subtitle": "",
+                "slug": "balls-of-steel",
+
+                "description": [
+                    "Un plugin encadrant un jeu de Balls of Steel."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.7+",
+                "status": "Stable (mais vieux)",
+
+                "license": "GNU LGPL v3",
+                "license_link": "http://www.gnu.org/licenses/lgpl.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/BallsOfSteel",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://jenkins.carrade.eu/job/BallsOfSteel/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Spectator Plus",
+                "subtitle": "",
+                "slug": "spectator-plus",
+
+                "description": [
+                    "Un  plugin complet de gestion des spectateurs.<br />",
+                    "Commencé à l'époque où le mode spectateur n'existait pas, il est resté utile après du fait de ses fonctionnalités qui l'étendent beaucoup&nbsp;: outils de vue/vitesse/<em>no-clip</em>/autres, téléportation, vision d'inventaire/de vie/de faim/d'XP, et d'autres."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Stable",
+
+                "license": "Mozilla Public License",
+                "license_link": "https://www.mozilla.org/en-US/MPL/2.0/",
+
+                "links": [
+                    {
+                        "link": "https://github.com/pgmann/SpectatorPlus",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "https://ci.pgmann.cf/job/SpectatorPlus/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    },
+                    {
+                        "link": "http://dev.bukkit.org/bukkit-plugins/spectator/",
+                        "text": "BukkitDev",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Positional Chat",
+                "subtitle": "",
+                "slug": "positional-chat",
+
+                "description": [
+                    "Comme de l'audio positionnel, mais au niveau du chat textuel. Ce dernier est partiellement obfusqué, fonction de la distance."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/PositionalChat",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/PositionalChat/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Achievements Rewards",
+                "subtitle": "",
+                "slug": "achievements-rewards",
+
+                "description": [
+                    "Donne des récompenses lorsque des succès sont remportés en jeu. Plusieurs types de récompenses sont supportés : objets (très finement adaptable), XP, vie."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 8+<br />Bukkit 1.9+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/AchievementsRewards",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/AchievementsRewards/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "AuthDown Warning",
+                "subtitle": "",
+                "slug": "auth-donw-warning",
+
+                "description": [
+                    "La connexion à un serveur Minecraft passe par un service d'authentification de Mojang qui, s'il est indisponible, rend impossible l'accès au serveur de jeu. Ce plugin avertit les joueurs en jeu si ce service tombe (ce qu'est fréquent...) : à ces moments, s'ils se déconnectent, ils ne peuvent plus revenir."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/AuthDownWarning",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/AuthDownWarning/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "VoteBan",
+                "subtitle": "",
+                "slug": "voteban",
+
+                "description": [
+                    "Permet de voter le banissement d'un joueur embêtant (flood, kikoo...) quand aucun modérateur n'est présent.<br />",
+                    "Il s'agit d'une réécriture d'un plugin de niquecraft, plus mis à jour, en plus joli."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.9+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/VoteBan",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/VoteBan/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Useful Ping",
+                "subtitle": "",
+                "slug": "ping",
+
+                "description": [
+                    "Une commande <code>/ping</code> plus efficace que le “Pong !” d'Essentials&nbsp;: elle affiche la latence en millisecondes et la charge du serveur&nbsp;; de plus, l'affichage continu de ces informations est possible, pour surveiller son réseau."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.9+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/UsefulPing",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/UsefulPing/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Anti Skeleton Traps",
+                "subtitle": "",
+                "slug": "anti-skeleton-traps",
+
+                "description": [
+                    "Minecraft 1.9 a ajouté l'apparition de chevaux squelettes piégés, qui se transforment brutalement en quatre cavaliers que nous nous plaisons à appeler « Cavaliers de l'Apocalypse ». Problème, sur des serveurs, en vanilla, ils ont tendance à assez vite se retrouver vraiment partout, ce qui casse l'effet de rareté. En effet, leur probabilité d'apparition dépend de la difficulté et du temps passé par des joueurs dans une même zone.<br />",
+                    "D'où ce plugin, permettant de réduire la probabilité de spawn de ces cavaliers (le pourcentage de réduction est paramétrable), pour les rendre rare de nouveau."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.9+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/zDevelopers/AntiSkeletonTraps",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/AntiSkeletonTraps/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Light Heads",
+                "subtitle": "",
+                "slug": "heads",
+
+                "description": [
+                    "<code>/head</code> pour obtenir sa tête. Avec moyen d'avoir celle de quelqu'un d'autre ou de la donner. Et des permissions. C'est tout.<br />",
+                    "Reprise d'un plugin similaire qui n'était plus mis à jour et causait des problèmes."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.1",
+                "compatibility": "Java 7+<br />Bukkit 1.9+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/LightHeads",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/LightHeads/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Chat Moderator",
+                "subtitle": "",
+                "slug": "chat-moderator",
+
+                "description": [
+                    "Quelques tentatives pour modérer un chat autoatiquement."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "0.1",
+                "compatibility": "",
+                "status": "À l'étude",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/MinecraftChatModerator",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    }
+                ]
+            },
+            {
+                "project": "Sync in-game time",
+                "subtitle": "",
+                "slug": "sync-time",
+
+                "description": [
+                    "Synchronise l'heure du jour en jeur avec l'heure réelle. Et les phases de la Lune, aussi.<br />",
+                    "(Pourquoi pas ?)"
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Stable",
+
+                "license": "CeCILL B",
+                "license_link": "http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.html",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/SyncIGTime",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/SyncIGTime/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            },
+            {
+                "project": "Safe Portals",
+                "subtitle": "",
+                "slug": "safe-portals",
+
+                "description": [
+                    "Un plugin <em>bug-fix</em> : s'assure qu'en cas de présence d'une bordure de monde, les portails Nether de retour vers la surface sont toujours créés à l'intérieur de cette bordure, afin que les joueurs ne suffoquent pas dans le mur.<br />",
+                    "Car oui, en natif, cette vérification n'est pas faite."
+                ],
+
+                "type": "Plugin Bukkit",
+                "version": "1.0",
+                "compatibility": "Java 7+<br />Bukkit 1.8.3+",
+                "status": "Stable",
+
+                "license": "Mozilla Public License",
+                "license_link": "https://www.mozilla.org/en-US/MPL/2.0/",
+
+                "links": [
+                    {
+                        "link": "https://github.com/AmauryCarrade/SafePortals",
+                        "text": "Voir sur GitHub",
+                        "icon": "",
+                        "primary": true
+                    },
+                    {
+                        "link": "http://jenkins.carrade.eu/job/SafePortals/",
+                        "text": "Intégration continue",
+                        "icon": "",
+                        "primary": false
+                    }
+                ]
+            }
+        ]
+    }
+]

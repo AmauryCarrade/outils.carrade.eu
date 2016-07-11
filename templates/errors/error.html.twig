@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+{% block page_title %}Erreur {{ http_code }}{% endblock %}
+{% block content_title %}Erreur {{ http_code }} — {{ error_title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1>Cette page subit un bien difficile moment. <small>Mais elle devrait s'en remettre.</small></h1>
+
+    <p>N'hésitez pas à <a href="{{ path('contact') }}">signaler ce problème</a> s'il se reproduit.</p>
+    <p>Dans tous les cas, vous pouvez <a href="javascript:history.go(-1);">retourner à la dernière page visitée</a>, si elle existe, ou <a href="{{ path('homepage') }}">à l'accueil</a>.</p>
+</article>
+{% endblock %}

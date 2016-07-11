@@ -1,0 +1,230 @@
+/* From Bootstrap — .table styles without hover effects */
+
+.tableb {
+  width: 100%;
+  margin-bottom: 18px;
+}
+.tableb th,
+.tableb td {
+  padding: 8px;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+.tableb th {
+  font-weight: bold;
+}
+.tableb thead th {
+  vertical-align: bottom;
+}
+.tableb colgroup + thead tr:first-child th,
+.tableb colgroup + thead tr:first-child td,
+.tableb thead:first-child tr:first-child th,
+.tableb thead:first-child tr:first-child td {
+  border-top: 0;
+}
+.tableb tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px;
+}
+
+
+
+/* KTZ CSS */
+
+.fast-access {
+	font-size: 1em !important;
+	text-align: center;
+	color: darkgrey;
+}
+@media (max-width: 767px) { 
+	.fast-access {
+		float: none !important;
+	}
+}
+
+#no-spoil {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 20px;
+}
+#spoil {
+	display: none;
+}
+.td-title {
+	font-weight: bold;
+	width: 20%;
+}
+
+table {
+	margin-top: 10px;
+}
+
+table.ranking tr td:first-child {
+	text-align: center;
+}
+.rk-1 {
+	height: 50px;
+	font-size: 20px;
+}
+.rk-1 td {
+	padding-top: 15px;
+}
+
+.table-subtitle {
+	font-weight: normal !important;
+}
+
+tr.gold {
+	background-color: #FFAA00 !important;
+}
+tr.yellow {
+	background-color: #FFFF55 !important;
+}
+tr.darkgreen {
+	background-color: #00AA00 !important;
+	color: white;
+}
+tr.green {
+	background-color: #55FF55 !important;
+}
+tr.red {
+	background-color: #FF5555 !important;
+	color: white;
+}
+tr.purple {
+	background-color: #AA00AA !important;
+	color: white;
+}
+tr.lightpurple {
+	background-color: #FF55FF !important;
+}
+tr.blue {
+	background-color: #5555FF !important;
+	color: white;
+}
+tr.purple a, tr.blue a { 
+	color: rgba(53, 188, 255, 1);
+}
+tr.darkgreen a {
+	color: rgba(142, 217, 255, 1);
+}
+tr.gold a {
+	color: rgba(8, 114, 204, 1);
+}
+
+.fg-gold {
+	color: rgba(194, 134, 15, 1) !important
+}
+.fg-yellow {
+	color: rgba(204, 204, 32, 1) !important;
+}
+.fg-darkgreen {
+	color: #00AA00 !important;
+}
+.fg-green {
+	color: rgba(42, 219, 42, 1) !important;
+}
+.fg-red {
+	color: #FF5555 !important;
+}
+.fg-purple {
+	color: #AA00AA !important;
+}
+.fg-lightpurple {
+	color: #FF55FF !important;
+}
+.fg-blue {
+	color: #5555FF !important;
+}
+
+@media (max-width: 480px) {
+	.hidden-portrait-phone {
+		display: none;
+	}
+}
+
+.nothing {
+	color: darkgray;
+	font-style: italic;
+}
+
+
+/* From http://ktp.feedthepatrick.fr/1/ */
+
+.weapons, .mobs, .people, .healers, .blank, .env, .bug {
+	display: inline-block;
+	width: 16px !important;
+	height: 16px !important;
+	
+	position: relative !important;
+	top: 4px !important;
+}
+
+.weapons { background: url(img/damagedealers.png); }
+.mobs { background: url(img/mobs.png); }
+.people { background: url(img/people.png); }
+.healers { background: url(img/healers.png); }
+.env { background: url(img/damageenv.png); }
+
+.as2pik, .fall, .zombie, .woodsword { background-position: 0 0; }
+.aypierre, .drowning, .skeleton, .stonesword, .hpotion { background-position: 0 -16px; }
+.azenet, .lava, .ironsword, .pigzombie { background-position: 0 -32px; }
+.bill, .suffocation, .spider, .diamondsword { background-position: 0 -48px; }
+.harry, .cavespider, .goldsword { background-position: 0 -64px; }
+.nocxx, .starving, .creeper, .flint { background-position: 0 -80px; }
+.souls, .bow, .enderman { background-position: 0 -96px; }
+.thaek, .lavabucket, .slime { background-position: 0 -112px; }
+.potion, .ghast, .fire { background-position: 0 -128px; }
+.magmacube, .trap { background-position: 0 -144px; }
+.cactus, .blaze { background-position: 0 -160px; }
+.tamedwolf { background-position: 0 -176px; }
+.wildwolf { background-position: 0 -192px; }
+.silverfish { background-position: 0 -208px; }
+.golem { background-position: 0 -224px; }
+.zombievill { background-position: 0 -240px; }
+.thunder { background-position: 0 -256px; }
+.unknown-mob, .unknown { background-position: 0 -272px; }
+.enderdragon { background-position: 0 -288px; }
+.wither { background-position: 0 -304px; }
+.witherskelly { background-position: 0 -320px; }
+
+.apple { background-position: 0 -1px; }
+
+.peoplethumb { background: url(img/people_big.png); }
+.mobthumb { background: url(img/mobs_big.png); }
+.otherthumb { background: url(img/damageenv_big.png); }
+
+.peoplethumb, .mobthumb, .otherthumb { 
+	width: 48px;
+	height: 48px;
+	display: block;
+	margin: 5px auto;
+}
+
+.as2pik-big, .zombie-big, .fall-big { background-position: 0 0; }
+.aypierre-big, .skeleton-big, .drowning-big { background-position: 0 -48px; }
+.azenet-big, .pigzombie-big, .bugs-big { background-position: 0 -96px; }
+.bill-big, .spider-big, .suffocation-big { background-position: 0 -144px; }
+.harry-big, .cavespider-big, .bugs-big { background-position: 0 -192px; }
+.nocxx-big, .creeper-big, .starvation-big { background-position: 0 -240px; }
+.souls-big, .enderman-big, .trap-big { background-position: 0 -288px; }
+.thaek-big, .slime-big, .derp-big { background-position: 0 -336px; }
+.ghast-big, .fire-big { background-position: 0 -384px; }
+.magmacube-big { background-position: 0 -432px; }
+.blaze-big { background-position: 0 -480px; }
+.tamedwolf-big { background-position: 0 -528px; }
+.wildwolf-big { background-position: 0 -576px; }
+.silverfish-big { background-position: 0 -624px; }
+.golem-big { background-position: 0 -672px; }
+.zombievill-big { background-position: 0 -720px; }
+.thunder-big { background-position: 0 -768px; }
+.unknown-mob-big { background-position: 0 -816px; }
+.enderdragon-big { background-position: 0 -864px; }
+.wither-big { background-position: 0 -912px; }
+.witherskelly-big { background-position: 0 -960px; }

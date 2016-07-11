@@ -1,0 +1,508 @@
+/* FONTS
+-------------------------------------------------- */
+
+@font-face {
+    font-family: "Minecraft";
+    src: url('../fonts/Minecraftia-Regular.ttf');
+}
+
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-bottom: 40px;
+    color: #323232;
+
+    /* Required for full-width blocks */
+    overflow-x: hidden;
+
+    background: #212121;
+}
+
+#global-wrapper {
+    /* Required for full-width blocks on mobile */
+    overflow: hidden;
+    position: relative;
+
+    min-height: 100vh;
+}
+
+@media (min-width:1400px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+/* NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+    padding-right: 0;
+    padding-left: 0;
+}
+.navbar-wrapper .navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+    width: auto;
+}
+
+
+#main-nav {
+    width:auto;
+    border: solid 1px white;
+    border-radius: 5px;
+
+    background-color: rgba(255, 249, 251, 0.68);
+}
+
+#main-nav::before, #main-nav::after {
+    display: table;
+    content: " ";
+}
+#main-nav::after {
+    clear: both;
+}
+
+#main-nav > ul > li > a {
+    color: #333;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+#main-nav > ul > li a:hover, #main-nav > ul > li a:active, #main-nav > ul > li a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.brand {
+    display: none;
+}
+
+.nav-brand {
+    font-weight: bold;
+
+    /* Badly centered due to bold */
+    position: relative;
+    top: 1px;
+}
+
+
+/* Sub-menus */
+
+ul.navbar-nav > li:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+}
+
+ul.navbar-nav > li:hover > a {
+    color: #333 !important;
+}
+
+ul.navbar-nav > li:hover > ul {
+    display: block;
+
+    /* The dropdown is one pixel to the left. */
+    right: -1px;
+}
+
+ul.navbar-nav > li:hover > ul > li > a:hover {
+    color: #262626 !important;
+    background-color: #f5f5f5 !important;
+    text-decoration: none;
+}
+
+
+/* HEADERS
+-------------------------------------------------- */
+
+#header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    z-index: -1000;
+
+    background-size: cover;
+    background: url('../img/top-banner-astro-1.jpg') center top;
+}
+
+#header-background-border {
+    background: radial-gradient(ellipse 150% 300px at 50% 25%, rgba(255, 255, 255, 0) 46%, #212121) 0 0 no-repeat;
+    margin: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* PRESENTATION
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.big-presentation .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.big-presentation h2 {
+    font-weight: normal;
+}
+.big-presentation .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+/* MINECRAFT THINGS
+------------------------- */
+
+.minecraft-dirt-large-area {
+    font-family: "Minecraft", "Lucida Console", "Courier New", serif;
+
+    color: white;
+    background: url('../img/minecraft-dirt-background.png') repeat;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    /* Full-width block */
+    padding-left: 3000px;
+    margin-left: -3000px;
+    padding-right: 3000px;
+    margin-right: -3000px;
+}
+
+/* CONTENT
+-------------------------------------------------- */
+
+.article-header {
+    margin-bottom: 44px;
+
+    color: #1d1d1d;
+
+    text-shadow: 0  1px 12px rgba(255, 255, 255, 0.9),
+                 0 -3px 6px  rgba(255, 255, 255, 0.9),
+                 0  3px 6px  rgba(255, 255, 255, 0.9),
+                 0 -1px 6px  rgba(255, 255, 255, 0.9);
+}
+
+.container-content {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #fff;
+    border-radius: 5px;
+
+    padding: 15px;
+
+    margin-top: 30px;
+}
+.container-content:first-child {
+    margin-top: 0;
+}
+
+.panel-body p {
+    text-align: justify;
+}
+
+.container-content h1 { margin-top: 40px; margin-bottom: 40px; }
+
+h1:first-child, h2:first-child, h3:first-child {
+    margin-top: 0;
+}
+
+article p, article h1, article h2, article h3, article h4, article h5, article h6,
+article li, article dl, article dd, article dt, article .caption {
+    color: #1d1d1d;
+    /*font-family: "PT Serif", Georgia, sans-serif;*/
+}
+
+article p, article li, article .caption {
+    font-size: 1.2em;
+}
+
+article h3 {
+    margin-top: 45px;
+    margin-bottom: 15px;
+
+    padding-bottom: 5px;
+    border-bottom: solid 1px #ccc;
+
+    font-size: 26px;
+}
+
+article h4 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+}
+
+article h5 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    font-size: 18px;
+    font-style: italic;
+}
+
+article p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+article div.text-center {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+article div.text-center:first-child {
+	margin-top: 0;
+}
+article div.text-center:last-child {
+	margin-bottom: 0;
+}
+
+article dl {
+    margin: 20px 0 20px 15px;
+    font-size: 1.2em;
+}
+article dt {
+    font-weight: 300;
+}
+article dd {
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+code {
+    color: #d60d41;
+    background-color: #fcf5f7;
+}
+
+.thumbnail .caption {
+    text-align: center;
+    font-style: italic;
+
+    margin-bottom: 0;
+}
+
+.table-of-contents h3 {
+    margin-top: 0;
+}
+
+.toc-list ul {
+    font-size: 0.95em;
+    list-style-type: none;
+}
+
+#page-footer {
+    margin-top: 60px;
+    padding-top: 10px;
+    border-top: solid #ccc 1px;
+
+    color: white;
+}
+
+#page-footer a {
+    color: #FFFFFF;
+}
+
+.use-firefox {
+    margin-top: 60px;
+}
+.use-firefox .tooltip {
+    margin-top: 14px;
+}
+.use-firefox .tooltip .tooltip-arrow {
+    display: none;
+}
+
+
+/* MISC
+-------------------------------------------------- */
+
+.fake-input-large {
+    width: 100%;
+    height: 2.5em;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 0.45em;
+
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    background-color: white;
+
+    text-align: center;
+    font-family: 'Lucida Console', 'Courrier New', monospace;
+}
+
+.highlight-light {
+    color: rgb(144, 78, 30);
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        display: block;
+        text-align: left;
+
+        color: white;
+        text-shadow: 0  1px 12px rgba(255, 255, 255, 0.6),
+                     0 -3px 6px  rgba(255, 255, 255, 0.6),
+                     0  3px 6px  rgba(255, 255, 255, 0.6),
+                     0 -1px 6px  rgba(255, 255, 255, 0.6);
+
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+
+    .navbar-brand a, .navbar-brand a:hover {
+        color: white !important;
+    }
+
+    .navbar-header {
+        display: block;
+        border-bottom: solid white 1px;
+    }
+    .navbar-toggle {
+        z-index: 1000;
+
+        color: white;
+        cursor: pointer;
+    }
+    .navbar-toggle:hover, .navbar-toggle:active,.navbar-toggle:focus {
+        color: white;
+        text-decoration: none;
+    }
+
+    #main-nav {
+        display: none;
+    }
+
+    #main-nav.collapsing, #main-nav.collapse.in {
+        display: block;
+
+        background: white;
+        border-bottom: solid 1px #868686;
+
+        position: absolute;
+        left: 0;
+        width: 100%;
+    }
+
+    #main-nav.collapsing > ul > li > a, #main-nav.collapse.in > ul > li > a {
+        color: #333;
+        text-shadow: none;
+
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+
+    #main-nav.collapsing > ul > li > a:hover, #main-nav.collapse.in > ul > li > a:hover {
+        background-color: rgba(188, 119, 60, 0.33);
+    }
+
+    #main-nav.collapsing > ul.pull-right, #main-nav.collapse.in > ul.pull-right {
+        float: none !important;
+        border-top: #9d9d9d solid 1px;
+        padding-top: 7px;
+    }
+
+    #main-nav.collapsing > ul > li > ul.dropdown-menu, #main-nav.collapse.in > ul > li > ul.dropdown-menu,
+    #main-nav.collapsing > ul > li:hover > ul.dropdown-menu, #main-nav.collapse.in > ul > li:hover > ul.dropdown-menu {
+        display: block !important;
+
+        position: relative !important;
+        right: 0 !important;
+        float: none !important;
+
+        border: none;
+        box-shadow: none;
+
+        margin-left: 40px;
+
+        background: transparent;
+    }
+
+    ul.navbar-nav > li:hover {
+        border: none !important;
+        border-radius: 0 !important;
+    }
+
+    ul.navbar-nav > li:hover > ul {
+        display: inherit !important;
+        position: relative !important;
+        float: none !important;
+    }
+
+    #main-nav .caret {
+        display: none !important;
+    }
+
+    #main_logo img {
+        height: 48px;
+    }
+
+
+    body#homepage #header-background {
+        height: 321px;
+    }
+
+
+    .homepage-online .minecraft-dirt-large-area .online-title {
+        width: 100%;
+    }
+    .online-list {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .navbar-brand {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Navbar positioning foo */
+    .navbar-wrapper {
+        margin-top: 20px;
+    }
+    .navbar-wrapper .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .navbar-wrapper .navbar {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    #main-nav.collapse {
+        display: block !important;
+    }
+
+    .homepage-header-caption p {
+        margin-bottom: 20px;
+        font-size: 21px;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+}

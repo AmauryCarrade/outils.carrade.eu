@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}QRCode Generator &middot; Opera extensions{% endblock %}
+
+{% block content_title %}QRCode Generator{% endblock %}
+{% block content_subtitle %}An Opera extension{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .dl-horizontal dt {
+            width: 50px;
+        }
+        .dl-horizontal dd {
+            margin-left: 60px;
+        }
+        small {
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.noJS').hide();
+
+            if(navigator.userAgent.indexOf('Opera') > -1) {
+                $('.noOpera').hide();
+            }
+            else {
+                $('.onlyOpera').hide();
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>What's that?</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                This is an add-on for Opera browser that shows a QRCode of the current page in a popup.
+                Then, you can quickly transfer a webpage from your browser to your smartphone, for example.
+            </p>
+            <p>
+                A problem with this add-on? <a href="{{ path('contact') }}">Contact me</a> ;) .
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h3>Features</h3>
+            <ul>
+                <li>Generates a QRCode from the URL of the current website by clicking on a button.</li>
+                <li>Download the generated QRCode as an image by clicking on it.</li>
+            </ul>
+            <h3>Languages</h3>
+            This add-on is translated in English and French.
+        </div>
+    </div>
+
+    <h1>Download, install, and enjoy! <small>How can I integrate this to my Opera browser?</small></h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Download &amp; install</h2>
+            <p>You can download this add-on by following this link:</p>
+            <p class="text-center"><br />
+                <a href="https://raw.carrade.eu/files/Opera/QRCode/QRCode-1.2.oex" class="btn btn-primary">
+                    <span class="noOpera">Download</span> <span class="noJS">and/or</span> <span class="onlyOpera">Install</span> <strong>QRCode Generator</strong>
+                </a><br />
+                <small>File size: 45 Ko</small>
+            </p>
+
+            <p><br />You can also download this add-on on the official add-ons website:</p>
+            <p class="text-center"><br />
+                <a href="https://addons.opera.com/extensions/details/qrcode-generator/" class="btn btn-primary">
+                    <span class="icon-download"></span>
+                    <strong>QRCode Generator 1.2</strong> on the Extensions Catalog
+                </a><br />
+            </p>
+            <p><br />Current version is <strong>1.2</strong>.</p>
+            <p>This add-on is licensed under an  <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 License</a>.</p>
+            <p class="hidden-xs">
+                <br />
+                <br />
+                <br />
+            </p>
+            <h4>Changelog</h4>
+            <dl class="dl-horizontal">
+                <dt>1.2</dt>
+                <dd>
+                    You can now download the generated QRCode by clicking on it.<br />
+                    <small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/22af977a82cd54b73f3602757d8f4ecaf57b4ef6">On Github</a> | <a href="https://raw.carrade.eu/files/Opera/QRCode/QRCode-1.2.oex">Download <span class="onlyOpera">or Install</span></a></small>
+                </dd>
+                <dt>1.1</dt>
+                <dd>
+                    Fixed compatibility with Opera 11.x.<br />
+                    <small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/b3385e0d46baafb8a1ab73a828a72ce7d3e3d713">On Github</a> | <a href="https://raw.carrade.eu/files/Opera/QRCode/QRCode-1.1.oex">Download <span class="onlyOpera">or Install</span></a></small>
+                </dd>
+
+                <dt>1.0</dt>
+                <dd>
+                    Initial version. Only compatible with Opera 12.x.<br />
+                    <small><a href="https://github.com/Bubbendorf/OperaQRCode/tree/088846005c49d72281680148887d9853ca40050b">On Github</a> | <a href="https://raw.carrade.eu/files/Opera/QRCode/QRCode-1.0.oex">Download <span class="onlyOpera">or Install</span></a></small>
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h2>Enjoy!</h2>
+            <p>Then, when you are in a webpage, just click the small QRCode on the toolbar ;) .</p>
+            <div class="thumbnail pull-right">
+                <img src="https://raw.carrade.eu/files/Opera/QRCode/Screenshot.png" alt="Screenshot of this add-on">
+            </div>
+        </div>
+    </div>
+{% endblock %}

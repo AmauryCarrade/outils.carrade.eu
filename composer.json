@@ -1,0 +1,21 @@
+{
+    "require": {
+        "silex/silex": "~2.0",
+        "twig/twig": "~1.0",
+        "symfony/twig-bridge": "^2.0",
+        "erusev/parsedown": "^1.6"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "AmauryCarrade\\": "src/AmauryCarrade/",
+            "xPaw\\": "lib/xPaw"
+        },
+        "files": [
+            "lib/functions_db.php",
+            "lib/functions_utils.php",
+            "lib/Downloader.php"
+        ]
+    }
+}
+
