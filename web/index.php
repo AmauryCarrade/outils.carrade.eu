@@ -119,6 +119,12 @@ $app->match('/bukkit/permissions.html', 'AmauryCarrade\\Controllers\\Tools\\BKPe
     ->bind('tools.bukkit.permissions');
 
 
+$app->get('tools/minecraft/zcraft/netherrail/', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::homepage');
+$app->get('tools/minecraft/zcraft/netherrail/{from}/{to}/{options}', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::results')
+    ->value('options', '');
+
+
+
 $app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
     ->bind('show_content');
 
