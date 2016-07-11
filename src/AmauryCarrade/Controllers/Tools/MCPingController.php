@@ -27,7 +27,7 @@ class MCPingController
                 return $app->redirect($app['url_generator']->generate('tools.minecraft.ping'));
         }
 
-        return $app['twig']->render('tools/ping.html.twig', array(
+        return $app['twig']->render('tools/minecraft/ping.html.twig', array(
             'data'  => false,
             'input' => '',
             'ip'    => ''
@@ -226,7 +226,7 @@ class MCPingController
             }
 
             // Now the response can be returned.
-            return $app['twig']->render('tools/ping.html.twig', array(
+            return $app['twig']->render('tools/minecraft/ping.html.twig', array(
                     'input'    => $input,
                     'ip'       => $ip,
                     'port'     => $port,

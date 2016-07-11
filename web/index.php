@@ -91,6 +91,7 @@ $app->get('/coffee.html', 'AmauryCarrade\\Controllers\\MainPagesController::coff
     ->bind('coffee');
 
 
+
 $app->get('/minecraft/history', 'AmauryCarrade\\Controllers\\Tools\\MCHistoryController::history_home')
     ->bind('tools.minecraft.history');
 
@@ -111,6 +112,11 @@ $app->get('/minecraft/ping/{ip}/{format}', 'AmauryCarrade\\Controllers\\Tools\\M
 
 $app->get('/tools/minecraft/ping/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCPingController::ping_legacy')
     ->value('format', 'html');
+
+
+$app->match('/bukkit/permissions.html', 'AmauryCarrade\\Controllers\\Tools\\BKPermissionsController::generate_permissions')
+    ->method('GET|POST')
+    ->bind('tools.bukkit.permissions');
 
 
 $app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')

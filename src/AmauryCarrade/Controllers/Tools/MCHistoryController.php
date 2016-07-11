@@ -22,7 +22,7 @@ class MCHistoryController
                 return $app->redirect($app['url_generator']->generate('tools.minecraft.history'));
         }
 
-        return $app['twig']->render('tools/history.html.twig', array(
+        return $app['twig']->render('tools/minecraft/history.html.twig', array(
             'data' => false,
             'user' => ''
         ));
@@ -155,7 +155,7 @@ class MCHistoryController
                     return $app->json($data);
 
             default:
-                return $app['twig']->render('tools/history.html.twig', array(
+                return $app['twig']->render('tools/minecraft/history.html.twig', array(
                     'data' => $data,
                     'user' => $identifier,
                     'valid' => $valid,
