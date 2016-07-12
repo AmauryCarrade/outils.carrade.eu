@@ -38,22 +38,27 @@
 {% endblock %}
 
 {% block content %}
-    <h1>What's that?</h1>
-    <p>
-        This plugin is a really simple plugin which automatically resize the focused textarea on-the-fly, based on the contents height.<br />
-        Just like Facebook, if you want.
-    </p>
-    <p>There are a few options to adapt this plugin to yours needs. You can:</p>
-    <ul>
-        <li>add animation while resizing;</li>
-        <li>set a maximum height.</li>
-    </ul>
-
-    <h2>How it work?</h2>
-    <p>
-        The principle is really simple. Rather than bother to calculate the size of the textarea, we let the browser do it. When the textarea's content is modified, we put it on an hidden div who have the same CSS properties as the textarea.<br />
-        Then, we get the height of this div, and we apply it to the textarea.
-    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>What's that?</h1>
+            <p>
+                This plugin is a really simple plugin which automatically resize the focused textarea on-the-fly, based on the contents height.<br />
+                Just like Facebook, if you want.
+            </p>
+            <p>There are a few options to adapt this plugin to yours needs. You can:</p>
+            <ul>
+                <li>add animation while resizing;</li>
+                <li>set a maximum height.</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>How it work?</h2>
+            <p>
+                The principle is really simple. Rather than bother to calculate the size of the textarea, we let the browser do it. When the textarea's content is modified, we put it on an hidden div who have the same CSS properties as the textarea.<br />
+                Then, we get the height of this div, and we apply it to the textarea.
+            </p>
+        </div>
+    </div>
 
     <h1>Download &amp; install <small>How can I integrate this to my website?</small></h1>
 
