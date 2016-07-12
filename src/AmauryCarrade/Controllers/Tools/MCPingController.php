@@ -11,6 +11,8 @@ use xPaw\MinecraftQuery;
 use xPaw\MinecraftQueryException;
 use xPaw\MinecraftFormat;
 
+use PDO;
+
 class MCPingController
 {
     public function ping_home(Application $app, Request $request)
