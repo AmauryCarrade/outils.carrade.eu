@@ -5,6 +5,8 @@ use Symfony\Component\HttpFoundation\Request;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
+date_default_timezone_set('Europe/Paris');
+
 
 $app = new Silex\Application();
 
@@ -112,6 +114,20 @@ $app->get('/minecraft/ping/{ip}/{format}', 'AmauryCarrade\\Controllers\\Tools\\M
 
 $app->get('/tools/minecraft/ping/{format}', 'AmauryCarrade\\Controllers\\Tools\\MCPingController::ping_legacy')
     ->value('format', 'html');
+
+
+$app->get('/{server_type}/stats/{ips}', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats')
+    ->bind('tools.server_stats');
+
+$app->get('/{server_type}/stats/{ip}/data', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats_data')
+    ->bind('tools.server_stats.data');
+
+$app->get('/minecraft/stats/zcraft.fr/uniques/{begin}..{end}', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::zcraft_uniques')
+    ->value("begin", "0")
+    ->value("end", "2147483647")
+    ->bind('tools.server_stats.zcraft_uniques');
+
+$app->get('/tools/{server_type}/stats/{ips}', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats_legacy');
 
 
 $app->match('/bukkit/permissions.html', 'AmauryCarrade\\Controllers\\Tools\\BKPermissionsController::generate_permissions')

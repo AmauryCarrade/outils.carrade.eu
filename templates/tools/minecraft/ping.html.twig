@@ -41,7 +41,7 @@
     <div class="container-content motd">
         {% if tracked %}
         <div class="pull-right ping-track-link-container">
-            <a href="{# path('tools.minecraft.stats', {'ips': input|lower}) TODO when stats page ready #}" class="tooltip-top" title="Historique">
+            <a href="{{ path('tools.server_stats', {'ips': input|lower, 'server_type': 'minecraft'}) }}" class="tooltip-top" title="Historique">
                 <span class="fa fa-clock-o"></span>
             </a>
         </div>

@@ -1,0 +1,452 @@
+{% extends 'base.html.twig' %}
+
+
+{% block page_title %}{{ data.server.name }} ⋅ Statistiques ⋅ {{ server_type|capitalize }}{% endblock %}
+
+
+{% block stylesheets %}
+    <link href="{{ global.request.basePath }}/assets/css/tools.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #graph_frame {
+            height: 400px;
+            width: 100%;
+            margin: auto;
+        }
+
+        #stats {
+            height: 400px;
+        }
+
+        #stats_chart {
+            width: 100%;
+            height: 400px;
+        }
+
+        .nota {
+            width: 60%;
+
+            margin-top: 45px;
+            margin-left: auto;
+            margin-right: auto;
+
+            text-align: center;
+            font-style: italic;
+        }
+
+        .legend_color {
+            display: inline-block;
+
+            width: 25px;
+            height: 13px;
+
+            border-radius: 4px;
+
+            position: relative;
+            top: 1px;
+        }
+
+        dl.extrema dd {
+            text-align: right;
+        }
+
+        .popover-link {
+            display: inline-block;
+
+            position: relative;
+            bottom: 1px;
+
+            margin-left: 10px;
+
+            cursor: pointer;
+            color: #08C;
+        }
+
+        .popover-title {
+            text-align: center;
+        }
+        .popover-content {
+            overflow-y: auto;
+            max-height: 180px;
+            min-width: 250px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ global.request.basePath }}/assets/vendor/js/highcharts/highstock.js"></script>
+
+    <script type="text/javascript">
+        $(function ()
+        {
+            $.getJSON('{{ path('tools.server_stats.data', {'server_type': server_type, 'ip': ip}) }}', function (data) {
+                Highcharts.setOptions({
+                    global: {
+                        timezoneOffset: -60
+                    },
+
+                    lang: {
+                        months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                        weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                        shortMonths: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+
+                        rangeSelectorFrom: 'Depuis le',
+                        rangeSelectorTo: "jusqu'au"
+                    }
+                });
+
+                {% if zcraft %}
+                var $uniques_on_view = $("#uniques_on_view");
+
+                function update_uniques() {
+                    var extrema = Highcharts.charts[0].xAxis[0].getExtremes();
+
+                    // Divided by 1000 because the server works with timestamps, not millitimestamps.
+                    var from = parseInt(extrema.min / 1000);
+                    var to = parseInt(extrema.max / 1000);
+
+                    $uniques_on_view.html("⋅⋅⋅");
+
+                    $.get('/minecraft/stats/zcraft.fr/uniques/' + from + '..' + to, function (uniques) {
+                        $uniques_on_view.html(uniques);
+                    });
+                }
+                {% endif %}
+
+                // Data construction
+                var data_players = [];
+                {% if zcraft %}
+                var data_guardians = [];
+                var data_admins = [];
+                {% endif %}
+
+                for (var i = 0; i < data.times.length; i++)
+                {
+                    var js_time = data.times[i] * 1000;
+
+                    data_players.push([js_time, data.players[i]]);
+                    {% if zcraft %}
+                    data_guardians.push([js_time, data.guardians[i]]);
+                    data_admins.push([js_time, data.admins[i]]);
+                    {% endif %}
+                }
+
+
+                $('#stats_chart').highcharts('StockChart', {
+                    chart: {
+                        type: 'spline',
+                        backgroundColor: 'transparent',
+
+                        events: {
+                            {% if zcraft %}
+                            redraw: update_uniques
+                            {% endif %}
+                        }
+                    },
+
+                    title: {
+                        text: ''
+                    },
+
+                    subtitle: {
+                        text: ''
+                    },
+
+                    xAxis: {
+                        type: 'datetime'
+                    },
+
+                    yAxis: {
+                        title: {
+                            text: ''
+                        },
+                        min: 0
+                    },
+
+                    rangeSelector: {
+                        inputBoxWidth: 130,
+                        inputDateFormat: '%e %b %Y',
+
+                        buttons: [
+                            {
+                                type: 'minute',
+                                count: 180,
+                                text: '3h'
+                            },
+                            {
+                                type: 'minute',
+                                count: 360,
+                                text: '6h'
+                            },
+                            {
+                                type: 'day',
+                                count: 1,
+                                text: '1j'
+                            },
+                            {
+                                type: 'day',
+                                count: 2,
+                                text: '2j'
+                            },
+                            {
+                                type: 'week',
+                                count: 1,
+                                text: '1s'
+                            },
+                            {
+                                type: 'month',
+                                count: 1,
+                                text: '1m'
+                            },
+                            {
+                                type: 'month',
+                                count: 3,
+                                text: '3m'
+                            },
+                            {
+                                type: 'year',
+                                count: 1,
+                                text: '1a'
+                            },
+                            {
+                                type: 'all',
+                                text: 'Tout'
+                            },
+                        ],
+                        selected: 3
+                    },
+
+                    plotOptions: {
+                        spline: {
+                            marker: {
+                                enabled: false
+                            },
+                            //compare: 'percent'
+                        }
+                    },
+
+                    credits: {
+                        enabled: false
+                    },
+
+                    legend: {
+                        enabled: false
+                    },
+
+                    series: [
+                        {
+                            name: "Connectés",
+                            color: "{% if zcraft %}#0000AA{% else %}{{ data.server.color }}{% endif %}",
+                            data: data_players
+                        },
+                        {% if zcraft %}
+                        {
+                            name: "Gardiens connectés",
+                            color: "#009000",
+                            data: data_guardians
+                        },
+                        {
+                            name: "Administrateurs connectés",
+                            color: "#AA0000",
+                            data: data_admins
+                        }
+                        {% endif %}
+                    ]
+                });
+
+                $("#popover-min").popover({
+                    html: true,
+                    placement: 'top'
+                });
+
+                $("#popover-max").popover({
+                    html: true,
+                    placement: 'bottom'
+                });
+
+                {% if zcraft %}setTimeout(update_uniques, 1000);{% endif %}
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block content_header %}
+<div class="pull-right">
+    <div class="dropdown">
+        <button class="btn" id="button-available-servers" data-toggle="dropdown" role="button" data-target="button-available-servers-list" aria-haspopup="true" aria-expanded="false">
+            Serveurs disponibles
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="button-available-servers" id="button-available-servers-list">
+            {% if server_type == 'minecraft' %}
+                <li>
+                    <a href="{{ path('tools.server_stats', {'ips': 'zcraft.fr', 'server_type': 'minecraft'}) }}">Zcraft</a>
+                </li>
+
+                <li class="divider"></li>
+            {% endif %}
+
+            {% for server in servers %}
+                <li>
+                    <a href="{{ path('tools.server_stats', {'ips': server.ip, 'server_type': server_type}) }}">{{ server.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<header class="article-header">
+    <h1>Statistiques : {{ data.server.name }}</h1>
+    <p class="lead">
+        {% if server_type == 'minecraft' %}Joueurs conectés{% else %}Personnes connectées{% endif %}
+        {% if server_type == 'minecraft' %}
+            <span class="muted"> (actuellement {{ current_player_count|number_format(0, ',', '&nbsp;')|raw }})</span>
+        {% endif %}
+    </p>
+</header>
+{% endblock %}
+
+
+{% block container_content %}
+{% if not zcraft and (data.server.last_successful_ping is null or data.server.last_ping != data.server.last_successful_ping) %}
+    <div class="alert alert-danger">
+        <strong>Ce serveur semble hors-ligne.</strong>
+        {% if data.server.last_successful_ping is not null %}
+            Le dernier contact réussi remonte au {{ data.server.last_successful_ping|date('d/m/Y à H:i') }}.
+        {% else %}
+            Aucun contact n'a réussi.
+        {% endif %}
+    </div>
+{% endif %}
+
+{% if server_type == 'minecraft' %}
+<div class="container-content motd">
+    <div class="pull-right ping-track-link-container">
+        <a href="{{ path('tools.minecraft.ping.results', {'ip': ip}) }}" class="tooltip-top" title="Instantané">
+            <span class="fa fa-bolt"></span>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            {% if favicon %}<img class="server_favicon" src="{{ favicon }}" alt="Icône du serveur" />{% endif %}
+        </div>
+        <div class="col-md-10">
+            {{ motd|raw }}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="container-content">
+    <div id="graph_frame">
+        <div id="stats_chart"></div>
+
+        <div class="pull-right">
+            <dl class="dl-horizontal extrema">
+                <dt>Minimum</dt>
+                <dd>
+                    {% if data.ping_counts > 0 %}
+                        {{ data.min.count|number_format(0, ',', '&nbsp;')|raw }}
+                        <div id="popover-min" class="popover-link"
+                             title="Minimum atteint le{% if data.min.times_count > 1 %}s{% endif %}..."
+                             data-content="<ul>
+                                        {% for time in data.min.times %}<li>{{ time|date('d/m/Y à H:i') }}</li>{% endfor %}
+                                        {% if data.min.times_count > data.min.times|length %}<li>...et {{ (data.min.times_count - data.min.times|length)|number_format(0, ',', '&nbsp;')|raw }} autres moments.</li>{% endif %}
+                                    </ul>">
+                            <span class="fa fa-calendar"></span>
+                        </div>
+                    {% else %}
+                        Pas de données
+                    {% endif %}
+                </dd>
+
+                <dt>Maximum</dt>
+                <dd>
+                    {% if data.ping_counts > 0 %}
+                        {{ data.max.count|number_format(0, ',', '&nbsp;')|raw }}
+                        <div id="popover-max" class="popover-link"
+                             title="Maximum atteint le{% if data.max.times_count > 1 %}s{% endif %}..."
+                             data-content="<ul>
+                                        {% for time in data.max.times %}<li>{{ time|date('d/m/Y à H:i') }}</li>{% endfor %}
+                                    </ul>">
+                            <span class="fa fa-calendar"></span>
+                        </div>
+                    {% else %}
+                        Pas de données
+                    {% endif %}
+                </dd>
+
+                {% if not zcraft %}
+                    <dt>&nbsp;</dt><dd>&nbsp;</dd>
+
+                    <dt>Dernier contact</dt>
+                    <dd>{{ data.server.last_ping|date('d/m/Y à H:i') }}</dd>
+
+                    {% if data.server.last_successful_ping is null or data.server.last_ping != data.server.last_successful_ping %}
+                        <dt>Dernier contact réussi</dt>
+                        {% if data.server.last_successful_ping is null %}
+                            <dd>Jamais</dd>
+                        {% else %}
+                            <dd>{{ data.server.last_successful_ping|date('d/m/Y à H:i') }}</dd>
+                        {% endif %}
+                    {% endif %}
+
+                {% endif %}
+            </dl>
+        </div>
+
+        <div id="graph_legend">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="legend_color" style="background-color: {% if zcraft %}#0000AA{% else %}{{ data.server.color }}{% endif %};"></div>
+                    Nombre total de connectés
+                </li>
+                {% if zcraft %}
+                    <li>
+                        <div class="legend_color" style="background-color: #009000;"></div>
+                        Gardiens connectés
+                    </li>
+                    <li>
+                        <div class="legend_color" style="background-color: #AA0000;"></div>
+                        Administrateurs connectés
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <p class="nota">
+        Nota : le nombre de connectés courant et celui indiqué par le dernier point du graphique peuvent différer, étant donné que les données ne sont actualisées que toutes les {% if zcraft or server_type == 'mumble' %}dix{% else %}vingt{% endif %} minutes.
+    </p>
+</div>
+
+{% if zcraft %}
+    <div class="container-content">
+        <h2>Joueurs uniques <small>depuis le {{ data.uniques.first_day|date('d/m/Y') }}</small></h2>
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="muted small-title">Aujourd'hui</h4>
+                <p class="lead big_number">{{ data.uniques.unique_players_last_day|number_format(0, ',', '&nbsp;')|raw }}</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="muted small-title">Depuis la semaine dernière</h4>
+                <p class="lead big_number">{{ data.uniques.unique_players_last_week|number_format(0, ',', '&nbsp;')|raw }}</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="muted small-title">Depuis le début</h4>
+                <p class="lead big_number">{{ data.uniques.unique_players|number_format(0, ',', '&nbsp;')|raw }}</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="muted small-title">Sur cette vue</h4>
+                <p class="lead big_number" id="uniques_on_view">⋅⋅⋅</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
