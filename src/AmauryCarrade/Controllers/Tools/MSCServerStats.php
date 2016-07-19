@@ -30,7 +30,7 @@ class MSCServerStats
 
         $query = $pdo->prepare('SELECT server_ip AS ip,
                                        server_name AS name,
-                                       server_color,
+                                       server_color AS color,
                                        LOWER(server_type) AS server_type,
                                        UNIX_TIMESTAMP(last_ping) AS last_ping,
                                        UNIX_TIMESTAMP(last_successful_ping) AS last_successful_ping
