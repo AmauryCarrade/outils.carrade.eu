@@ -12,6 +12,55 @@ use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class MSCServerStats
 {
+    public function stats_home(Application $app, Request $request)
+    {
+        // Database connection
+        try {
+            $pdo = get_db_connector($app, 'mcstats');
+
+            if ($pdo == null) throw new \RuntimeException;
+        }
+        catch(\Exception $e)
+        {
+            $app->abort(500, "Unable to connect the database.");
+        }
+
+        $servers_minecraft = array();
+        $servers_mumble = array();
+
+        $query = $pdo->prepare('SELECT server_ip AS ip,
+                                       server_name AS name,
+                                       server_color,
+                                       LOWER(server_type) AS server_type,
+                                       UNIX_TIMESTAMP(last_ping) AS last_ping,
+                                       UNIX_TIMESTAMP(last_successful_ping) AS last_successful_ping
+                                FROM servers
+                                WHERE hidden = 0
+                                ORDER BY server_name');
+        $query->execute();
+
+        while($server = $query->fetch(PDO::FETCH_ASSOC))
+        {
+            switch ($server['server_type'])
+            {
+                case 'minecraft':
+                    $servers_minecraft[] = $server;
+                    break;
+
+                case 'mumble':
+                    $servers_mumble[] = $server;
+                    break;
+            }
+        }
+
+        $query->closeCursor();
+
+        return new Response($app['twig']->render('tools/stats/stats_home.html.twig', array(
+            'servers_minecraft' => $servers_minecraft,
+            'servers_mumble' => $servers_mumble
+        )));
+    }
+
     public function stats(Application $app, Request $request, $server_type, $ips)
     {
         if($ips == "")

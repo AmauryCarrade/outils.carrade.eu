@@ -116,6 +116,9 @@ $app->get('/tools/minecraft/ping/{format}', 'AmauryCarrade\\Controllers\\Tools\\
     ->value('format', 'html');
 
 
+$app->get('/stats', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats_home')
+    ->bind('tools.server_stats.home');
+
 $app->get('/{server_type}/stats/{ips}', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats')
     ->bind('tools.server_stats');
 

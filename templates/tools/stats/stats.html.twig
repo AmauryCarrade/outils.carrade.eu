@@ -298,7 +298,7 @@
 <header class="article-header">
     <h1>Statistiques : {{ data.server.name }}</h1>
     <p class="lead">
-        {% if server_type == 'minecraft' %}Joueurs conectés{% else %}Personnes connectées{% endif %}
+        {% if server_type == 'minecraft' %}Joueurs connectés{% else %}Personnes connectées{% endif %}
         {% if server_type == 'minecraft' %}
             <span class="muted"> (actuellement {{ current_player_count|number_format(0, ',', '&nbsp;')|raw }})</span>
         {% endif %}
