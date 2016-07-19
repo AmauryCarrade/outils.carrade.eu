@@ -21,7 +21,7 @@
                 <a href="{{ path('tools.server_stats', {'server_type': 'minecraft', 'ips': 'zcraft.fr'}) }}" class="list-group-item">
                     <div class="row">
                         <div class="col-xs-1 col-md-1 text-center"><i class="fa fa-check" style="color:#00AA00"></i></div>
-                        <div class="col-xs-10 col-md-10">Zcraft</div>
+                        <div class="col-xs-9 col-md-10">Zcraft</div>
                         <div class="col-xs-1 col-md-1"><span class="fa fa-square" style="color: #009000"></span></div>
                     </div>
                 </a>
@@ -36,7 +36,7 @@
                                     <i class="fa fa-exclamation-triangle tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-xs-10 col-md-10">{{ server.name }}</div>
+                            <div class="col-xs-9 col-md-10">{{ server.name }}</div>
                             <div class="col-xs-1 col-md-1"><span class="fa fa-square" style="color: {{ server.color }}"></span></div>
                         </div>
                     </a>
@@ -60,7 +60,7 @@
                                     <i class="fa fa-exclamation-triangle tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-xs-10 col-md-10">{{ server.name }}</div>
+                            <div class="col-xs-9 col-md-10">{{ server.name }}</div>
                             <div class="col-xs-1 col-md-1"><span class="fa fa-square" style="color: {{ server.color }}"></span></div>
                         </div>
                     </a>
