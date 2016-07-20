@@ -548,6 +548,12 @@
                         "text": "BukkitDev",
                         "icon": "",
                         "primary": false
+                    },
+                    {
+                        "link": "https://www.spigotmc.org/resources/imageonmap.26585/",
+                        "text": "SpigotMC",
+                        "icon": "",
+                        "primary": false
                     }
                 ]
             },
