@@ -138,9 +138,18 @@ $app->match('/bukkit/permissions.html', 'AmauryCarrade\\Controllers\\Tools\\BKPe
     ->bind('tools.bukkit.permissions');
 
 
-$app->get('tools/minecraft/zcraft/netherrail/', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::homepage');
-$app->get('tools/minecraft/zcraft/netherrail/{from}/{to}/{options}', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::results')
+$app->get('/tools/minecraft/zcraft/netherrail/', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::homepage');
+$app->get('/tools/minecraft/zcraft/netherrail/{from}/{to}/{options}', 'AmauryCarrade\\Controllers\\Tools\\MCZepsLegacy::results')
     ->value('options', '');
+
+
+
+$app->get('/tea', 'AmauryCarrade\\Controllers\\Tools\\TeaController::homepage')
+    ->bind('tools.tea');
+
+$app->get('/tea/{search}/{format}', 'AmauryCarrade\\Controllers\\Tools\\TeaController::search')
+    ->value('format', 'html')
+    ->bind('tools.tea.results');
 
 
 

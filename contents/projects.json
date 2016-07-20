@@ -257,6 +257,12 @@
                         "text": "Voir sur GitHub",
                         "icon": "",
                         "primary": true
+                    },
+                    {
+                        "link": "https://amaury.carrade.eu/tea",
+                        "text": "Version sur ce site",
+                        "icon": "",
+                        "primary": false
                     }
                 ]
             }

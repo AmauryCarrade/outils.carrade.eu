@@ -1,9 +1,17 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AmauryCarrade/Requests"
+        }
+    ],
+
     "require": {
         "silex/silex": "~2.0",
         "twig/twig": "~1.0",
         "symfony/twig-bridge": "^2.0",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "rmccue/requests": "dev-fix_127"
     },
 
     "autoload": {
@@ -14,8 +22,8 @@
         "files": [
             "lib/functions_db.php",
             "lib/functions_utils.php",
-            "lib/Downloader.php"
+            "lib/Downloader.php",
+            "lib/PHPSimpleHTMLDom.php"
         ]
     }
 }
-

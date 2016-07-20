@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{% if tea.success %}{{ tea.name }} ⋅ {% endif %}Recherche de thé{% endblock %}
+
+{% block content_title %}<span class="fa fa-coffee"></span> Recherche de thés{% endblock %}
+{% block content_subtitle %}{% if tea.success %}{{ tea.name }}{% else %}Mariage Frères uniquement{% endif %}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basePath }}/assets/css/tools.css" rel="stylesheet" />
+{% endblock %}
+
+{% block container_content %}
+    <div class="container-content">
+        {% if tea.error %}
+            <div class="alert alert-danger">
+                <strong>Impossible de trouver ce thé.</strong> {{ tea.error }}
+            </div>
+        {% endif %}
+
+        <div class="submit-form row">
+            <form style="margin-bottom: 0;" action="{{ path('tools.tea') }}">
+                <div class="col-md-2"></div>
+                <div class="form-group col-md-8" style="margin-bottom: 0;">
+                    <label class="sr-only" for="search">Entrez le numéro ou le nom du thé à rechercher...</label>
+                    <div class="input-group">
+                        <input type="text" id="search" name="search" class="form-control" placeholder="Entrez le numéro ou le nom du thé à rechercher..."{% if input %} value="{{ input }}"{% endif %} />
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-primary" value="Rechercher ce thé" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </form>
+        </div>
+    </div>
+
+    {% if tea.success and not tea.error %}
+    <div class="container-content">
+        <header>
+            <div class="pull-right">
+                <a href="{{ tea.url }}">Sur le site de Mariage Frères</a>
+            </div>
+            <h2 style="margin-bottom: 0;">{{ tea.name }}</h2>
+            <p class="lead">{{ tea.description }}</p>
+        </header>
+
+        <div class="row">
+            <div class="col-md-6">
+                {% if not (tea.tips.mass and tea.tips.volume and tea.tips.duration and tea.tips.temperature) %}
+                    <h4 class="muted small-title">Conseils de préparation bruts</h4>
+                    <p class="lead">{{ tea.tips.raw }}</p>
+                {% endif %}
+
+                {% if tea.tips.mass or tea.tips.volume %}
+                <h4 class="muted small-title">Quantité par infusion</h4>
+                <p class="lead">
+                    {% if tea.tips.mass %}
+                    {{ tea.tips.mass|number_format(1, ',', ' ') }} g
+                    {% endif %}
+                    {% if tea.tips.mass and tea.tips.volume %}
+                    <span class="text-muted">ou</span>
+                    {% endif %}
+                    {% if tea.tips.volume %}
+                        {{ tea.tips.volume }} cl
+                    {% endif %}
+                </p>
+                {% endif %}
+
+                {% if tea.tips.temperature %}
+                    <h4 class="muted small-title">Température d'infusion</h4>
+                    <p class="lead">{{ tea.tips.temperature }} °C</p>
+                {% endif %}
+
+                {% if tea.tips.duration %}
+                <h4 class="muted small-title">Durée de l'infusion</h4>
+                <p class="lead">{{ tea.tips.duration }} minute{% if tea.tips.duration > 1 %}s{% endif %}</p>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <blockquote class="text-justify">
+                    {{ tea.long_description|raw }}
+                    <small>Description par Mariage Frères</small>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

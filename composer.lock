@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "45766225900f36ffe9062b47fab8a059",
-    "content-hash": "78ba3804972c917048d47f530a10e584",
+    "hash": "fea6381071835dff110747edeb79e38d",
+    "content-hash": "1f0e144bb52bcaadc288584069e09f17",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -129,6 +129,57 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "rmccue/requests",
+            "version": "dev-fix_127",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AmauryCarrade/Requests.git",
+                "reference": "9170b57f0be7573ae24c269258fae1356e7e9eac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AmauryCarrade/Requests/zipball/9170b57f0be7573ae24c269258fae1356e7e9eac",
+                "reference": "9170b57f0be7573ae24c269258fae1356e7e9eac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "requests/test-server": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Requests": "library/"
+                }
+            },
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan McCue",
+                    "homepage": "http://ryanmccue.info"
+                }
+            ],
+            "description": "A HTTP library written in PHP, for human beings.",
+            "homepage": "http://github.com/rmccue/Requests",
+            "keywords": [
+                "curl",
+                "fsockopen",
+                "http",
+                "idna",
+                "ipv6",
+                "iri",
+                "sockets"
+            ],
+            "support": {
+                "source": "https://github.com/AmauryCarrade/Requests/tree/fix_127"
+            },
+            "time": "2016-07-20 13:19:56"
         },
         {
             "name": "silex/silex",
@@ -747,7 +798,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rmccue/requests": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
