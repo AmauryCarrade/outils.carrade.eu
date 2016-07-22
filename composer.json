@@ -11,7 +11,8 @@
         "twig/twig": "~1.0",
         "symfony/twig-bridge": "^2.0",
         "erusev/parsedown": "^1.6",
-        "rmccue/requests": "dev-fix_127"
+        "rmccue/requests": "dev-fix_127",
+        "erusev/parsedown-extra": "^0.7.1"
     },
 
     "autoload": {

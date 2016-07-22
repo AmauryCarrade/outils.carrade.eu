@@ -53,7 +53,7 @@ class ContentsController
 			}
 		}
 		
-		$rendered_content = \Parsedown::instance()
+		$rendered_content = \ParsedownExtra::instance()
 			->setBreaksEnabled(true)
 			->setMarkupEscaped(false)
 			->setUrlsLinked(true)

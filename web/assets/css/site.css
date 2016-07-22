@@ -305,6 +305,33 @@ code {
     list-style-type: none;
 }
 
+.footnotes {
+    margin-top: 80px;
+}
+.footnotes hr {
+    width: 40%;
+    border-color: #777;
+
+    margin-left: 0;
+}
+.footnotes ol, .footnotes ol li, .footnotes ol li p {
+    font-size: 1.02em;
+    color: #666;
+}
+.footnotes ol li a {
+    color: #444;
+}
+.footnotes ol li a:hover {
+    color: #222;
+}
+.footnotes a.footnote-backref {
+    color: #337AB7;
+}
+.footnotes a.footnote-backref:hover {
+    color: #23527C;
+    text-decoration: none;
+}
+
 #page-footer {
     margin-top: 60px;
     padding-top: 10px;
