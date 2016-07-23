@@ -13,13 +13,12 @@ Et même là où on s'y attend moins il y en a : un site web est généré par u
 
 Et on est loin d'avoir fait le tour.
 
-
-Ainsi, si vous voulez vous mettre à la programmation, vous aurez l'embarras du choix. Certaines tâches sont plus simples que d'autres mais une bonne partie restent *accessibles* aux débutants (je n'ai pas dit toutes, cela dit — dans d'autres cas il faudra malgré tout un peu plus d'expérience). Vous devrez cela dit systématiquement passer par une phase d'apprentissage des méthodes, mais aussi (et surtout) des concepts et des logiques de raisonnements sous-jacentes. Ce n'est pas compliqué, mais il ne faut pas le négliger ! C'est ce qui fait la différence entre un programmeur qui sait ce qu'il fait, et quelqu'un qui répète bêtement des recettes de cuisine sans vraiment comprendre.
+Ainsi, si vous voulez vous mettre à la programmation, vous aurez l'embarras du choix. Certaines tâches sont plus simples que d'autres mais une bonne partie reste *accessible* aux débutants[^facile]. Vous devrez cela dit systématiquement passer par une phase d'apprentissage des méthodes, mais aussi (et surtout) des concepts et des logiques de raisonnements sous-jacentes. Ce n'est pas compliqué, mais il ne faut pas le négliger ! C'est ce qui fait la différence entre un programmeur qui sait ce qu'il fait, et quelqu'un qui répète bêtement des recettes de cuisine sans vraiment comprendre.
 
 
 ### Comprendre les bases
 
-Il y a une multitude de langages de programmations mais ils ont tous les mêmes concepts de base qu'il est particulièrement utile de connaître si on veut comprendre ce que l'on fait.
+Il y a une multitude de langages de programmation, mais ils ont tous les mêmes concepts de base qu'il est particulièrement utile de connaître si on veut comprendre ce que l'on fait.
 
 Je vous redirige ici vers un cours publié sur le site *Zeste de Savoir* qui traite de cela. Inutile de réécrire ce qui existe déjà :) .
 
@@ -27,9 +26,14 @@ Je vous redirige ici vers un cours publié sur le site *Zeste de Savoir* qui tra
 
 Il est question de qu'est-ce qu'un programme, quelles sont les bases fondatrices partagées par tous, et comment les programmes sont — de manière assez générale — rendus utilisable. Oh et accessoirement, à quoi ça ressemble en pratique, un programme.
 
-**Apparté**  
-*Je profite de ce lien pour glisser le mot : débutants en programmation, je recommande chaudement le site [Zeste de Savoir](https://zestedesavoir.com). C'est un site qui propose de nombreux tutoriels clairs pour les débutants (mais pas que...), ainsi qu'un forum d'entre-aide assez dynamique pour poser des questions et recevoir de l'aide. Le site est en plus très chaleureux, alors pourquoi se priver ?*
-
+<div class="panel panel-default">
+    <header class="panel-heading">
+        <h3 class="panel-title">Apparté</h3>
+    </header>
+    <div class="panel-body">
+        <p markdown="1">Je profite de ce lien pour glisser le mot : débutants en programmation, je recommande chaudement le site [Zeste de Savoir](https://zestedesavoir.com). C'est un site qui propose de nombreux tutoriels clairs pour les débutants (mais pas que...), ainsi qu'un forum d'entre-aide assez dynamique pour poser des questions et recevoir de l'aide. Le site est en plus très chaleureux, alors pourquoi se priver ?</p>
+    </div>
+</div>
 
 ### Par quoi commencer ?
 
@@ -50,46 +54,43 @@ C'est un bon choix dans l'absolu pour débuter en programmation.
 
 #### J'aimerais faire du web !
 
-##### Python
-
-Python peut servir à faire des sites web, avec des outils comme [Django](https://zestedesavoir.com/tutoriels/598/developpez-votre-site-web-avec-le-framework-django/), pour des projets moyen-gros, ou [Flask](http://flask.pocoo.org/), un cadre tout léger pour faire des sites plus petits. Par exemple, [Zeste de Savoir](https://zestedesavoir.com/), site que je mentionne régulièrement, est codé avec Django en Python.
-
 ##### PHP
 
-Il y a cependant un autre langage pour faire du Web, qu'est lui de base conçu pour : PHP. Assez simple à comprendre dés le début, il a l'avantage d'être très largement disponible chez l'écrasante majorité des hébergeurs[^heberg], permettant ainsi de s'en servir concrètement très facilement.
+Le langage le plus *pratique* pour faire du Web, qu'a été d'ailleurs à l'origine conçu pour, est **PHP**. Assez simple à comprendre dés le début, il a l'avantage d'être très largement disponible chez l'écrasante majorité des hébergeurs[^heberg], permettant ainsi de s'en servir concrètement très facilement.
 
-PHP est un langage tourné vers le web. Seul, il permet déjà de faire des sites sympas ; pour cela, il suffit d'apprendre le langage en lui-même (logique). Ça tombe bien, il y a des cours pour ça, en l'occurrence sur *OpenClassrooms*[^oc] (il n'y en a malheureusement pas sur Zeste de Savoir... du moins pas encore).
+Déjà seul, il permet déjà de faire des sites sympas ; pour cela, il suffit d'apprendre le langage en lui-même (logique). Ça tombe bien, il y a des cours pour ça, en l'occurrence sur *OpenClassrooms*[^oc] (il n'y en a malheureusement pas sur Zeste de Savoir... du moins pas encore). On peut aussi augmenter ses possibilités avec des outils spécifiques que je mentionnerai plus loin.
 
 <div class="text-center"><a href="https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql" class="btn btn-primary">Concevez votre site web avec PHP et MySQL<br /><em>sur OpenClassrooms</em></a></div>
 
-##### ...avec Symfony, pour des gros projets
+##### Python
 
-Si vous voulez aller plus loin sur le web, il existe des outils plus gros, plus rigoureux et moins facile d'utilisation aussi, mais qui structurent bien le code (on parle de *framework*).  
-Pour PHP, la référence absolue est [Symfony](https://symfony.com/), actuellement dans sa version 3. C'est un *framework* français très populaire parmis les grand sites (ou même certains petits). Si vous n'avez pas peur de l'anglais[^anglais], un tutoriel est proposé par les auteurs de Symfony pour la dernière version (3.1 à l'heure où j'écris ces lignes).
+Python, présenté précédemment, peut servir à faire des sites web, avec des outils comme [Django](https://zestedesavoir.com/tutoriels/598/developpez-votre-site-web-avec-le-framework-django/), pour des projets moyen-gros, ou [Flask](http://flask.pocoo.org/), un cadre tout léger pour faire des sites plus petits. Par exemple, [Zeste de Savoir](https://zestedesavoir.com/), site que je mentionne régulièrement, est codé avec Django en Python.
+
+##### PHP avec Symfony, pour des gros projets
+
+Si vous voulez aller plus loin sur le web, il existe des outils plus gros, plus rigoureux et moins facile d'utilisation aussi, mais qui structurent bien le code (on parle de *framework*).
+
+<div class="alert alert-danger">
+<span class="fa fa-warning"></span> Ces outils (celui-là ou celui que je mentionne après) <strong>ont comme pré-requis la connaissance du langage de base (ici PHP)</strong>, donc ne vous y intéressez pas avant d'avoir bien compris comment PHP seul marche !
+</div>
+
+Pour PHP, la référence absolue est **[Symfony](https://symfony.com/)**, actuellement dans sa version 3. C'est un *framework* français très populaire parmis les grand sites (ou même certains petits). Si vous n'avez pas peur de l'anglais[^anglais], un tutoriel est proposé par les auteurs de Symfony pour la dernière version (3.1 à l'heure où j'écris ces lignes).
 
 <div class="text-center"><a href="https://symfony.com/doc/current/book/index.html" class="btn btn-primary">The Symfony Book<br /><em>par les auteurs de Symfony</em></a></div>
 
 Sinon, Zeste de Savoir propose [un tutoriel assez complet](https://zestedesavoir.com/tutoriels/620/developpez-votre-site-web-avec-le-framework-symfony2/) mais destiné à une ancienne version de Symfony (2). Il peut servir de base, même s'il faudra vous renseigner sur les changements.
 
-##### ...avec Silex, pour des plus petits projets bien structurés
+##### PHP avec Silex, pour des plus petits projets bien structurés
 
 Le problème de Symfony c'est que c'est gros, un peu trop pour des petits projets pour lesquels Symfony serait vraiment *trop*.  
-Pour ces cas il existe ce que l'on appelle des *micro-framework*. [Silex](http://silex.sensiolabs.org/) est l'un d'entre eux que j'affectionne tout particulièrement — d'ailleurs ce site est réalisé avec Silex ([voir la source](https://github.com/AmauryCarrade/Website)). Un guide existe par les créateurs de Silex[^silex_authors] en anglais, si vous n'avez pas peur de cette langue.
+Pour ces cas il existe ce que l'on appelle des *micro-framework*. **[Silex](http://silex.sensiolabs.org/)** est l'un d'entre eux que j'affectionne tout particulièrement — d'ailleurs ce site est réalisé avec Silex ([voir la source](https://github.com/AmauryCarrade/Website)). Un guide existe par les créateurs de Silex[^silex_authors] en anglais, si vous n'avez pas peur de cette langue.
 
 <div class="text-center"><a href="http://silex.sensiolabs.org/doc/master/intro.html" class="btn btn-primary">The Silex Book<br /><em>par les auteurs de Silex</em></a></div>
-
-[^heberg]: Un hébergeur est une entreprise, comme [OVH](https://ovh.net) ou [Online](https://online.net/), ou une association, qui offre ou vend la mise en ligne de sites web. Tous les sites internet passent par un hébergeur pour être accessible sur internet.
-[^oc]:
-    OpenClassrooms, ex-Site du Zéro, est un site qui propose des cours depuis déjà longtemps. Cela dit, depuis quelques temps, le site cherche à tenter de forcer l'inscription et/ou le paiement pour les cours. Ne vous y méprenez pas ! Ceux que je lis sont en accès gratuit (sauf vidéos, mais on s'en passe très bien).
-
-    Par contre OC force l'inscription pour consulter plus de trois pages de cours. C'est gratuit et rapide, un peu énervant de se voir forcer la main, je l'admet, mais je ne connais pas d'autre cours qui traite bien du domaine... Si vous en connaissez, n'hésitez pas à me le dire via le formulaire de contact !
-[^anglais]: Au passage et honnêtement, si vous avez du mal avec l'anglais, entraînez-vous : la grosse majorité des ressources en informatique sont en anglais.
-[^silex_authors]: Les même que Symfony, pour info !
 
 
 #### Je veux développer pour Minecraft
 
-Minecraft est développé en Java, de même que les plugins pour Bukkit/Spigot et les mods pour Forge. Java est un langage de programmation très connu et très utilisé, mais plus compliqué à apprendre et plus strict. Comme premier langage, la courbe d'apprentissage est un peu plus pentue (même si ça reste faisable).
+Minecraft est développé en **Java**, de même que les plugins pour Bukkit/Spigot et les mods pour Forge. Java est un langage de programmation très connu et très utilisé, mais plus compliqué à apprendre et plus strict. Comme premier langage, la courbe d'apprentissage est un peu plus pentue (même si ça reste faisable).
 
 Zeste de Savoir propose un cours de Java pour débutants. Pour Bukkit/Spigot, il vous faudra plus vous débrouiller : si on trouve quelques tutoriels sur internet (ça se trouve facilement, je vous laisse chercher), l'essentiel de ce qu'on apprend se fait directement en lisant la JavaDoc des projets.
 
@@ -98,3 +99,13 @@ Zeste de Savoir propose un cours de Java pour débutants. Pour Bukkit/Spigot, il
 Au passage, Java est également le langage principal pour [développer des applications pour Android](https://zestedesavoir.com/tutoriels/624/creez-des-applications-pour-android/), si ce sujet vous intéresse :) .
 
 Bonne chance !
+
+
+[^facile]: Je n'ai pas dit que c'était le cas de toutes, cela dit — dans d'autres cas il faudra malgré tout un peu plus d'expérience.
+[^heberg]: Un hébergeur est une entreprise, comme [OVH](https://ovh.net) ou [Online](https://online.net/), ou une association, qui offre ou vend la mise en ligne de sites web. Tous les sites internet passent par un hébergeur pour être accessible sur internet.
+[^oc]:
+    OpenClassrooms, ex-Site du Zéro, est un site qui propose des cours depuis déjà longtemps. Cela dit, depuis quelques temps, le site cherche à tenter de forcer l'inscription et/ou le paiement pour les cours. Ne vous y méprenez pas ! Ceux que je lis sont en accès gratuit (sauf vidéos, mais on s'en passe très bien).
+
+    Par contre OC force l'inscription pour consulter plus de trois pages de cours. C'est gratuit et rapide, un peu énervant de se voir forcer la main, je l'admet, mais je ne connais pas d'autre cours qui traite bien du domaine... Si vous en connaissez, n'hésitez pas à me le dire via le formulaire de contact !
+[^anglais]: Au passage et honnêtement, si vous avez du mal avec l'anglais, entraînez-vous : la grosse majorité des ressources en informatique sont en anglais.
+[^silex_authors]: Les même que Symfony, pour info !

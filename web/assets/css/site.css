@@ -284,6 +284,20 @@ article dd {
     margin-top: 5px;
 }
 
+article h3.panel-title {
+    border: none;
+    margin: 0;
+    font-size: 16px;
+}
+article .panel {
+    margin-top: 30px;
+}
+
+article .alert {
+    font-size: 1.15em;
+    margin-top: 15px;
+}
+
 code {
     color: #d60d41;
     background-color: #fcf5f7;
