@@ -152,6 +152,13 @@ $app->get('/tea/{search}/{format}', 'AmauryCarrade\\Controllers\\Tools\\TeaContr
     ->bind('tools.tea.results');
 
 
+$app->get('/redirects', 'AmauryCarrade\\Controllers\\Tools\\RedirectsTracerController::redirects')
+    ->bind('tools.redirects');
+
+$app->get('/redirects/{format}', 'AmauryCarrade\\Controllers\\Tools\\RedirectsTracerController::redirects_formats')
+    ->bind('tools.redirects.formats');
+
+
 
 $app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
     ->bind('show_content');
