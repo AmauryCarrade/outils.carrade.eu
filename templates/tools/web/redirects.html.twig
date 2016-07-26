@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Traçeur de redirections{% endblock %}
+
+{% block content_title %}Traçeur de redirections{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basePath }}/assets/css/vertical-timeline.css" rel="stylesheet" />
+
+    <style type="text/css">
+    .timeline-text a, .fake-link {
+        color: #323232;
+    }
+    .timeline-text a:hover, .fake-link:hover {
+        text-decoration: none;
+        color: #020202;
+        cursor: pointer;
+    }
+
+    /* Badly centered icons */
+    #timeline .timeline-item .timeline-icon span.fa-ban {
+        top: 14px;
+        left: 15px;
+    }
+    #timeline .timeline-item .timeline-icon span.fa-code {
+        top: 13px;
+        left: 12px;
+    }
+
+    .timeline-text .row {
+        margin-bottom: 6px;
+    }
+    .timeline-text .row:last-child {
+        margin-bottom: 0;
+    }
+
+    a.link-monospace {
+        font-family: "Lucida Console", "Courrier New", Courrier, monospace;
+    }
+
+    .ellipsis {
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+
+        white-space: nowrap;
+    }
+
+    .http-headers {
+        font-family: "Lucida Console", "Courrier New", Courrier, monospace;
+        font-size: 0.95em;
+
+        color: #777;
+
+        margin-top: 5px;
+        margin-left: 16px;
+    }
+    </style>
+{% endblock %}
+
+{% block container_content %}
+    <div class="container-content">
+        <div class="submit-form row">
+            <form style="margin-bottom: 0;">
+                <div class="col-md-2"></div>
+                <div class="form-group col-md-8" style="margin-bottom: 0;">
+                    <label class="sr-only" for="url">Entrez l'URL à analyser...</label>
+                    <div class="input-group">
+                        <input type="text" id="url" name="url" class="form-control" placeholder="Entrez l'URL à analyser..."{% if start_url %} value="{{ start_url }}"{% endif %} />
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-primary" value="Analyser les redirections" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </form>
+        </div>
+    </div>
+
+    {% if success %}
+    <div id="timeline">
+        {% for hop in hops %}
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    {% if hop.redirect_type == 'http' %}
+                            <span class="fa fa-server"></span>
+                        {% elseif hop.redirect_type == 'meta' %}
+                            <span class="fa fa-code"></span>
+                        {% elseif hop.redirect_type == 'meta_loop' %}
+                            <span class="fa fa-repeat"></span>
+                        {% elseif hop.redirect_type == 'interrupted' %}
+                            <span class="fa fa-ban"></span>
+                        {% elseif hop.redirect_type == 'error' %}
+                            <span class="fa fa-exclamation-triangle"></span>
+                        {% else %}
+                            <span class="fa fa-flag"></span>
+                        {% endif %}
+                </div>
+                <div class="timeline-content{% if hop.redirect_type != 'http' %} right{% endif %}">
+                    <h2>{% spaceless %}
+                        {% if hop.redirect_type == 'http' %}
+                            Redirection HTTP {{ hop.status_code }} {{ hop.status_text }}
+                        {% elseif hop.redirect_type == 'meta' %}
+                            Redirection &lt;meta&gt;
+                        {% elseif hop.redirect_type == 'meta_loop' %}
+                            Redirection &lt;meta&gt; bouclée
+                        {% elseif hop.redirect_type == 'interrupted' %}
+                            Redirections interrompues (maximum : {{ max_redirects }})
+                        {% elseif hop.redirect_type == 'error' %}
+                            Erreur lors de la redirection
+                        {% else %}
+                            Pas de redirection
+                        {% endif %}
+                    {% endspaceless %}</h2>
+                    <div class="timeline-text">
+                        {% if hop.redirect_type == 'interrupted' %}
+                            <p>Il y a d'autres redirections derrière mais elles ne seront pas suivies, afin d'éviter les boucles infinies de redirection ou la surcharge du service.</p>
+                        {% elseif hop.redirect_type == 'error' %}
+                            <div class="row">
+                                <div class="col-xs-1 col-md-1 text-center">
+                                    <span class="fa fa-exclamation-triangle" aria-hidden="true" title="Erreur rencontrée"></span> <span class="sr-only">Erreur rencontrée : </span>
+                                </div>
+                                <div class="col-xs-10 col-md-10">
+                                    {{ hop.error }}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                <div class="col-xs-1 col-md-1 text-center">
+                                    <span class="fa fa-clock-o" aria-hidden="true" title="Durée de chargement et d'attente"></span> <span class="sr-only">Durée : </span>
+                                </div>
+                                <div class="col-xs-10 col-md-10">
+                                    {% if hop.wait > 0 %}{{ hop.wait }} secondes d'attente puis {% endif %}{{ hop.duration|number_format(3, ',', ' ') }} ms de chargement
+                                </div>
+                            </div>
+
+                            {% if hop.location %}
+                            <div class="row">
+                                <div class="col-xs-1 col-md-1 text-center">
+                                    <span class="fa fa-map-signs" aria-hidden="true" title="Adresse de redirection"></span> <span class="sr-only">Redirige vers : </span>
+                                </div>
+                                <div class="col-xs-10 col-md-10 ellipsis">
+                                    <a href="{{ hop.location }}" class="link-monospace" title="Redirige vers {{ hop.location }}">{{ hop.location }}</a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-xs-1 col-md-1 text-center">
+                                    <span class="fa fa-terminal" aria-hidden="true" title="Statut HTTP"></span> <span class="sr-only">Statut HTTP : </span>
+                                </div>
+                                <div class="col-xs-10 col-md-10">
+                                   HTTP {{ hop.status_code }} {{ hop.status_text }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-1 col-md-1 text-center">
+                                    <span class="fa fa-tags" aria-hidden="true" title="En-têtes HTTP"></span>
+                                </div>
+                                <div class="col-xs-10 col-md-10">
+                                    <span class="fake-link" onclick="javascript:$('#http-headers-{{ loop.index }}').toggle();">En-têtes HTTP</span>
+                                    <div id="http-headers-{{ loop.index }}" class="http-headers" style="display: none;">
+                                        {% for header, value in hop.headers %}
+                                            <strong>{{ header|capitalize }}</strong>: {{ value }}<br />
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+{% endblock %}
