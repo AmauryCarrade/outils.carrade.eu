@@ -18,6 +18,8 @@ class RedirectsTracerController
 	const MAX_MAX_REDIRECTS = 256;
 	const DEFAULT_MAX_REDIRECTS = 21;
 
+	const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0';
+
 
 	public function redirects(Application $app, Request $request)
 	{
@@ -27,7 +29,7 @@ class RedirectsTracerController
 	public function redirects_formats(Application $app, Request $request, $format)
 	{
 		$url = $request->query->get('url');
-		$ua = $request->query->get('ua', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0');
+		$ua = $request->query->get('ua', self::DEFAULT_USER_AGENT);
 		$redirects = min($request->query->get('max_redirects', self::DEFAULT_MAX_REDIRECTS), self::MAX_MAX_REDIRECTS);
 		$hops = null;
 
@@ -46,7 +48,13 @@ class RedirectsTracerController
 				return $app->json($data);
 			
 			default:
-				return $app['twig']->render('tools/web/redirects.html.twig', $data);
+				return $app['twig']->render('tools/web/redirects.html.twig', array_merge($data, array(
+					'defaults_values' => array(
+						'ua' => self::DEFAULT_USER_AGENT,
+						'max_redirects' => self::DEFAULT_MAX_REDIRECTS
+					),
+					'max_max_redirects' => self::MAX_MAX_REDIRECTS
+				)));
 		}
 	}
 

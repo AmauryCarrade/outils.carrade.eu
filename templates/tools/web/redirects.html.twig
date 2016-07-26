@@ -55,24 +55,78 @@
         margin-top: 5px;
         margin-left: 16px;
     }
+
+    .other-options a {
+        position: relative;
+        top: 6px;
+    }
+
+    @media (max-width: 991px) {
+        .other-options {
+            text-align: center;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        #tracer-options-form input {
+            margin-top: 5px;
+        }
+    }
     </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function()
+        {
+            // Don't send empty fields in the URL (because it's ugly)
+            $('#tracer-form').submit(function()
+            {
+                $('input').each(function()
+                {
+                    if ($(this).val() == '')
+                    {
+                        $(this).attr('name', '').attr('disabled', true);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block container_content %}
     <div class="container-content">
-        <div class="submit-form row">
-            <form style="margin-bottom: 0;">
-                <div class="col-md-2"></div>
-                <div class="form-group col-md-8" style="margin-bottom: 0;">
-                    <label class="sr-only" for="url">Entrez l'URL à analyser...</label>
-                    <div class="input-group">
-                        <input type="text" id="url" name="url" class="form-control" placeholder="Entrez l'URL à analyser..."{% if start_url %} value="{{ start_url }}"{% endif %} />
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">Analyser <span class="hidden-xs">les redirections</span></button>
-                        </span>
+        <div class="submit-form">
+            <form style="margin-bottom: 0;" id="tracer-form">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-md-8" style="margin-bottom: 0;">
+                        <label class="sr-only" for="url">Entrez l'URL à analyser...</label>
+                        <div class="input-group">
+                            <input type="text" id="url" name="url" class="form-control" placeholder="Entrez l'URL à analyser..." value="{% if start_url %}{{ start_url }}{% endif %}" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">Analyser <span class="hidden-xs">les redirections</span></button>
+                            </span>
+                        </div>
                     </div>
+                    <div class="col-md-2 other-options"><a href="#" onclick="$('#tracer-options-form').toggle(); return false;">Autres options</a></div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="row" style="display: none; margin-top: 8px;" id="tracer-options-form">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4 form-inline">
+                        <div class="form-group" style="width: 100%" >
+                            <label for="ua" class="sr-only">User-Agent</label>
+                            <input type="text" class="form-control" id="ua" style="width: 100%" name="ua" placeholder="User Agent à présenter (UA de Firefox par défaut)" value="{% if user_agent and user_agent != defaults_values.ua %}{{ user_agent }}{% endif %}">
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-inline">
+                        <div class="form-group" style="width: 100%">
+                            <label for="max_redirects" class="sr-only">Max redirects</label>
+                            <input type="number" class="form-control" id="max_redirects" style="width: 100%" name="max_redirects" min="0" max="{{ max_max_redirects }}" placeholder="Nombre maximal de redirections ({{ defaults_values.max_redirects }} par défaut)" value="{% if max_redirects and max_redirects != defaults_values.max_redirects %}{{ max_redirects }}{% endif %}">
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
             </form>
         </div>
     </div>
