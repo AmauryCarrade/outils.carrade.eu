@@ -9,6 +9,7 @@ use Requests;
 use Requests_Hooks;
 use Requests_Response;
 use Requests_Session;
+use Requests_Exception;
 use Requests_IRI;
 
 
@@ -34,9 +35,9 @@ class RedirectsTracerController
 
 		$data = array(
 			'success' => $url != null,
-			'start-url' => $url,
-			'user-agent' => $ua,
-			'max-redirects' => $redirects,
+			'start_url' => $url,
+			'user_agent' => $ua,
+			'max_redirects' => $redirects,
 			'hops' => $hops
 		);
 
@@ -45,7 +46,7 @@ class RedirectsTracerController
 				return $app->json($data);
 			
 			default:
-				return $app['twig']->render('tools/redirects.html.twig', $data);
+				return $app['twig']->render('tools/web/redirects.html.twig', $data);
 		}
 	}
 
@@ -72,15 +73,37 @@ class RedirectsTracerController
 					'status_text' => null,
 					'duration' => 0,
 					'wait' => 0,
-					'redirect_type' => 'interrupted'
+					'redirect_type' => 'interrupted',
+					'location' => null,
+					'error' => null
 				);
 
 				break;
 			}
 
-			$t = microtime(true);
-			$r = $s->get($url);
-			$time = microtime(true) - $t;
+			$time = 0;
+
+			try
+			{
+				$t = microtime(true);
+				$r = $s->get($url);
+				$time = microtime(true) - $t;
+			}
+			catch (Requests_Exception $e)
+			{
+				$hops[] = array(
+					'called_url' => $url,
+					'headers' => null,
+					'status_code' => null,
+					'status_text' => null,
+					'duration' => 0,
+					'wait' => 0,
+					'redirect_type' => 'error',
+					'error' => $e->getMessage()
+				);
+
+				break;
+			}
 
 			$headers = array();
 			$headers_iter = $r->headers->getIterator();
@@ -206,6 +229,8 @@ class RedirectsTracerController
 					$url = null;
 				}
 			}
+
+			$hop['error'] = null;
 
 			$hops[] = $hop;
 
