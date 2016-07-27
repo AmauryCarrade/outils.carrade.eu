@@ -6,7 +6,7 @@ AddType application/x-opera-extension .oex
 	Options -MultiViews
 
 	RewriteEngine On
-	RewriteBase /Sites/AmauryCarrade
+	RewriteBase /
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
  	RewriteRule ^ index.php [L]
