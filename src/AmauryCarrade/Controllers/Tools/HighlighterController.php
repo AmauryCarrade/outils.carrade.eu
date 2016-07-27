@@ -28,6 +28,11 @@ class HighlighterController
 
 		if (!empty($raw_quote))
 		{
+			// Ensures escapeshellarg does not remove accents from texts
+			$locale = 'fr_FR.utf-8';
+                        setlocale(LC_ALL, $locale);
+                        putenv('LC_ALL='.$locale);
+
 			$command = array('python3 ' . $app['root_folder'] . '/lib/ChatLogHighlighter/highlighter.py');
 
 			if ($remove_dates)
