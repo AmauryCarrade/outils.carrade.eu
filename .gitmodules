@@ -1,3 +1,3 @@
 [submodule "lib/ChatLogHighlighter"]
 	path = lib/ChatLogHighlighter
-	url = git@github.com:AmauryCarrade/ChatLogHighlighter.git
+	url = https://github.com/AmauryCarrade/ChatLogHighlighter.git
