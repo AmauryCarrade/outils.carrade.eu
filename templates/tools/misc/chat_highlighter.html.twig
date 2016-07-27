@@ -40,28 +40,24 @@
             <h3>Discussion colorée</h3>
 
             <p>
-                La discussion colorée selon vos désirs est présentée ci-dessous{% if output_format == 'html' %}, avec un aperçu pour vérifier{% endif %}.<br />
+                La discussion colorée selon vos désirs est présentée ci-dessous, avec un aperçu pour vérifier.<br />
                 Si la génération ne vous plaît pas (par exemple sur les couleurs choisies), vous pouvez <button type="submit" class="btn btn-link">la relancer</button>.
             </p>
 
-            {% if output_format != 'html' %}
-                <pre>{{ formatted_quote }}</pre>
-            {% else %}
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#html_quote" data-toggle="tab">Code</a></li>
-                    <li><a href="#rendered_quote" data-toggle="tab">Aperçu</a></li>
-                </ul>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#html_quote" data-toggle="tab">Code</a></li>
+                <li><a href="#rendered_quote" data-toggle="tab">Aperçu</a></li>
+            </ul>
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="html_quote">
-                        <pre>{{ formatted_quote }}</pre>
-                    </div>
-
-                    <div class="tab-pane" id="rendered_quote">
-                        <div class="pre">{{ formatted_quote|raw }}</div>
-                    </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="html_quote">
+                    <pre>{{ formatted_quote }}</pre>
                 </div>
-            {% endif %}
+
+                <div class="tab-pane" id="rendered_quote">
+                    <div class="pre">{{ html_preview|raw }}</div>
+                </div>
+            </div>
         </div>
     {% endif %}
 

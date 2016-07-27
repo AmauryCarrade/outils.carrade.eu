@@ -16,7 +16,7 @@ class HighlighterController
 
 		$remove_dates         = $r->has('remove_dates');
 		$remove_bots          = $r->get('remove_bots');
-		$colors               = $r->get('colors');
+		$colors               = str_replace(' ', '', $r->get('colors'));
 		$color_date           = $r->get('color_date');
 		$italic_actions       = $r->has('italic_actions');
 		$lines_separator      = $r->get('lines_separator');
@@ -65,20 +65,32 @@ class HighlighterController
 			$formatted_quote = implode("\n", $output);
 		}
 
+		$html_preview = $formatted_quote;
+
+		if ($output_format == 'bbcode')
+		{
+			$parser = new \JBBCode\Parser();
+			$parser->addCodeDefinitionSet(new \JBBCode\DefaultCodeDefinitionSet());
+			$parser->parse(htmlspecialchars($formatted_quote));
+
+			$html_preview = nl2br($parser->getAsHtml());
+		}
+
 		$data = array(
 			'success'              => !empty($formatted_quote),
 
 			'quote'                => $raw_quote,
 			'formatted_quote'      => $formatted_quote,
+			'html_preview'         => $html_preview,
 
-			'remove_dates'         => $remove_dates, //
-			'remove_bots'          => $remove_bots,  //
-			'colors'               => $colors,       //
-			'color_date'           => $color_date,   //
-			'italic_actions'       => $italic_actions,  //
-			'lines_separator'      => $lines_separator, //
-			'nick_prefixes'        => $nick_prefixes, //
-			'nick_prefixes_color'  => $nick_prefixes_color, //
+			'remove_dates'         => $remove_dates,
+			'remove_bots'          => $remove_bots,
+			'colors'               => $colors,
+			'color_date'           => $color_date,
+			'italic_actions'       => $italic_actions,
+			'lines_separator'      => $lines_separator,
+			'nick_prefixes'        => $nick_prefixes,
+			'nick_prefixes_color'  => $nick_prefixes_color,
 			'output_format'        => $output_format
 		);
 
