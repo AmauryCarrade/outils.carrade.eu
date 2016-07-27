@@ -13,7 +13,10 @@ class RedirectionMiddleware
         '/ping'        => '/minecraft/ping',
         '/don'         => '/donner.html',
         '/donation'    => '/donner.html',
-        '/tools/generators/bukkit/permissions.html' => '/bukkit/permissions.html'
+        '/tools/generators/bukkit/permissions.html' => '/bukkit/permissions.html',
+        '/chat_highlight' => '/chat_highlighter',
+        '/highlight'      => '/chat_highlighter',
+        '/chat'           => '/chat_highlighter'
     );
 
 

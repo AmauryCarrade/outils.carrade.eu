@@ -156,8 +156,17 @@ $app->get('/redirects', 'AmauryCarrade\\Controllers\\Tools\\RedirectsTracerContr
     ->bind('tools.redirects');
 
 $app->get('/redirects/{format}', 'AmauryCarrade\\Controllers\\Tools\\RedirectsTracerController::redirects_formats')
+    ->value('format', 'html')
     ->bind('tools.redirects.formats');
 
+
+$app->match('/chat_highlighter', 'AmauryCarrade\\Controllers\\Tools\\HighlighterController::highlight')
+    ->method('GET|POST')
+    ->bind('tools.highlight');
+
+$app->match('/chat_highlighter/{format}', 'AmauryCarrade\\Controllers\\Tools\\HighlighterController::highlight')
+    ->method('POST')
+    ->bind('tools.highlight.formats');
 
 
 $app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')

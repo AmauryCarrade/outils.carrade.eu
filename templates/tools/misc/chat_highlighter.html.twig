@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Coloration de discussions{% endblock %}
+
+{% block content_title %}Coloration <span class="hidden-xs">automatique</span> de discussions{% endblock %}
+{% block content_subtitle %}Comme sur BashFR (quand c'est coloré...){% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .pre {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13px;
+            font-family: monospace;
+            line-height: 1.42857143;
+            word-break: break-all;
+            word-wrap: break-word;
+            color: #333;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .tab-pane pre, .tab-pane .pre {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top: 0;
+        }
+
+        p .btn-link {
+            padding: 0px;
+            vertical-align: inherit;
+        }
+    </style>
+{% endblock %}
+
+{% block container_content %}
+<form class="form-horizontal" style="margin-bottom: 0;" method="post">
+    {% if success %}
+        <div class="container-content submit-form">
+            <h3>Discussion colorée</h3>
+
+            <p>
+                La discussion colorée selon vos désirs est présentée ci-dessous{% if output_format == 'html' %}, avec un aperçu pour vérifier.{% endif %}.<br />
+                Si la génération ne vous plaît pas (par exemple sur les couleurs choisies), vous pouvez <button type="submit" class="btn btn-link">la relancer</button>.
+            </p>
+
+            {% if output_format != 'html' %}
+                <pre>{{ formatted_quote }}</pre>
+            {% else %}
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#html_quote" data-toggle="tab">Code</a></li>
+                    <li><a href="#rendered_quote" data-toggle="tab">Aperçu</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="html_quote">
+                        <pre>{{ formatted_quote }}</pre>
+                    </div>
+
+                    <div class="tab-pane" id="rendered_quote">
+                        <div class="pre">{{ formatted_quote|raw }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="container-content submit-form">
+        <fieldset>
+            <legend>Entrez la discussion brute ci-dessous</legend>
+            <div>
+                <label for="quote" class="sr-only">
+                    Entrez le log de discussions brut ci-dessous
+                </label>
+
+                <textarea name="quote" id="quote" rows="15" class="form-control" style="font-family: monospace">{{ quote }}</textarea>
+            </div>
+        </fieldset>
+
+        <fieldset style="margin-top: 30px;">
+            <legend>Vous pouvez configurer un peu la coloration</legend>
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="remove_dates" class="col-sm-2 control-label">
+                        Options de génération
+                    </label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remove_dates" name="remove_dates"{% if not success or remove_dates %} checked{%endif %}>
+                                Retirer les dates
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="italic_actions"{% if not success or italic_actions %} checked{% endif %}>
+                                Mettre les messages d'action (<code>/me</code>) en italique
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="colors" class="col-sm-2 control-label">
+                        Couleurs à utiliser pour les pseudos
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="colors" id="colors" value="{{ colors }}" />
+
+                        <span class="help-block">
+                            Les pseudonymes de la discussion seront colorés en utilisant une couleur par pseudo trouvé, couleur sélectionnée dans cette liste.<br />
+                            Entrez une liste de couleurs HTML (nommées, hexadécimales...) séparées par des virgules. Si vous ne renseignez rien, un ensemble de couleurs de base sera utilisé.
+                        </span>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="color_date" class="col-sm-2 control-label">
+                        Couleurs à utiliser pour les dates
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="color" class="form-control" name="color_date" id="color_date" value="{{ color_date|default('#808080') }}" />
+
+                        <span class="help-block">
+                            Si vous gardez les dates dans la discussion générée, elles peuvent être colorées d'une autre couleur, pour les mettre en retrait par exemple.<br />
+                            Entrez ici cette couleur (couleur HTML, comme précédemment). Si vous ne renseignez rien, les dates seront en gris (si affichées).
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="remove_bots" class="col-sm-2 control-label">
+                        Bots à retirer
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="remove_bots" id="remove_bots" value="{{ remove_bots }}" />
+
+                        <span class="help-block">
+                            Dans certains cas, une partie de la discussion est relayée par un bot. C'est typiquement le cas de salons IRC connectés à un autre chat externe, d'un jeu par exemple. On se retrouve alors avec des situations où un bot dit ce que des gens disent, pour relayer. Par exemple : 
+                            <code>&lt;Anna&gt; &lt;Jenjeur&gt; Bonjour</code>.<br />
+                            Cette option permet de retirer ces bots, remplaçant l'extrait précédent par <code>&lt;Jenjeur&gt; Bonjour</code>. Les pseudos sont également colorés en prenant cette suppression en compte.<br />
+                            Entrez une liste de pseudos à retirer, séparés par des virgules, ou rien du tout si aucun bot ne rôde dans vos discussions.
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="nick_prefixes" class="col-sm-2 control-label">
+                        Préfixes de pseudo à ignorer
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nick_prefixes" id="nick_prefixes" value="{{ nick_prefixes }}" />
+
+                        <span class="help-block">
+                            Sur IRC notamment, les pseudos peuvent être préfixés, par exemple d'un @ pour les opérateurs, d'un + pour les animateurs...<br />
+                            Cette option permet de préciser quels préfixes doivent être considérés. Ces préfixes sont ignorés lorsque les pseudos sont identifiés (pour être colorés différemment), et sont colorés différemment (pour mettre le pseudo en avant).<br />
+                            Entrez une liste de préfixes séparés par des virgules. Si ce champ est laissé vierge, une liste de préfixes d'IRC est utilisée, à savoir <code>~</code>, <code>&amp;</code>, <code>@</code>, <code>%</code> et <code>+</code>.
+                        </span>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="nick_prefixes_color" class="col-sm-2 control-label">
+                        Couleurs à utiliser pour les préfixes
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="color" class="form-control" name="nick_prefixes_color" id="nick_prefixes_color" value="{{ nick_prefixes_color|default('#808080') }}" />
+
+                        <span class="help-block">
+                            La couleur à utiliser pour les préfixes de pseudos (voir champ précédent).
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="lines_separator" class="col-sm-2 control-label">
+                        Séparateur entre les lignes
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="lines_separator" id="lines_separator" value="{{ lines_separator }}" />
+
+                        <span class="help-block">
+                            Entrez ici le séparateur à utiliser entre deux lignes.<br />
+                            Si ce champ est laissé vide, il sera déduit du format utilisé (<code>&lt;br /&gt;</code> pour l'HTML ; un retour à la ligne simple pour le BBCode).
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="output_format" class="col-sm-2 control-label">
+                        Format de sortie
+                    </label>
+                    <div class="col-sm-10">
+                        <select name="output_format" id="output_format" class="form-control">
+                            <option value="html"{% if output_format == 'html' %} selected{% endif %}>HTML</option>
+                            <option value="bbcode"{% if not output_format or output_format == 'bbcode' %} selected{% endif %}>BBCode</option>
+                        </select>
+
+                        <span class="help-block">
+                            La discussion peut être générée en HTML ou en BBCode, selon ce qui vous arrange.
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </fieldset>
+        <fieldset style="margin-top: 30px;">
+            <input type="submit" value="Colorer la discussion" class="btn btn-primary btn-large col-sm-12" />
+        </fieldset>
+    </div>
+</form>
+{% endblock %}
