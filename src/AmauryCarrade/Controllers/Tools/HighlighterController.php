@@ -15,7 +15,7 @@ class HighlighterController
 		$raw_quote            = $r->get('quote');
 
 		$remove_dates         = $r->has('remove_dates');
-		$remove_bots          = $r->get('remove_bots');
+		$remove_bots          = str_replace(' ', '', $r->get('remove_bots'));
 		$colors               = str_replace(' ', '', $r->get('colors'));
 		$color_date           = $r->get('color_date');
 		$italic_actions       = $r->has('italic_actions');
