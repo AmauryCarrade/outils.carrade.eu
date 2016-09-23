@@ -142,10 +142,13 @@ class MCPingController
             if(isset($query)) $query->Close();
 
             // Default values if the query fails or is disabled.
-            $data["version"]["software"] = "";
-            $data["plugins"] = array();
-            $data["main_map"] = "";
-            $data["game_type"] = "";
+            if (!$players_only)
+            {
+		        $data["version"]["software"] = "";
+		        $data["plugins"] = array();
+		        $data["main_map"] = "";
+		        $data["game_type"] = "";
+            }
 
             if(!$request->query->has("noquery"))
             {
