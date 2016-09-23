@@ -66,19 +66,12 @@ class MCPingController
 
                 $query = new MinecraftPing($ip, $port, $timeout);
 
-                $data["ping"] = (microtime(true) - $time) * 1000;
+                if (!$players_only) $data["ping"] = (microtime(true) - $time) * 1000;
 
                 $infos = $query->Query();
 
                 if($infos !== false && !empty($infos))
                 {
-                	if (!$players_only)
-                	{
-		                // Some servers, like mc.uhc.zone, returns the MOTD in the 'text' key of a sub-array. Don't ask me why.
-		                $data["motd"] = is_array($infos["description"]) ? $infos['description']['text'] : $infos['description'];
-		                $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(str_replace(" ", "&nbsp;", htmlspecialchars($data["motd"]))));
-                    }
-
                     $data["max_players"] = $infos["players"]["max"];
                     $data["online_players"] = $infos["players"]["online"];
 
@@ -93,6 +86,10 @@ class MCPingController
 
 					if (!$players_only)
 					{
+						// Some servers, like mc.uhc.zone, returns the MOTD in the 'text' key of a sub-array. Don't ask me why.
+		                $data["motd"] = is_array($infos["description"]) ? $infos['description']['text'] : $infos['description'];
+		                $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(str_replace(" ", "&nbsp;", htmlspecialchars($data["motd"]))));
+
 		                $data["version"] = $infos["version"]; // version.name, version.protocol
 
 		                if(isset($infos["favicon"]))
