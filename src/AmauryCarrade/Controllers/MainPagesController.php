@@ -62,4 +62,11 @@ class MainPagesController
             return null;
         }
     }
+    
+    
+    public function list_services(Application $app)
+    {
+        return $app['twig']->render('services.html.twig');
+    }
 }
+

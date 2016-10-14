@@ -1,0 +1,85 @@
+h2 {
+	margin-top: 32px;
+}
+
+
+.service-box {
+	padding: 10px;
+}
+
+.service-box > a {
+	color: initial;
+
+	display: block;
+	height: 300px;
+
+	border: solid #CCC 1px;
+	border-radius: 5px;
+
+	text-align: center;
+	padding: 8px;
+
+	position: relative;
+	z-index: 90;
+}
+
+.service-box > a:hover {
+	color: initial;
+	text-decoration: none;
+	background-color: #E3E3E3;
+}
+
+.service-box:hover {
+	/*background-color: #E3E3E3;*/
+}
+
+.service-box .service-box-icon {
+	margin: 0;
+	padding: 15px;
+
+	font-size: 4em;
+}
+
+.service-box h3 {
+	border: none;
+	margin: 0;
+	padding: 8px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+
+.service-box.service-box-soon, .service-box.service-box-soon a {
+	cursor: not-allowed;
+}
+
+
+.service-box > a .banner {
+	width: 85px;
+	height: 88px;
+	overflow: hidden;
+	position: absolute;
+	top: -1px;
+	right: -1px;
+}
+
+.service-box > a .banner .banner-content {
+	font-size: 15px;
+	font-family: "PT Serif", Georgia, sans-serif;
+
+	text-align: center;
+
+	-webkit-transform: rotate(45deg);
+	-moz-transform:    rotate(45deg);
+	-ms-transform:     rotate(45deg);
+	-o-transform:      rotate(45deg);
+
+	position: relative;
+	padding: 7px 0;
+	left: -5px;
+	top: 13px;
+	width: 120px;
+
+	background-color: #C5C5C5;
+	color: #333;
+}

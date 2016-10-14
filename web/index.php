@@ -82,6 +82,12 @@ $app->get('/projects/{category}/{name}', 'AmauryCarrade\\Controllers\\MainPagesC
     ->bind('show_project');
 
 
+
+$app->get('/services', 'AmauryCarrade\\Controllers\\MainPagesController::list_services')
+    ->bind('services');
+
+
+
 $app->get('/upload', 'AmauryCarrade\\Controllers\\UploadController::upload_form')
     ->bind('upload');
 
