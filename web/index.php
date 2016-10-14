@@ -64,32 +64,32 @@ if (!$app['debug'])
 $app->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
     ->bind('homepage');
 
-$app->get('/contact.html', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
+$app->get('/contact', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
     ->bind('contact');
 
-$app->get('/pgp.html', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
+$app->get('/pgp', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
     ->bind('pgp');
 
-$app->get('/donner.html', 'AmauryCarrade\\Controllers\\MainPagesController::don')
+$app->get('/donner', 'AmauryCarrade\\Controllers\\MainPagesController::don')
     ->bind('don');
 
 
 
-$app->get('/projects.html', 'AmauryCarrade\\Controllers\\MainPagesController::list_projects')
+$app->get('/projects', 'AmauryCarrade\\Controllers\\MainPagesController::list_projects')
     ->bind('projects');
 
-$app->get('/projects/{category}/{name}.html', 'AmauryCarrade\\Controllers\\MainPagesController::show_project')
+$app->get('/projects/{category}/{name}', 'AmauryCarrade\\Controllers\\MainPagesController::show_project')
     ->bind('show_project');
 
 
-$app->get('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::upload_form')
+$app->get('/upload', 'AmauryCarrade\\Controllers\\UploadController::upload_form')
     ->bind('upload');
 
-$app->post('/upload.html', 'AmauryCarrade\\Controllers\\UploadController::process_upload')
+$app->post('/upload', 'AmauryCarrade\\Controllers\\UploadController::process_upload')
     ->bind('upload_process');
 
 
-$app->get('/coffee.html', 'AmauryCarrade\\Controllers\\MainPagesController::coffee')
+$app->get('/coffee', 'AmauryCarrade\\Controllers\\MainPagesController::coffee')
     ->bind('coffee');
 
 
@@ -133,7 +133,7 @@ $app->get('/minecraft/stats/zcraft.fr/uniques/{begin}..{end}', 'AmauryCarrade\\C
 $app->get('/tools/{server_type}/stats/{ips}', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats_legacy');
 
 
-$app->match('/bukkit/permissions.html', 'AmauryCarrade\\Controllers\\Tools\\BKPermissionsController::generate_permissions')
+$app->match('/bukkit/permissions', 'AmauryCarrade\\Controllers\\Tools\\BKPermissionsController::generate_permissions')
     ->method('GET|POST')
     ->bind('tools.bukkit.permissions');
 
@@ -169,7 +169,7 @@ $app->match('/chat_highlighter/{format}', 'AmauryCarrade\\Controllers\\Tools\\Hi
     ->bind('tools.highlight.formats');
 
 
-$app->get('/{type}/{name}.html', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
+$app->get('/{type}/{name}', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
     ->bind('show_content');
 
 
