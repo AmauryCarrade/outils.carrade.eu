@@ -73,6 +73,9 @@ $app->get('/pgp', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
 $app->get('/donner', 'AmauryCarrade\\Controllers\\MainPagesController::don')
     ->bind('don');
 
+$app->get('/about', 'AmauryCarrade\\Controllers\\MainPagesController::about')
+    ->bind('about');
+
 
 
 $app->get('/projects', 'AmauryCarrade\\Controllers\\MainPagesController::list_projects')

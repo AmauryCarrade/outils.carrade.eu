@@ -187,8 +187,6 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
 -------------------------------------------------- */
 
 .article-header {
-    margin-bottom: 44px;
-
     color: #1d1d1d;
 
     text-shadow: 0  1px 12px rgba(255, 255, 255, 0.9),
@@ -203,8 +201,6 @@ ul.navbar-nav > li:hover > ul > li > a:hover {
     border-radius: 5px;
 
     padding: 15px;
-
-    margin-top: 30px;
 }
 .container-content:first-child {
     margin-top: 0;

@@ -31,6 +31,11 @@ class MainPagesController
     {
         $app->abort(418);
     }
+    
+    public function about(Application $app)
+    {
+        return $app['twig']->render('about.html.twig');
+    }
 
 
     public function list_projects(Application $app)
