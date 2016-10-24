@@ -31,9 +31,9 @@
                         <div class="row">
                             <div class="col-xs-1 col-md-1 text-center">
                                 {% if server.last_ping == server.last_successful_ping %}
-                                    <i class="fa fa-check tooltip-top" style="color:#00AA00" title="Fonctionnel"></i>
+                                    <i class="fa {% if server.hidden %}fa-lock{% else %}fa-check{% endif %} tooltip-top" style="color:#00AA00" title="Fonctionnel"></i>
                                 {% else %}
-                                    <i class="fa fa-exclamation-triangle tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
+                                    <i class="fa {% if server.hidden %}fa-lock{% else %}fa-exclamation-triangle{% endif %} tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
                                 {% endif %}
                             </div>
                             <div class="col-xs-9 col-md-10">{{ server.name }}</div>
@@ -55,9 +55,9 @@
                         <div class="row">
                             <div class="col-xs-1 col-md-1 text-center">
                                 {% if server.last_ping == server.last_successful_ping %}
-                                    <i class="fa fa-check tooltip-top" style="color:#00AA00" title="Fonctionnel"></i>
+                                    <i class="fa {% if server.hidden %}fa-lock{% else %}fa-check{% endif %} tooltip-top" style="color:#00AA00" title="Fonctionnel"></i>
                                 {% else %}
-                                    <i class="fa fa-exclamation-triangle tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
+                                    <i class="fa {% if server.hidden %}fa-lock{% else %}fa-exclamation-triangle{% endif %} tooltip-top" style="color:#FF0000" title="Inaccessible depuis le {{ server.last_successful_ping|date('d/m/Y à H:i') }}"></i>
                                 {% endif %}
                             </div>
                             <div class="col-xs-9 col-md-10">{{ server.name }}</div>
@@ -68,4 +68,12 @@
             </div>
         </div>
     </div>
+
+    {% if with_private %}
+        <hr class="visible-xs-block visible-sm-block" />
+
+        <div class="alert alert-danger" style="margin-bottom: 0">
+            <strong>Attention, </strong> vous avez ici une vue de tous les serveurs suivis, y compris masqués. Toute personne disposant de l'URL de cette page aura accès à ces informations.
+        </div>
+    {% endif %}
 {% endblock %}

@@ -25,6 +25,26 @@ class MSCServerStats
             $app->abort(500, "Unable to connect the database.");
         }
 
+
+        $with_private = false;
+
+        if ($request->query->has('key'))
+        {
+            $key = trim($request->query->get('key'));
+            if (!empty($key))
+            {
+                foreach ($app['credentials']['stats'] as $sha256_key)
+                {
+                    if (hash('sha256', $key) == $sha256_key)
+                    {
+                        $with_private = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+
         $servers_minecraft = array();
         $servers_mumble = array();
 
@@ -33,11 +53,13 @@ class MSCServerStats
                                        server_color AS color,
                                        LOWER(server_type) AS server_type,
                                        UNIX_TIMESTAMP(last_ping) AS last_ping,
-                                       UNIX_TIMESTAMP(last_successful_ping) AS last_successful_ping
+                                       UNIX_TIMESTAMP(last_successful_ping) AS last_successful_ping,
+                                       hidden
                                 FROM servers
-                                WHERE hidden = 0
+                                WHERE hidden = 0 OR hidden = :hidden
                                 ORDER BY server_name');
-        $query->execute();
+
+        $query->execute(array(':hidden' => $with_private ? 1 : 0));
 
         while($server = $query->fetch(PDO::FETCH_ASSOC))
         {
@@ -57,7 +79,8 @@ class MSCServerStats
 
         return new Response($app['twig']->render('tools/stats/stats_home.html.twig', array(
             'servers_minecraft' => $servers_minecraft,
-            'servers_mumble' => $servers_mumble
+            'servers_mumble' => $servers_mumble,
+            'with_private' => $with_private
         )));
     }
 
