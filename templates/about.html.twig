@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}À propos{% endblock %}
+{% block content_title %}À propos de ce site{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8"
+        <p>
+            Ce site est édité par Amaury Carrade.<br />
+            Le contenu, sauf mention contraire, est publié sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">Creative Commons BY-SA 4.0</a>. Le <a href="https://github.com/AmauryCarrade/Website">code source</a> du site est publié sous licence <a href="https://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt">CeCILL-B</a>.
+        </p>
+
+        <p>
+            Le site est hébergé par la société <a href="https://ovh.com">OVH</a>, dont le siège social est situé 2 rue Kellermann, 59100 Roubaix, France.
+        </p>
+
+        <p>
+            Vous pouvez contacter l'auteur de ce site sur <a href="{{ path('contact') }}">la page dédiée</a>.
+        </p>
+    </div>
+</div>
+{% endblock %}

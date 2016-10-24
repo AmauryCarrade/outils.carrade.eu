@@ -51,6 +51,8 @@ class MCPingController
         {
             $input = $ip;
 
+            $players_only = $request->query->has("players_only") && $format == 'json';
+
             if(strpos($ip, ":") !== false)
             {
                 $exploded_ip = explode(":", $ip);
@@ -64,16 +66,12 @@ class MCPingController
 
                 $query = new MinecraftPing($ip, $port, $timeout);
 
-                $data["ping"] = (microtime(true) - $time) * 1000;
+                if (!$players_only) $data["ping"] = (microtime(true) - $time) * 1000;
 
                 $infos = $query->Query();
 
                 if($infos !== false && !empty($infos))
                 {
-                    // Some servers, like mc.uhc.zone, returns the MOTD in the 'text' key of a sub-array. Don't ask me why.
-                    $data["motd"] = is_array($infos["description"]) ? $infos['description']['text'] : $infos['description'];
-                    $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(str_replace(" ", "&nbsp;", htmlspecialchars($data["motd"]))));
-
                     $data["max_players"] = $infos["players"]["max"];
                     $data["online_players"] = $infos["players"]["online"];
 
@@ -86,15 +84,22 @@ class MCPingController
                         }
                     }
 
-                    $data["version"] = $infos["version"]; // version.name, version.protocol
+					if (!$players_only)
+					{
+						// Some servers, like mc.uhc.zone, returns the MOTD in the 'text' key of a sub-array. Don't ask me why.
+		                $data["motd"] = is_array($infos["description"]) ? $infos['description']['text'] : $infos['description'];
+		                $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(str_replace(" ", "&nbsp;", htmlspecialchars($data["motd"]))));
 
-                    if(isset($infos["favicon"]))
-                    {
-                        $data["favicon"] = str_replace("\n", "", $infos["favicon"]);
-                    }
-                    else
-                    {
-                        $data["favicon"] = "";
+		                $data["version"] = $infos["version"]; // version.name, version.protocol
+
+		                if(isset($infos["favicon"]))
+		                {
+		                    $data["favicon"] = str_replace("\n", "", $infos["favicon"]);
+		                }
+		                else
+		                {
+		                    $data["favicon"] = "";
+		                }
                     }
                 }
                 else
@@ -107,15 +112,18 @@ class MCPingController
 
                     if($infos !== false && !empty($infos))
                     {
-                        $data["motd"] = $infos["HostName"];
-                        $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(htmlspecialchars($infos["HostName"])));
-
                         $data["max_players"] = $infos["MaxPlayers"];
                         $data["online_players"] = $infos["Players"];
 
-                        $data["version"] = array();
-                        $data["version"]["name"] = $infos["Version"];
-                        $data["version"]["protocol"] = $infos["Protocol"];
+						if (!$players_only)
+						{
+		                    $data["motd"] = $infos["HostName"];
+		                    $data["motd_html"] = nl2br(MinecraftFormat::parse_minecraft_colors(htmlspecialchars($infos["HostName"])));
+                        
+		                    $data["version"] = array();
+		                    $data["version"]["name"] = $infos["Version"];
+		                    $data["version"]["protocol"] = $infos["Protocol"];
+                        }
                     }
                     else
                     {
@@ -131,10 +139,13 @@ class MCPingController
             if(isset($query)) $query->Close();
 
             // Default values if the query fails or is disabled.
-            $data["version"]["software"] = "";
-            $data["plugins"] = array();
-            $data["main_map"] = "";
-            $data["game_type"] = "";
+            if (!$players_only)
+            {
+		        $data["version"]["software"] = "";
+		        $data["plugins"] = array();
+		        $data["main_map"] = "";
+		        $data["game_type"] = "";
+            }
 
             if(!$request->query->has("noquery"))
             {
@@ -146,7 +157,7 @@ class MCPingController
                     $infos = $query->GetInfo();
                     $players = $query->GetPlayers();
 
-                    if($infos !== false && !empty($infos))
+                    if($infos !== false && !empty($infos) && !$players_only)
                     {
                         $data["version"]["software"] = $infos["Software"];
                         $data["plugins"] = $infos["Plugins"];

@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Services{% endblock %}
+{% block content_title %}<i class="fa fa-rocket"></i> Services proposés{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ global.request.basepath }}/assets/css/services.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <p class="lead" style="margin-bottom: 0;">Je regroupe ici les services que je propose en accès libre sur mon site.</p>
+    <p style="margin-bottom: 40px;">Ces outils sont mis à disposition gratuitement, sur mon temps libre. Si vous remarquez des imperfections, n'hésitez pas à <a href="{{ path('contact') }}">me contacter</a> pour me prévenir. Des chatons vont mourir si vous abusez de ces services.</p>
+
+    <h2>Partage de données</h2>
+
+    <div class="row">
+        <article class="service-box col-md-3">
+            <a href="https://paste.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-paste"></i></div>
+                <h3>ZeroBin</h3>
+                <p>Un <em>pastebin</em> entièrement chiffré côté client, garantissant la confidentialité des contenus échangés.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="https://chat.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-comments"></i></div>
+                <h3>Discussion</h3>
+                <p>Discussion instantanée chiffrée côté client de bout en bout, complètement confidentielle. Les messages sont supprimés au bout de quelques heures.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="https://l.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-link"></i></div>
+                <h3>Racourcisseur d'URL</h3>
+                <p>Un raccourcisseur d'URL simple, rapide, avec de légères statistiques (nombre de clics).</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="https://bridge.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-rss"></i></div>
+                <h3>RSS Bridge</h3>
+                <p>Une passerelle qui redonne un flux RSS aux sites qui les ont supprimés ou bridés, afin de pouvoir recevoir leurs nouveautés dans un aggrégateur.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3 service-box-soon">
+            <a href="#">
+                <div class="banner"><div class="banner-content">Bientôt</div></div>
+                <div class="service-box-icon"><i class="fa fa-pie-chart"></i></div>
+                <h3>Sondages</h3>
+                <p>Sondages de dates ou génériques, pour convenir de rendez-vous ou de n'importe quoi d'autre.</p>
+            </a>
+        </article>
+    </div>
+
+    <h2>Lutte contre la censure</h2>
+
+    <div class="row">
+        <article class="service-box col-md-3">
+            <a href="https://free.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-compass"></i></div>
+                <h3>OranjeProxy</h3>
+                <p>Un proxy web permettant d'outrepasser la censure. Attention : ne fonctionne pas trop pour les pages très riches, ou les vidéos.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="https://chat.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-paperclip"></i></div>
+                <h3>Autoblogs</h3>
+                <p>Lutte préventive contre la censure, en sauvegardant en continu les articles de blogs, tweets, ..., au cas où. Une sorte d'effet Streisand automatisé.</p>
+            </a>
+        </article>
+    </div>
+
+    <h2>Outils divers</h2>
+
+    <div class="row">
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.tea') }}">
+                <div class="service-box-icon"><i class="fa fa-coffee"></i></div>
+                <h3>Thé</h3>
+                <p>Recherche de thés Mariage Frère, car leur site est atroce sur téléphone.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.redirects') }}">
+                <div class="service-box-icon"><i class="fa fa-share-square"></i></div>
+                <h3>Redirections</h3>
+                <p>Traceur de redirections (HTTP &amp; méta-données), avec quelques options.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.highlight') }}">
+                <div class="banner"><div class="banner-content">Bêta</div></div>
+                <div class="service-box-icon"><i class="fa fa-comments"></i></div>
+                <h3>Coloration de discussions</h3>
+                <p>Outil pour colorer une discussion (pseudos, dates...), un peu comme Bash.org ou DansTonChat.</p>
+            </a>
+        </article>
+    </div>
+
+    <h2>Outils orientés Minecraft</h2>
+
+    <div class="row">
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.minecraft.history') }}">
+                <div class="service-box-icon"><i class="fa fa-history"></i></div>
+                <h3>Historique de compte</h3>
+                <p>Affiche des infos sur un compte Mojang et les pseudos utilisés par le passé.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.minecraft.ping') }}">
+                <div class="service-box-icon"><i class="fa fa-server"></i></div>
+                <h3>Analyse de serveur</h3>
+                <p>Affiche toutes les infos qu'il est possible de récupérer sur un serveur donné.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.server_stats.home') }}">
+                <div class="service-box-icon"><i class="fa fa-line-chart"></i></div>
+                <h3>Historique de serveur</h3>
+                <p>Affiche l'historique d'un serveur Minecraft. Suivi (public ou privé) sur simple demande. Mumble également supporté.</p>
+            </a>
+        </article>
+    </div>
+
+    <h2>Outils pour développeurs</h2>
+
+    <div class="row">
+        <article class="service-box col-md-3">
+            <a href="https://jenkins.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-wrench"></i></div>
+                <h3>Intégration continue</h3>
+                <p>Un serveur Jenkins privé d'intégration continu. Je n'exclue pas d'accepter d'autres projets, donc vous pouvez me demander.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="https://maven.carrade.eu">
+                <div class="service-box-icon"><i class="fa fa-download"></i></div>
+                <h3>Dépôt Maven</h3>
+                <p>Le dépôt Maven de mes projets. Je n'exclue pas d'accepter d'autres projets, donc vous pouvez me demander.</p>
+            </a>
+        </article>
+
+        <article class="service-box col-md-3">
+            <a href="{{ path('tools.bukkit.permissions') }}">
+                <div class="service-box-icon"><i class="fa fa-gears"></i></div>
+                <h3>Permissions Bukkit</h3>
+                <p>Un générateur du fichier de permissions d'un plugin Bukkit, particulièrement verbeux dés qu'il y a plus de quelques droits à donner.</p>
+            </a>
+        </article>
+    </div>
+
+{% endblock %}
