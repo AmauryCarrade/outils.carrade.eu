@@ -74,7 +74,7 @@
             
             {% if data.main_map %}
             <h4 class="muted small-title">Carte principale</h4>
-            <p class="lead">{{ data.main_map }}</p>
+            <p class="lead">{{ data.main_map|minecraft_format }}</p>
             {% endif %}
 		</div>
 		
@@ -86,15 +86,16 @@
 			<table class="table table-striped table-bordered">
                 <tbody>
                     {% for player_name in data.players %}
-                    
+                        {% set pure_player_name = player_name|remove_minecraft_format|extract_alphanum %}
+                        
                         <tr>
                             <td>
                                 <div class="pull-right">
-                                    <a href="{{ path('tools.minecraft.history.results', {'identifier': player_name}) }}" class="tooltip-top" title="Afficher plus d'infos sur {{ player_name }}">
+                                    <a href="{{ path('tools.minecraft.history.results', {'identifier': pure_player_name}) }}" class="tooltip-top" title="Afficher plus d'infos sur {{ pure_player_name }}">
                                         <span class="fa fa-tag"></span>
                                     </a>
                                 </div>
-                                <img src="https://minotar.net/helm/{{ player_name }}/16.png" alt="Skin" />&nbsp;{{ player_name }}
+                                <img src="https://minotar.net/helm/{{ pure_player_name }}/16.png" alt="Skin" />&nbsp;{{ player_name|minecraft_format }}
                             </td>
                         </tr>
                     
@@ -137,14 +138,14 @@
 		                        
 		        {% if data.version.software %}
 		        <h4 class="muted small-title">Serveur</h4>
-		        <p class="lead">{{ data.version.software }}</p>
+		        <p class="lead">{{ data.version.software|minecraft_format }}</p>
 		        {% endif %}
 		        
 		        <h4 class="muted small-title">Version du serveur</h4>
-		        <p class="lead">{{ data.version.name }}</p>
+		        <p class="lead">{{ data.version.name|minecraft_format }}</p>
 		        
 		        <h4 class="muted small-title">Protocole</h4>
-		        <p class="lead">Version {{ data.version.protocol }}</p>
+		        <p class="lead">Version {{ data.version.protocol|minecraft_format }}</p>
 			
 				{% if data.plugins %}
 				<h4 class="muted small-title">Plugins installés</h4>
@@ -164,7 +165,7 @@
 		                {% for plugin_name in data.plugins %}
 		                
 		                <tr>
-		                    <td>{{ plugin_name }}</td>
+		                    <td>{{ plugin_name|minecraft_format }}</td>
 		                </tr>
 		                
 		                {% endfor %}

@@ -2,6 +2,8 @@
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
+use xPaw\MinecraftFormat;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
@@ -35,11 +37,28 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path'       => __DIR__ . '/../templates'
 ));
 
+
 $loader = new \Twig_Loader_Filesystem();
 $loader->addPath(__DIR__ . '/../contents', 'content');
 
 $app['twig']->getLoader()->addLoader($loader);
 $app['twig']->getExtension('core')->setTimezone('Europe/Paris');
+
+$app['twig']->addFilter(new Twig_SimpleFilter('minecraft_format', function ($string)
+{
+    return nl2br(MinecraftFormat::parse_minecraft_colors(str_replace(' ', '&nbsp;', htmlspecialchars(trim($string)))));
+}, array('is_safe' => array('html'))));
+
+$app['twig']->addFilter(new Twig_SimpleFilter('extract_alphanum', function ($string)
+{
+    return preg_replace('/[^a-zA-Z0-9_]+/', '', $string);
+}));
+
+$app['twig']->addFilter(new Twig_SimpleFilter('remove_minecraft_format', function ($string)
+{
+    return preg_replace('/§[0-9a-fA-FjJkKlLmMoOrR]/', '', $string);
+}));
+
 
 $app['root_folder'] = __DIR__ . '/..';
 $app['web_folder'] = __DIR__;
