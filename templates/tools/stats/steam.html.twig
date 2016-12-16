@@ -34,6 +34,20 @@
         .entry h3 {
             font-size: 140%;
         }
+
+        @media (max-width: 503px) {
+            .activity {
+                margin: 5px;
+            }
+            .entry, .entry-icon {
+                text-align: center !important;
+                width: 100% !important;
+            }
+            
+            .entry p .text-muted {
+                display: block;
+            }
+        }
     </style>
 {% endblock %}
 
@@ -41,26 +55,26 @@
     <div class="activity">
         {% for entry in activity %}
         <div class="entry row">
-            <div class="col-md-1 entry-icon">
+            <div class="col-md-1 col-xs-1 entry-icon">
                 {% if entry['state'] == 'OFFLINE' %}
                 <span class="fa fa-user" style="color: gray"></span>
                 {% elseif entry['state'] == 'IDLE' %}
-                <span class="fa fa-user" style="color: blue"></span>
+                <span class="fa fa-user" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'AWAY' %}
-                <span class="fa fa-coffee" style="color: darkred"></span>
+                <span class="fa fa-coffee" style="color: #8b0d0f"></span>
                 {% elseif entry['state'] == 'BUSY' %}
-                <span class="fa fa-bell-shash" style="color: darkred"></span>
+                <span class="fa fa-bell-shash" style="color: #8b0d0f"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
-                <span class="fa fa-binoculars" style="color: blue"></span>
+                <span class="fa fa-binoculars" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
-                <span class="fa fa-money" style="color: blue"></span>
+                <span class="fa fa-money" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'IN_GAME' %}
                 <span class="fa fa-gamepad" style="color: darkgreen"></span>
                 {% elseif entry['state'] == 'UNAVAILABLE' %}
-                <span class="fa fa-user" style="color: darkred"></span>
+                <span class="fa fa-user" style="color: #8b0d0f"></span>
                 {% endif %}
             </div>
-            <div class="col-md-11">
+            <div class="col-md-11 col-xs-12">
                 <h3>
                     {% if entry['state'] == 'OFFLINE' %}
                         Hors-ligne
