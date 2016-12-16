@@ -40,6 +40,7 @@ class TeaController
     const MF_RESULTS = array(
         'http://www.mariagefreres.com/FR/2-{0}-TC{1}.html',
         'http://www.mariagefreres.com/FR/2-{0}-TB{1}.html',
+        'http://www.mariagefreres.com/FR/2-{0}-TE{1}.html',
         'http://www.mariagefreres.com/FR/2-{0}-T{1}.html'
     );
 

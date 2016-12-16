@@ -869,7 +869,7 @@
             },
             {
                 "project": "Anti Skeleton Traps",
-                "subtitle": "",
+                "subtitle": "Approuvé par la même moustache",
                 "slug": "anti-skeleton-traps",
 
                 "description": [
@@ -965,7 +965,7 @@
                 "slug": "sync-time",
 
                 "description": [
-                    "Synchronise l'heure du jour en jeur avec l'heure réelle. Et les phases de la Lune, aussi.<br />",
+                    "Synchronise l'heure du jour en jeu avec l'heure réelle. Et les phases de la Lune, aussi.<br />",
                     "(Pourquoi pas ?)"
                 ],
 
