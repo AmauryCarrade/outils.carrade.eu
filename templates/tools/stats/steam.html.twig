@@ -2,7 +2,34 @@
 
 {% block page_title %}Activité Steam{% endblock %}
 {% block content_title %}Activité Steam{% endblock %}
-{% block content_subtitle %}{{ activity[0]['steam_name'] }} ({{ activity[0]['steam_realname'] }}){% endblock %}
+{% block content_subtitle %}{{ activity[0]['steam_name'] }} {% if activity[0]['steam_realname'] is not empty %}({{ activity[0]['steam_realname'] }}){% endif %}{% endblock %}
+
+{% block content_header %}
+<div class="pull-right">
+    <div class="dropdown">
+        <button class="btn" id="button-available-users" data-toggle="dropdown" role="button" data-target="button-available-users-list" aria-haspopup="true" aria-expanded="false">
+            <span class="visible-xs-inline visible-sm-inline"><span class="fa fa-steam"></span></span>
+            <span class="visible-md-inline visible-lg-inline">Sélection d'une personne</span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right" aria-labelledby="button-available-users" id="button-available-users-list">
+            {% for user in tracked %}
+                <li>
+                    <a href="{{ path('tools.steam', {'key': key, 'steamid': user['steam_id']}) }}">
+                        {{ user['steam_name'] }}{% if user['steam_realname'] is not empty %} ({{ user['steam_realname'] }}){% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<header class="article-header">
+    <h1>Activité Steam</h1>
+    <p class="lead">
+        {{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}
+    </p>
+</header>
+{% endblock %}
 
 {% block stylesheets %}
     <style type="text/css">
@@ -75,35 +102,45 @@
                 {% endif %}
             </div>
             <div class="col-md-11 col-xs-12">
+                {% spaceless %}
                 <h3>
                     {% if entry['state'] == 'OFFLINE' %}
-                        Hors-ligne
+                        <span>Hors-ligne</span>
                     {% elseif entry['state'] == 'IDLE' %}
-                        En ligne
+                        <span>En ligne</span>
                     {% elseif entry['state'] == 'AWAY' %}
-                        Absent
+                        <span>Absent</span>
                     {% elseif entry['state'] == 'BUSY' %}
-                        Occupé
+                        <span>Occupé</span>
                     {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
-                        Désir jouer
+                        <span>Désir jouer</span>
                     {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
-                        Désir échanger
+                        <span>Désir échanger</span>
                     {% elseif entry['state'] == 'IN_GAME' %}
                         <span title="ID : {{ entry['game_id'] }}">{{ entry['game_name'] }}</span>
                     {% elseif entry['state'] == 'UNAVAILABLE' %}
-                        Indisponible
+                        <span>Indisponible</span>
                     {% endif %}
                 </h3>
+                {% endspaceless %}
                 <p>
                     Pendant
                     {% if entry['duration'] < 3600 %}
                         {{ entry['duration'] // 60 }} minute{% if (entry['duration'] // 60) > 1 %}s{% endif %}
-                    {% else %}
+                    {% elseif entry['duration'] < 86400 %}
                         {{ entry['duration'] // 3600 }} heure{% if (entry['duration'] // 3600) > 1 %}s{% endif %} et
+                        {{ (entry['duration'] % 3600) // 60 }} minute{% if ((entry['duration'] % 3600) // 60) > 1 %}s{% endif %}
+                    {% else %}
+                        {{ entry['duration'] // 86400 }} jour{% if (entry['duration'] // 86400) > 1 %}s{% endif %},
+                        {{ (entry['duration'] % 86400) // 3600 }} heure{% if ((entry['duration'] % 86400) // 3600) > 1 %}s{% endif %} et
                         {{ (entry['duration'] % 3600) // 60 }} minute{% if ((entry['duration'] % 3600) // 60) > 1 %}s{% endif %}
                     {% endif %}
 
-                    <span class="text-muted">(du {{ entry['date_begin']|date('d/m/Y H:i') }} au {{ entry['date_end']|date('d/m/Y H:i') }})</span>
+                    {% if entry['date_begin']|date('d/m/Y') == entry['date_end']|date('d/m/Y')  %}
+                        <span class="text-muted">(le {{ entry['date_begin']|date('d/m/Y, \\d\\e H:i') }} à {{ entry['date_end']|date('H:i') }})</span>
+                    {% else %}
+                        <span class="text-muted">(du {{ entry['date_begin']|date('d/m/Y H:i') }} au {{ entry['date_end']|date('d/m/Y H:i') }})</span>
+                    {% endif %}
                 </p>
             </div>
         </div>

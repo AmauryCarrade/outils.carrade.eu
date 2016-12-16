@@ -31,8 +31,13 @@ class SteamController
         if ($activity->rowCount() == 0)
             $app->abort(404);
 
+        $tracked = $pdo->prepare('SELECT steam_id, steam_name, steam_realname FROM steam_track GROUP BY steam_id ORDER BY steam_name');
+        $tracked->execute();
+
         return $app['twig']->render('tools/stats/steam.html.twig', array(
-            'activity' => $activity->fetchAll(PDO::FETCH_ASSOC)
+            'activity' => $activity->fetchAll(PDO::FETCH_ASSOC),
+            'tracked' => $tracked->fetchAll(PDO::FETCH_ASSOC),
+            'key' => $key
         ));
     }
 }
