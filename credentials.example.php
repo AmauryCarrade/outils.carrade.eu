@@ -11,6 +11,7 @@ return array(
     ),
 
     // Connection (PDO object) retrieved using get_db_connector($app, 'connection_name')
+    // Required: 'mcstats'; optional: 'steam'
     'sgbd' => array(
         'connection_name' => array(
             'host' => '',
@@ -18,5 +19,13 @@ return array(
             'pass' => '',
             'base' => ''
         )
-    )
+    ),
+
+    'zcraft_profile_salt' => '',
+    'zcraft_profile_key'  => '',
+    'zcraft_profile_permanent_keys' => array(),
+
+    'manager_raw_files_keys' => array(),
+
+    'steam_access_key' => ''
 );

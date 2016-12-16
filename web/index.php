@@ -197,6 +197,9 @@ $app->match('/chat_highlighter/{format}', 'AmauryCarrade\\Controllers\\Tools\\Hi
     ->bind('tools.highlight.formats');
 
 
+$app->get('/steam/{key}/{steamid}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity');
+
+
 $app->get('/{type}/{name}', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
     ->bind('show_content');
 

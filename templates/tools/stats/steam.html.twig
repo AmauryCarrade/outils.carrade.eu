@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Activité Steam{% endblock %}
+{% block content_title %}Activité Steam{% endblock %}
+{% block content_subtitle %}{{ activity[0]['steam_name'] }} ({{ activity[0]['steam_realname'] }}){% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .activity {
+            margin: 30px;
+            border: solid #ddd 1px;
+            border-radius: 5px;
+            padding: 0;
+        }
+
+        .entry {
+            margin: 0;
+            padding: 10px;
+            border-bottom: solid #ddd 1px;
+        }
+        .entry:last-child {
+            border-bottom: 0;
+        }
+
+        .entry .entry-icon {
+            font-size: 150%;
+            text-align: center;
+        }
+
+        .entry h3 {
+            font-size: 140%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="activity">
+        {% for entry in activity %}
+        <div class="entry row">
+            <div class="col-md-1 entry-icon">
+                {% if entry['state'] == 'OFFLINE' %}
+                <span class="fa fa-user" style="color: gray"></span>
+                {% elseif entry['state'] == 'IDLE' %}
+                <span class="fa fa-user" style="color: blue"></span>
+                {% elseif entry['state'] == 'AWAY' %}
+                <span class="fa fa-coffee" style="color: darkred"></span>
+                {% elseif entry['state'] == 'BUSY' %}
+                <span class="fa fa-bell-shash" style="color: darkred"></span>
+                {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
+                <span class="fa fa-binoculars" style="color: blue"></span>
+                {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
+                <span class="fa fa-money" style="color: blue"></span>
+                {% elseif entry['state'] == 'IN_GAME' %}
+                <span class="fa fa-gamepad" style="color: darkgreen"></span>
+                {% elseif entry['state'] == 'UNAVAILABLE' %}
+                <span class="fa fa-user" style="color: darkred"></span>
+                {% endif %}
+            </div>
+            <div class="col-md-11">
+                <h3>
+                    {% if entry['state'] == 'OFFLINE' %}
+                        Hors-ligne
+                    {% elseif entry['state'] == 'IDLE' %}
+                        En ligne
+                    {% elseif entry['state'] == 'AWAY' %}
+                        Absent
+                    {% elseif entry['state'] == 'BUSY' %}
+                        Occupé
+                    {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
+                        Désir jouer
+                    {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
+                        Désir échanger
+                    {% elseif entry['state'] == 'IN_GAME' %}
+                        <span title="ID : {{ entry['game_id'] }}">{{ entry['game_name'] }}</span>
+                    {% elseif entry['state'] == 'UNAVAILABLE' %}
+                        Indisponible
+                    {% endif %}
+                </h3>
+                <p>
+                    Pendant
+                    {% if entry['duration'] < 3600 %}
+                        {{ entry['duration'] // 60 }} minute{% if (entry['duration'] // 60) > 1 %}s{% endif %}
+                    {% else %}
+                        {{ entry['duration'] // 3600 }} heure{% if (entry['duration'] // 3600) > 1 %}s{% endif %} et
+                        {{ (entry['duration'] % 3600) // 60 }} minute{% if ((entry['duration'] % 3600) // 60) > 1 %}s{% endif %}
+                    {% endif %}
+
+                    <span class="text-muted">(du {{ entry['date_begin']|date('d/m/Y H:i') }} au {{ entry['date_end']|date('d/m/Y H:i') }})</span>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
