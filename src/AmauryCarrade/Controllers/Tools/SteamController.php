@@ -25,7 +25,7 @@ class SteamController
         }
 
         $limit = $request->query->has('limit') ? intval($request->query->get('limit')) : 30;
-        $activity = $pdo->prepare('SELECT *, (UNIX_TIMESTAMP(date_end) - UNIX_TIMESTAMP(date_begin)) AS duration FROM steam_track WHERE steam_id = :steamid ORDER BY date_end DESC LIMIT ' . $limit);
+        $activity = $pdo->prepare('SELECT *, (UNIX_TIMESTAMP(date_end) - UNIX_TIMESTAMP(date_begin)) AS duration FROM steam_track WHERE steam_id = :steamid ORDER BY date_end DESC, date_begin DESC LIMIT ' . $limit);
         $activity->execute(array('steamid' => trim($steamid)));
 
         if ($activity->rowCount() == 0)
