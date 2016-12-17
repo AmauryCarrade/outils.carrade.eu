@@ -24,7 +24,7 @@ class SteamController
             $app->abort(500, "Unable to connect the database.");
         }
 
-        $limit = $request->query->has('limit') ? intval($request->query->get('limit')) : 30;
+        $limit = $request->query->has('limit') ? intval($request->query->get('limit')) : 64;
         $activity = $pdo->prepare('SELECT *, (UNIX_TIMESTAMP(date_end) - UNIX_TIMESTAMP(date_begin)) AS duration FROM steam_track WHERE steam_id = :steamid ORDER BY date_end DESC, date_begin DESC LIMIT ' . $limit);
         $activity->execute(array('steamid' => trim($steamid)));
 

@@ -26,7 +26,9 @@
 <header class="article-header">
     <h1>Activité Steam</h1>
     <p class="lead">
-        {{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}
+        <a href="https://steamcommunity.com/profiles/{{ activity[0]['steam_id'] }}/">
+            {{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}
+        </a>
     </p>
 </header>
 {% endblock %}
@@ -35,6 +37,11 @@
     <style type="text/css">
         h2 {
             margin-bottom: 20px;
+        }
+
+        header.article-header a, header.article-header a:hover {
+            color: #1d1d1d;
+            text-decoration: none;
         }
 
         .activity {
@@ -84,21 +91,23 @@
         <div class="entry row">
             <div class="col-md-1 col-xs-1 entry-icon">
                 {% if entry['state'] == 'OFFLINE' %}
-                <span class="fa fa-user" style="color: gray"></span>
+                    <span class="fa fa-user" style="color: gray"></span>
                 {% elseif entry['state'] == 'IDLE' %}
-                <span class="fa fa-user" style="color: #306eff"></span>
+                    <span class="fa fa-user" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'AWAY' %}
-                <span class="fa fa-coffee" style="color: #8b0d0f"></span>
+                    <span class="fa fa-coffee" style="color: #8b0d0f"></span>
                 {% elseif entry['state'] == 'BUSY' %}
-                <span class="fa fa-bell-shash" style="color: #8b0d0f"></span>
+                    <span class="fa fa-bell-shash" style="color: #8b0d0f"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
-                <span class="fa fa-binoculars" style="color: #306eff"></span>
+                    <span class="fa fa-binoculars" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
-                <span class="fa fa-money" style="color: #306eff"></span>
+                    <span class="fa fa-money" style="color: #306eff"></span>
                 {% elseif entry['state'] == 'IN_GAME' %}
-                <span class="fa fa-gamepad" style="color: darkgreen"></span>
+                    {% if entry['game_id'] is not null %}<a href="http://store.steampowered.com/app/{{ entry['game_id'] }}">{% endif %}
+                    <span class="fa fa-gamepad" style="color: darkgreen"></span>
+                    {% if entry['game_id'] is not null %}</a>{% endif %}
                 {% elseif entry['state'] == 'UNAVAILABLE' %}
-                <span class="fa fa-user" style="color: #8b0d0f"></span>
+                    <span class="fa fa-user" style="color: #8b0d0f"></span>
                 {% endif %}
             </div>
             <div class="col-md-11 col-xs-12">
