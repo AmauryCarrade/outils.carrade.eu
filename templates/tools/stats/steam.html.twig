@@ -16,6 +16,25 @@
             {% for user in tracked %}
                 <li>
                     <a href="{{ path('tools.steam', {'key': key, 'steamid': user['steam_id']}) }}">
+                        <span class="pull-right" style="text-align: center; width: 16px;">
+                            {% if user['state'] == 'OFFLINE' %}
+                                <i class="fa fa-user s-offline"></i>
+                            {% elseif user['state'] == 'IDLE' %}
+                                <span class="fa fa-user s-online"></span>
+                            {% elseif user['state'] == 'AWAY' %}
+                                <span class="fa fa-coffee s-away"></span>
+                            {% elseif user['state'] == 'BUSY' %}
+                                <span class="fa fa-bell-shash s-away"></span>
+                            {% elseif user['state'] == 'LOOKING_TO_PLAY' %}
+                                <span class="fa fa-binoculars s-online"></span>
+                            {% elseif user['state'] == 'LOOKING_TO_TRADE' %}
+                                <span class="fa fa-money s-online"></span>
+                            {% elseif user['state'] == 'IN_GAME' %}
+                                <span class="fa fa-gamepad s-ingame"></span>
+                            {% elseif user['state'] == 'UNAVAILABLE' %}
+                                <span class="fa fa-user s-away"></span>
+                            {% endif %}
+                        </span>
                         {{ user['steam_name'] }}{% if user['steam_realname'] is not empty %} ({{ user['steam_realname'] }}){% endif %}
                     </a>
                 </li>
@@ -27,7 +46,7 @@
     <h1>Activité Steam</h1>
     <p class="lead">
         <a href="https://steamcommunity.com/profiles/{{ activity[0]['steam_id'] }}/">
-            {{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}
+            <span>{{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}</span>
         </a>
     </p>
 </header>
@@ -69,6 +88,21 @@
             font-size: 140%;
         }
 
+        .s-offline { color: gray;      }
+        .s-online  { color: #306eff;   }
+        .s-away    { color: #8b0d0f;   }
+        .s-ingame  { color: darkgreen; }
+
+        .dropdown-menu a {
+            position: relative !important;
+            padding-right: 48px !important;
+        }
+        .dropdown-menu a .fa {
+            position: relative !important;
+            right: -35px;
+            text-align: center;
+        }
+
         @media (max-width: 503px) {
             .activity {
                 margin: 5px;
@@ -77,7 +111,7 @@
                 text-align: center !important;
                 width: 100% !important;
             }
-            
+
             .entry p .text-muted {
                 display: block;
             }
@@ -91,23 +125,23 @@
         <div class="entry row">
             <div class="col-md-1 col-xs-1 entry-icon">
                 {% if entry['state'] == 'OFFLINE' %}
-                    <span class="fa fa-user" style="color: gray"></span>
+                    <span class="fa fa-user s-offline"></span>
                 {% elseif entry['state'] == 'IDLE' %}
-                    <span class="fa fa-user" style="color: #306eff"></span>
+                    <span class="fa fa-user s-online"></span>
                 {% elseif entry['state'] == 'AWAY' %}
-                    <span class="fa fa-coffee" style="color: #8b0d0f"></span>
+                    <span class="fa fa-coffee s-away"></span>
                 {% elseif entry['state'] == 'BUSY' %}
-                    <span class="fa fa-bell-shash" style="color: #8b0d0f"></span>
+                    <span class="fa fa-bell-shash s-away"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
-                    <span class="fa fa-binoculars" style="color: #306eff"></span>
+                    <span class="fa fa-binoculars s-online"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
-                    <span class="fa fa-money" style="color: #306eff"></span>
+                    <span class="fa fa-money s-online"></span>
                 {% elseif entry['state'] == 'IN_GAME' %}
                     {% if entry['game_id'] is not null %}<a href="http://store.steampowered.com/app/{{ entry['game_id'] }}">{% endif %}
-                    <span class="fa fa-gamepad" style="color: darkgreen"></span>
+                    <span class="fa fa-gamepad s-ingame"></span>
                     {% if entry['game_id'] is not null %}</a>{% endif %}
                 {% elseif entry['state'] == 'UNAVAILABLE' %}
-                    <span class="fa fa-user" style="color: #8b0d0f"></span>
+                    <span class="fa fa-user s-away"></span>
                 {% endif %}
             </div>
             <div class="col-md-11 col-xs-12">
