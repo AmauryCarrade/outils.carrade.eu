@@ -44,6 +44,14 @@ class TeaController
         'http://www.mariagefreres.com/FR/2-{0}-T{1}.html'
     );
 
+    /**
+     * For these search, directly redirect to the given tea (ID).
+     */
+    const SPECIAL_SEARCHES = array(
+        'noël' => 9215,   // Black Christmas Tea http://www.mariagefreres.com/FR/2-noel-tea-the-noir-gourmand-TE9215.html
+        'noel' => 9215
+    );
+
 
     public function homepage(Application $app, Request $request)
     {
@@ -143,6 +151,13 @@ class TeaController
      */
     private function load_tea_from_name($tea_name)
     {
+        // First we check if we are in a case of a special search.
+        $lower_tea_name = strtolower($tea_name);
+        if (array_key_exists($lower_tea_name, self::SPECIAL_SEARCHES))
+        {
+            return self::load_tea_from_id(self::SPECIAL_SEARCHES[$lower_tea_name]);
+        }
+
         $s = self::create_session();
 
         // Loads the homepage before to act like a visitor and load cookies
@@ -150,16 +165,10 @@ class TeaController
 
         // Then we use the search form; it makes a POST request against the home page
         $r = $s->post(self::MF_HOMEPAGE, array(), array(
-            'WD_BUTTON_CLICK_' => 'M3',
+            'WD_BUTTON_CLICK_' => 'M8',
             'WD_ACTION_'       => '',
-            'M9'               => $tea_name,
-            'M22'              => '',
-            'M65'              => '-1',
-            'M65_DEB'          => '1',
-            '_M65_OCC'         => '0',
-            'M73'              => '-1',
-            'M73_DEB'          =>'1',
-            '_M73_OCC'         => '0'
+            'M3'               => $tea_name,
+            'M12'              => ''
         ));
 
         if ($r->status_code >= 300 || strtolower($r->url) == strtolower(self::MF_NO_RESULTS))
@@ -167,13 +176,16 @@ class TeaController
 
         // Now we extract the first search result
         $soup = str_get_html($r->body);
-        $first_result_link = $soup->find('a.LIEN-Titre-Liste')[0];
+        if ($soup === false)
+            throw new RuntimeException("L'analyse de la page a échouée.");
+
+        $first_result_link = $soup->find('.Lien-Titre-Liste a')[0];
 
         $soup->clear();
         unset($soup);
 
         if ($first_result_link == null)
-            throw new RuntimeException("Impossible d'extraire le premier résultat de la recherche");
+            throw new RuntimeException("Impossible d'extraire le premier résultat de la recherche.");
 
         $first_result_link = $first_result_link->href;
 

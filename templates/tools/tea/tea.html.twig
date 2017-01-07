@@ -7,6 +7,12 @@
 
 {% block stylesheets %}
     <link href="{{ global.request.basePath }}/assets/css/tools.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #header-background {
+            background: url('{{ global.request.basePath }}/assets/img/top-banner-tea-{{ random(2) + 1 }}.jpg') center top;
+        }
+    </style>
 {% endblock %}
 
 {% block container_content %}
@@ -14,6 +20,7 @@
         {% if tea.error %}
             <div class="alert alert-danger">
                 <strong>Impossible de trouver ce thé.</strong> {{ tea.error }}
+                Vous pouvez tenter de rechercher par numéro directement.
             </div>
         {% endif %}
 
