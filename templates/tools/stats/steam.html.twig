@@ -21,6 +21,8 @@
                                 <i class="fa fa-user s-offline"></i>
                             {% elseif user['state'] == 'IDLE' %}
                                 <span class="fa fa-user s-online"></span>
+                            {% elseif user['state'] == 'MOBILE' %}
+                                <span class="fa fa-phone s-online"></span>
                             {% elseif user['state'] == 'AWAY' %}
                                 <span class="fa fa-coffee s-away"></span>
                             {% elseif user['state'] == 'BUSY' %}
@@ -128,6 +130,8 @@
                     <span class="fa fa-user s-offline"></span>
                 {% elseif entry['state'] == 'IDLE' %}
                     <span class="fa fa-user s-online"></span>
+                {% elseif entry['state'] == 'MOBILE' %}
+                    <span class="fa fa-phone s-online"></span>
                 {% elseif entry['state'] == 'AWAY' %}
                     <span class="fa fa-coffee s-away"></span>
                 {% elseif entry['state'] == 'BUSY' %}
@@ -151,6 +155,8 @@
                         <span>Hors-ligne</span>
                     {% elseif entry['state'] == 'IDLE' %}
                         <span>En ligne</span>
+                    {% elseif entry['state'] == 'MOBILE' %}
+                        <span>Sur téléphone</span>
                     {% elseif entry['state'] == 'AWAY' %}
                         <span>Absent</span>
                     {% elseif entry['state'] == 'BUSY' %}
