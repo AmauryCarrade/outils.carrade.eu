@@ -48,8 +48,12 @@ class TeaController
      * For these search, directly redirect to the given tea (ID).
      */
     const SPECIAL_SEARCHES = array(
-        'noël' => 9215,   // Black Christmas Tea http://www.mariagefreres.com/FR/2-noel-tea-the-noir-gourmand-TE9215.html
-        'noel' => 9215
+        'noël' => 9215, 'noel' => 9215,  // Black Christmas Tea http://www.mariagefreres.com/FR/2-noel-tea-the-noir-gourmand-TE9215.html
+        'opera' => 952, 'opéra' => 952,  // The first result is either red opera or a box with 4 teas, containing none of the required infos.
+        'thé à l\'opéra' => 952,         // Same, with various spelling errors too.
+        'thé a l\'opéra' => 952,
+        'thé a l\'opera' => 952,
+        'thé à l\'opera' => 952,
     );
 
 
