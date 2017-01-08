@@ -54,6 +54,7 @@ class TeaController
         'thé a l\'opéra' => 952,
         'thé a l\'opera' => 952,
         'thé à l\'opera' => 952,
+        'nil' => 955,                    // Without, displays the “Red Nil” tea with “nil”.
     );
 
 
