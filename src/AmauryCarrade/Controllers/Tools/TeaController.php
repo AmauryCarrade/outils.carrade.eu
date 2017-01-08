@@ -183,29 +183,46 @@ class TeaController
         if ($soup === false)
             throw new RuntimeException("L'analyse de la page a échouée.");
 
-        $first_result_link = $soup->find('.Lien-Titre-Liste a')[0];
+        $result_links = $soup->find('.Lien-Titre-Liste a');
+        $result_link = null;
+
+        foreach ($result_links as $link)
+        {
+            // Links formats:
+            // → ./2-theiere-iskandar-en-argent-925-A3021.html
+            // → ./2-iskandar-T984.html
+            // → ./2-iskandar-boite-classique-100g-TC984.html
+            // We want links to a tea, i.e. the ID at the end of the URL must start with a T.
+            $link_id = array_pop(explode('-', explode('.', str_replace('/', '', str_replace('./', '', $link->href)))[0]));
+
+            if (!empty($link_id) && strtoupper($link_id[0]) == 'T')
+            {
+                $result_link = $link;
+                break;
+            }
+        }
+
+        if ($result_link == null)
+            throw new RuntimeException('Aucun des résultats de la recherche n\'est un thé.');
 
         $soup->clear();
         unset($soup);
 
-        if ($first_result_link == null)
-            throw new RuntimeException("Impossible d'extraire le premier résultat de la recherche.");
+        $result_link = $result_link->href;
 
-        $first_result_link = $first_result_link->href;
-
-        if (substr($first_result_link, 0, 2) == './')
+        if (substr($result_link, 0, 2) == './')
         {
-            $first_result_link = self::MF_BASE_URL_FR . substr($first_result_link, 2);
+            $result_link = self::MF_BASE_URL_FR . substr($result_link, 2);
         }
-        else if (substr($first_result_link, 0, 1) == '/')
+        else if (substr($result_link, 0, 1) == '/')
         {
-            $first_result_link = self::MF_BASE_URL . substr($first_result_link, 1);
+            $result_link = self::MF_BASE_URL . substr($result_link, 1);
         }
 
-        $r = self::load_mariage_url($first_result_link, $s);
-        if ($r == null) throw new RuntimeException("Impossible de charger la page du thé (via la recherche) ; page tentée : " . $first_result_link);
+        $r = self::load_mariage_url($result_link, $s);
+        if ($r == null) throw new RuntimeException('Impossible de charger la page du thé (via la recherche) ; page tentée : ' . $result_link . '.');
 
-        return self::retrieve_tea_data_from_document($r->body, $first_result_link);
+        return self::retrieve_tea_data_from_document($r->body, $result_link);
     }
 
     /**
