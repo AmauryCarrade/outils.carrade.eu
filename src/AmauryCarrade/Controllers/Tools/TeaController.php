@@ -9,6 +9,9 @@ use Requests_Session;
 use RuntimeException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Cookie;
+
 
 class TeaController
 {
@@ -68,11 +71,25 @@ class TeaController
             else
                 return $app->redirect($app['url_generator']->generate('tools.tea'));
         }
+        else if ($request->query->has('mtp'))
+        {
+            $response = $app->redirect($app['url_generator']->generate('tools.tea'));
+            $response->headers->setCookie(new Cookie('from_mtp', '1'));
+            return $response;
+        }
 
-        return $app['twig']->render('tools/tea/tea.html.twig', array(
+        $from_mtp = $request->cookies->has('from_mtp');
+
+        $response = new Response($app['twig']->render('tools/tea/tea.html.twig', array(
             'tea' => array('success' => false, 'error' => null),
-            'input' => ''
-        ));
+            'input' => '',
+            'from_mtp' => $from_mtp
+        )));
+
+        if ($from_mtp)
+            $response->headers->clearCookie('from_mtp');
+
+        return $response;
     }
 
     public function search(Application $app, $search, $format)
