@@ -1,0 +1,41 @@
+#templates{
+    display:none;
+}
+
+#error{
+    color:red;
+    resize: none;
+}
+
+.hidden{
+    display:none;
+}
+
+.h-space{
+    display:block;
+    margin-left:50px;
+}
+
+.inline{
+    display: inline;
+}
+
+.data-error{
+    color: red;
+}
+
+input[elem-type=num], input[elem-type=float]{
+    width:50px;
+}
+
+.long-content{
+    width:300px;
+}
+
+.short-content{
+    width:50px;
+}
+
+div:first-child > .hideFirst{
+    display:none;
+}
