@@ -144,6 +144,10 @@ $app->get('/tools/minecraft/ping/{format}', 'AmauryCarrade\\Controllers\\Tools\\
     ->value('format', 'html');
 
 
+$app->get('/minecraft/loot_tables', 'AmauryCarrade\\Controllers\\Tools\\MCOtherToolsController::loot_tables')
+    ->bind('tools.minecraft.loot_tables');
+
+
 $app->get('/stats', 'AmauryCarrade\\Controllers\\Tools\\MSCServerStats::stats_home')
     ->bind('tools.server_stats.home');
 

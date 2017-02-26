@@ -1,0 +1,374 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Loot tables generator{% endblock %}
+{% block content_title %}Loot tables generator{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ global.request.basepath }}/assets/css/loot_tables.css" rel="stylesheet" />
+<link href="{{ global.request.basepath }}/assets/css/loot_tables_custom.css" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ global.request.basepath }}/js/loot_tables.js"></script>
+{% endblock %}
+
+{% block content %}
+<header class="generator-intro">
+    <p>
+        <em>
+            This tools generates <em>loot tables</em> for the Minecraft game. It is based on <a href="https://jsfiddle.net/MrPingouin/125mx5r5/"> MrPingouin's loot tables generator</a>
+            and introduces a better design, some easier-to-understand parts, and a bit of independance from the original host, JSFiddle.
+            If you want to learn more about loot tables, you can read <a href="https://minecraft.gamepedia.com/Loot_table">the Mincraft Wiki article</a>, or
+            <a href="http://www.minecraftforum.net/forums/minecraft-discussion/redstone-discussion-and/command-blocks/2546347-1-9-1-10-custom-loot-tables">this detailed tutorial</a>.
+        </em>
+    </p>
+    <p>
+        To get started, click the <kbd>Add pool</kbd> button below or paste an existing loot table at the bottom of the page.
+    </p>
+</header>
+
+<div id="content" elem-type="obj" class="json-elem">
+    <div key-name="pools" id="pools" elem-type="array" template="pool" class="pool json-elem"></div>
+    <input type="button" id="addPool" class="btn btn-primary" value="Add pool" onclick="addTemplate(this.parentElement, 'pool');">
+</div>
+
+<section class="section-output">
+    <div class="checkbox">
+        <label>
+            <input id="prettyPrint" type="checkbox" checked onChange="rebuildOutput()" /> Pretty print
+        </label>
+    </div>
+    <div>
+        <textarea id="output" rows="15" cols="80" readonly onClick="focusArea(this)" class="form-control"></textarea>
+    </div>
+    <div>
+        <textarea id="error" rows="5" cols="80" class="hidden form-control" readonly></textarea>
+    </div>
+</section>
+<div class="form-import">
+    <div class="input-group">
+        <input type="text" id="table_input" class="form-control" placeholder="Paste your loot table here to import..." />
+        <span class="input-group-btn">
+            <input type="button" id="import" class="btn btn-default" value="Import" onclick="promptImport();" />
+        </span>
+    </div>
+</div>
+
+<div id="templates">
+    <div class="tpl-none"></div>
+
+    <div class="tpl-pool-elem nest-obj h-space block-pool">
+        <div elem-type="obj" class="json-elem">
+            <h3><input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement.parentElement)" /> Pool</h3>
+            <div key-name="rolls" elem-type="range" class="json-elem form-part">
+                <label class="warp-skip">This pool should rolls from <input type="number" min="1" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
+                <label class="warp-skip"> to <input type="number" min="1" key-name="max" elem-type="num" class="warp json-elem" value="1" /> times;</label>
+            </div>
+            <div key-name="bonus_rolls" elem-type="range" data-default="0" class="json-elem form-part">
+                <label class="warp-skip">with luck, from <input type="number" key-name="min" elem-type="float" class="warp json-elem" value="0" /></label>
+                <label class="warp-skip"> to <input type="number" key-name="max" elem-type="float" class="warp json-elem" value="0" /> bonus rolls should be added, multiplied by the luck attribute.</label>
+            </div>
+
+            <div key-name="conditions" elem-type="array" template="cond" class="cond json-elem"></div>
+            <div key-name="entries" elem-type="array" template="item" class="json-elem item"></div>
+
+            <footer class="section-footer">
+                <input type="button" value="Add new entry" class="btn btn-default" onclick="addTemplate(this.parentElement.parentElement.parentElement, 'item');" />
+                <input type="button" value="Add condition" class="btn btn-default" onclick="addTemplate(this.parentElement.parentElement.parentElement, 'cond')" />
+            </footer>
+        </div>
+    </div>
+
+    <div class="tpl-item-elem nest-obj h-space block-entry">
+        <div elem-type="obj" class="json-elem">
+            <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement)" />
+            <select key-name="type" elem-type="select" update="extra" class="item-select toInit json-elem" onChange="changeSelect(this);">
+                <option value="item">Item</option>
+                <option value="loot_table">Loot table</option>
+                <option value="empty">Empty</option>
+            </select>
+            <label class="warp-skip"> weighted at <input type="number" min="1" key-name="weight" elem-type="num" class="warp json-elem" value="1" /></label>
+            <div class="extra nest-obj block-entry-extra"></div>
+        </div>
+    </div>
+
+    <div class="tpl-item nest-obj inline">
+        <span class="form-part-inline warp-skip">Item named  <input key-name="name" type="text" elem-type="id" class="json-elem warp" placeholder="e.g. minecraft:stone" /></span>
+        <span class="form-part-inline warp-skip">and with a <input type="number" min="0" key-name="quality" elem-type="float" data-default="0" class="json-elem warp" value="0" /> quality.</span>
+        <span class="text-muted help-quality">Quality will affect the weight based on the player's luck.</span>
+
+        <div key-name="conditions" elem-type="array" template="cond" class="cond json-elem"></div>
+        <div key-name="functions" elem-type="array" template="func" class="func json-elem"></div>
+
+        <footer class="section-footer">
+            <input type="button" class="btn btn-default" value="Add function" onClick="addTemplate(this.parentElement.parentElement, 'func')" />
+            <input type="button" class="btn btn-default" value="Add condition" onClick="addTemplate(this.parentElement.parentElement, 'cond')" />
+        </footer>
+    </div>
+
+    <div class="tpl-loot_table nest-obj inline">
+        <span class="form-part-inline warp-skip">Loot table named <input key-name="name" type="text" elem-type="string" class="json-elem long-content warp" placeholder="e.g. minecraft:chests/nether_bridge" /></span>
+        <span class="form-part-inline warp-skip">and with a <input type="number" min="0" key-name="min" elem-type="float" data-default="0" class="json-elem warp" value="0" /> quality.</span>
+        <span class="text-muted help-quality">Quality will affect the weight based on the player's luck.</span>
+
+        <div key-name="conditions" elem-type="array" template="cond" class="cond json-elem"></div>
+
+        <footer class="section-footer">
+            <input type="button" value="Add condition" class="btn btn-default" onClick="addTemplate(this.parentElement.parentElement, 'cond')" />
+        </footer>
+    </div>
+
+    <div class="tpl-empty inline"></div>
+
+
+
+    <div class="tpl-func-elem nest-obj h-space block-function">
+        <div elem-type="obj" class="json-elem inline">
+            <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement)">
+            <span class="fa fa-bolt" aria-hidden="true" title="Function"></span><span class="sr-only">Function: </span>
+            <select key-name="function" elem-type="select" class="func-select json-elem" update="extra" onChange="changeSelect(this);">
+                <option value="none" disabled selected="selected">Select a function...</option>
+                <option value="set_count">Set count</option>
+                <option value="set_data">Set data value</option>
+                <option value="set_damage">Set damage</option>
+                <option value="set_attributes">Set attribute</option>
+                <option value="set_nbt">Set NBT data</option>
+                <option value="enchant_randomly">Enchant randomly</option>
+                <option value="enchant_with_levels">Enchant with level</option>
+                <option value="looting_enchant">Apply looting enchantment</option>
+                <option value="furnace_smelt">Smelt item in furnace</option>
+            </select>
+            <button onClick="addTemplate(this.parentElement, 'cond')" title="Add condition">
+                <span class="fa fa-filter" aria-hidden="true"></span>
+                <span class="sr-only">Add condition</span>
+            </button>
+            <div class="extra nest-obj inline"></div>
+            <div key-name="conditions" elem-type="array" template="cond" class="cond json-elem"></div>
+        </div>
+    </div>
+
+    <div class="tpl-enchant_randomly nest-obj inline">
+        <input type="button" class="btn btn-default" value="Add enchantement" onClick="addTemplate(this.parentElement, 'enchant')" />
+        <div key-name="enchantments" elem-type="array-const" template="enchant" class="enchant json-elem"></div>
+    </div>
+
+    <div class="tpl-enchant-elem nest-obj h-space">
+        Enchantment:
+        <select key-name="condition" elem-type="select" class="cond-select json-elem" onChange="changeSelect(this)">
+            <option value="protection">Protection</option>
+            <option value="fire_protection">Fire protection</option>
+            <option value="feather_falling">Feather falling</option>
+            <option value="blast_protection">Blast protection</option>
+            <option value="projectile_protection">Projectile protection</option>
+            <option value="respiration">Respiration</option>
+            <option value="aqua_affinity">Aqua affinity</option>
+            <option value="thorns">Thorns</option>
+            <option value="depth_strider">Depth strider</option>
+            <option value="frost_walker">Frost walker</option>
+            <option value="sharpness">Sharpness</option>
+            <option value="smite">Smite</option>
+            <option value="bane_of_arthropods">Bane of arthropods</option>
+            <option value="knockback">Knockback</option>
+            <option value="fire_aspect">Fire aspect</option>
+            <option value="looting">Looting</option>
+            <option value="efficiency">Efficiency</option>
+            <option value="silk_touch">Silk_touch</option>
+            <option value="unbreaking">Unbreaking</option>
+            <option value="fortune">Fortune</option>
+            <option value="power">Power</option>
+            <option value="punch">Punch</option>
+            <option value="flame">Flame</option>
+            <option value="infinity">Infinity</option>
+            <option value="luck_of_the_sea">Luck of the sea</option>
+            <option value="lure">Lure</option>
+            <option value="mending">Mending</option>
+            <option value="binding_curse">Curse of Binding</option>
+            <option value="vanishing_curse">Curse of Vanishing</option>
+        </select>
+        <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this)" />
+    </div>
+
+    <div class="tpl-enchant_with_levels nest-obj inline">
+        <div key-name="levels" elem-type="range" class="json-elem inline">
+            <label class="warp-skip">Enchant with <input key-name="min" min="1" elem-type="num" type="number" class="warp json-elem" value="1" /></label>
+            <label class="warp-skip">to<input key-name="max" min="1" elem-type="num" type="number" class="warp json-elem" value="1" />levels.</label>
+        </div>
+        <label class="warp-skip">Allow treasure enchants? <input type="checkbox" data-default="false" key-name="treasure" elem-type="bool" class="json-elem warp" /></label>
+    </div>
+
+    <div class="tpl-set_count nest-obj inline">
+        <div key-name="count" elem-type="range" class="json-elem inline">
+            <label class="warp-skip">Count from <input type="number" min="-64" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
+            <label class="warp-skip">to<input type="number" min="-64" key-name="max" elem-type="num" class="warp json-elem" value="1" /></label>
+        </div>
+    </div>
+
+    <div class="tpl-set_data nest-obj inline">
+        <div key-name="data" elem-type="range" class="json-elem inline">
+            <label class="warp-skip">Data value from<input type="number" min="0" key-name="min" elem-type="num" class="warp json-elem" value="0" /></label>
+            <label class="warp-skip">to<input type="number" min="0" key-name="max" elem-type="num" class="warp json-elem" value="0" /></label>
+        </div>
+    </div>
+
+    <div class="tpl-set_damage nest-obj inline">
+        <div key-name="damage" elem-type="range" class="json-elem inline">
+            <label class="warp-skip">Damage the item from<input type="number" min="0" max="1" step="any" key-name="min" elem-type="float" class="warp json-elem" value="0" /></label>
+            <label class="warp-skip">to<input type="number" min="0" max="1" step="any" key-name="max" elem-type="float" class="warp json-elem" value="0" /> (percentage between 0 and 1)</label>
+        </div>
+    </div>
+
+    <div class="tpl-set_nbt nest-obj inline">
+        <input type="text" key-name="tag" elem-type="string" class="json-elem long-content raw-content"placeholder="Write NBT data here..." />
+    </div>
+
+    <div class="tpl-set_attributes nest-obj inline">
+        <input type="button" class="btn btn-default" value="Add modifier" onClick="addTemplate(this.parentElement, 'modif')" />
+        <div key-name="modifiers" elem-type="array" template="modif" class="modif json-elem">
+        </div>
+    </div>
+
+    <div class="tpl-modif-elem nest-obj h-space">
+        <div elem-type="obj" class="json-elem inline">
+            <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement)" />
+            <label class="warp-skip">For the
+                <select key-name="attribute" elem-type="select" class="warp attr-select json-elem">
+                    <optgroup label="Generic attributes">
+                        <option value="generic.maxHealth">Max health</option>
+                        <option value="generic.followRange">Follow range</option>
+                        <option value="generic.knockbackResistance">Knockback resistance</option>
+                        <option value="generic.movementSpeed">Movement speed</option>
+                        <option value="generic.attackDamage">Attack damage</option>
+                        <option value="generic.armor">Armor</option>
+                        <option value="generic.armorToughness">Armor toughness</option>
+                    </optgroup>
+                    <optgroup label="Players attributes">
+                        <option value="generic.attackSpeed">Attack speed</option>
+                        <option value="generic.luck">Luck</option>
+                    </optgroup>
+                    <optgroup label="Horses attributes">
+                        <option value="horse.jumpStrength">Jump strength</option>
+                    </optgroup>
+                    <optgroup label="Zombies attributes">
+                        <option value="zombie.spawnReinforcements">Spawn reinforcements</option>
+                    </optgroup>
+                </select> attribute,
+            </label>
+            <select key-name="operation" elem-type="select" class="oper-select json-elem">
+                <option value="addition">add</option>
+                <option value="multiply_base">multiply base by</option>
+                <option value="multiply_total">multiply total by</option>
+            </select>
+            <div key-name="amount" elem-type="range" class="json-elem inline">
+                <label class="warp-skip">value from<input type="number" min="0" step="any" key-name="min" elem-type="float" class="warp json-elem" value="0" /></label>
+                <label class="warp-skip">to<input type="number" min="0" step="any" key-name="max" elem-type="float" class="warp json-elem" value="0" />.</label>
+            </div><br />
+            <label class="warp-skip">Modifier name: <input type="text" key-name="name" elem-type="string" class="warp long-content json-elem attribute-name" value="" /></label><br />
+            <label class="warp-skip">Modifier UUID: <input type="text" key-name="id" elem-type="string" data-default="" class="warp long-content raw-content json-elem attribute-uuid" value="" placeholder="Optional" /></label>
+            <div key-name="slot" elem-type="array-const" template="slot" class="slot json-elem" singleton>
+                <div class="nest-obj h-space">
+                    Slot:
+                    <select key-name="slot" elem-type="select" class="slot-select json-elem">
+                        <option value="mainhand">Main hand</option>
+                        <option value="offhand">Off hand</option>
+                        <option value="feet">Feets</option>
+                        <option value="legs">Legs</option>
+                        <option value="chest">Chest</option>
+                        <option value="head">Head</option>
+                    </select>
+                    <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this)" class="hideFirst" />
+                </div>
+            </div>
+            <div><input type="button" class="btn btn-default" value="Add slot" onClick="addTemplate(this.parentElement.parentElement, 'slot')" /></div>
+        </div>
+    </div>
+
+    <div class="tpl-slot-elem nest-obj h-space">
+        Slot:
+        <select key-name="slot" elem-type="select" class="slot-select json-elem">
+            <option value="mainhand">Main hand</option>
+            <option value="offhand">Off hand</option>
+            <option value="feet">Feets</option>
+            <option value="legs">Legs</option>
+            <option value="chest">Chest</option>
+            <option value="head">Head</option>
+        </select>
+        <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this)" class="hideFirst" />
+    </div>
+
+    <div class="tpl-looting_enchant nest-obj inline">
+        <div key-name="count" elem-type="range" class="json-elem inline">
+            <label class="warp-skip">Add from <input type="number" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
+            <label class="warp-skip">to<input type="number" key-name="max" elem-type="num" class="warp json-elem" value="1" /> items per looting enchant level,</label>
+        </div>
+        <label class="warp-skip">but never more than <input type="number" key-name="limit" elem-type="num" class="warp json-elem" value="0" data-default="0" />.</label>
+    </div>
+
+    <div class="tpl-furnace_smelt inline"></div>
+
+
+
+    <div class="tpl-cond-elem nest-obj h-space block-condition">
+        <div elem-type="obj" class="json-elem inline">
+            <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement)" />
+            <span class="fa fa-filter" aria-hidden="true" title="Condition"></span><span class="sr-only">Condition: </span>
+            <select key-name="condition" elem-type="select" class="cond-select json-elem" update="extra" onChange="changeSelect(this)">
+                <option value="none" disabled selected="selected">Select a condition...</option>
+                <option value="killed_by_player">If the entity was killed by a player</option>
+                <option value="entity_properties">If the entity properties matches</option>
+                <option value="entity_scores">If the entity scores matches</option>
+                <option value="random_chance">With a probability</option>
+                <option value="random_chance_with_looting">With a probability, weighted by looting</option>
+            </select>
+            <div class="extra nest-obj inline"></div>
+        </div>
+    </div>
+
+    <div class="tpl-killed_by_player nest-obj inline">
+        <label class="warp-skip">Inverse the condition? <input type="checkbox" key-name="inverse" elem-type="bool" data-default="false" class="json-elem warp" /></label>
+    </div>
+
+    <div class="tpl-random_chance nest-obj inline">
+        <label class="warp-skip">Probability of <input type="number" step="any" key-name="chance" elem-type="float" class="warp json-elem" value="0.1" /> (between 0 and 1)</label>
+    </div>
+
+    <div class="tpl-random_chance_with_looting nest-obj inline">
+        <label class="warp-skip">Probability of <input type="number" step="any" key-name="chance" elem-type="float" class="warp json-elem" value="0.1" />,</label>
+        <label class="warp-skip">adding <input type="number" step="any" key-name="looting_multiplier" elem-type="float" class="warp json-elem"  value="0.01" /> for each looting level</label>
+    </div>
+
+    <div class="tpl-entity_properties nest-obj inline">
+        Entity:
+        <select key-name="entity" elem-type="select" class="cond-select json-elem">
+            <option value="this">this</option>
+            <option value="killer">killer</option>
+            <option value="killer_player">killer player</option>
+        </select>
+        <label class="warp-skip">Looting multiplier : <input type="number" step="any" key-name="looting_multiplier" elem-type="float" class="warp json-elem" value="0.01" /></label>
+        <div key-name="properties" elem-type="obj" class="json-elem inline">
+            <label class="warp-skip">Only if on fire? <input type="checkbox" key-name="on_fire" elem-type="bool" class="json-elem warp" /></label>
+        </div>
+    </div>
+
+    <div class="tpl-entity_scores nest-obj inline">
+        Entity: <select key-name="entity" elem-type="select" class="cond-select json-elem">
+            <option value="this">this</option>
+            <option value="killer">killer</option>
+            <option value="killer_player">killer_player</option>
+        </select>
+        <input type="button" value="Add Score" class="btn btn-default" onClick="addTemplate(this.parentElement, 'score')" />
+        <div key-name="scores" elem-type="obj" template="score" class="score json-elem"></div>
+    </div>
+
+    <div class="tpl-score-elem nest-obj h-space">
+        <div class="json-elem inline" elem-type="key" set-key="scoreName">
+            Score:
+            <input type="text" class="scoreName" value="" />
+            <div key-name="none" get-key="scoreName" elem-type="range" class="wrapper json-elem inline">
+                <label class="warp-skip">Value between<input type="number" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
+                <label class="warp-skip">and<input type="number" key-name="max" elem-type="num" class="warp json-elem" value="1" /></label>
+            </div>
+            <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement)" />
+        </div>
+    </div>
+</div>
+{% endblock %}

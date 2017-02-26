@@ -31,7 +31,8 @@
                 }
             });
             $('#demoMaxHeight').autoResize({
-                maxHeight: '100px'
+                minHeight: '90px',
+                maxHeight: '256px'
             });
         });
     </script>
@@ -48,7 +49,7 @@
             <p>There are a few options to adapt this plugin to yours needs. You can:</p>
             <ul>
                 <li>add animation while resizing;</li>
-                <li>set a maximum height.</li>
+                <li>set a maximum or minimum height.</li>
             </ul>
         </div>
         <div class="col-md-6">
@@ -154,10 +155,17 @@ $('textarea').autoResize({
                     </td>
                 </tr>
                 <tr>
+                    <td><code>minHeight</code></td>
+                    <td>
+                        This option sets a minimal height for the textarea.<br />
+                        If this option is enabled, the textarea will be resized only if his height is higher than this minimal height. Yes, it's logic.
+                    </td>
+                </tr>
+                <tr>
                     <td><code>maxHeight</code></td>
                     <td>
                         This option sets a maximal height for the textarea.<br />
-                        If this option is enabled, the textarea will be resized only if his height is lesser than this maximal height. Yes, it's logic.
+                        If this option is enabled, the textarea will be resized only if his height is lesser than this maximal height. Yes, it's logic too.
                     </td>
                 </tr>
                 </tbody>
@@ -185,11 +193,12 @@ $('textarea').autoResize({
 });</pre>
         </div>
         <div class="col-md-4">
-            <h2>Maximal height</h2>
+            <h2>Constrained height</h2>
             <textarea id="demoMaxHeight" class="form-control" placeholder="Tip something..." style="margin-bottom: 10px;"></textarea>
             <pre class="prettyprint">
 $('textarea').autoResize({
-    maxHeight: '100px'
+    minHeight: '90px',
+    maxHeight: '256px'
 });</pre>
         </div>
     </div>

@@ -46,7 +46,7 @@ class RedirectsTracerController
 		switch ($format) {
 			case 'json':
 				return $app->json($data);
-			
+
 			default:
 				return $app['twig']->render('tools/web/redirects.html.twig', array_merge($data, array(
 					'defaults_values' => array(
@@ -155,41 +155,44 @@ class RedirectsTracerController
 				$soup = str_get_html($r->body);
 				$metas = array();
 
-				foreach ($soup->find('meta[http-equiv]') as $meta)
+				if ($soup !== false)
 				{
-					// <meta http-equiv="refresh" content="5;URL=http://example.com/" />
-					// <meta http-equiv="refresh" content="5;http://example.com/" />
-					// <meta http-equiv="refresh" content="5" />
-					$http_equiv = $meta->convert_text($meta->attr['http-equiv']);
-					if (strtolower(trim($http_equiv)) == 'refresh')
+					foreach ($soup->find('meta[http-equiv]') as $meta)
 					{
-						$content = trim($meta->content);
-						if (empty($content))
+						// <meta http-equiv="refresh" content="5;URL=http://example.com/" />
+						// <meta http-equiv="refresh" content="5;http://example.com/" />
+						// <meta http-equiv="refresh" content="5" />
+						$http_equiv = $meta->convert_text($meta->attr['http-equiv']);
+						if (strtolower(trim($http_equiv)) == 'refresh')
 						{
-							continue;
-						}
-						else if (is_numeric($content))
-						{
-							$duration = intval($content);
-							$metas[$duration] = null;
-						}
-						else
-						{
-							$parts = explode(';', $content, 2);
-
-							// Invalid duration: meta skipped
-							if (!is_numeric($parts[0]))
+							$content = trim($meta->content);
+							if (empty($content))
+							{
 								continue;
+							}
+							else if (is_numeric($content))
+							{
+								$duration = intval($content);
+								$metas[$duration] = null;
+							}
+							else
+							{
+								$parts = explode(';', $content, 2);
 
-							$duration = intval($parts[0]);
-							$url_part = trim($parts[1]);
+								// Invalid duration: meta skipped
+								if (!is_numeric($parts[0]))
+									continue;
 
-							// Some dont use the prefix 'url=', and the W3C shows an example without it in a documentation page,
-							// so we support non-prefixed values.
-							if (stripos($url_part, 'url=') === 0)
-								$url_part = trim(substr($url_part, 4));
+								$duration = intval($parts[0]);
+								$url_part = trim($parts[1]);
 
-							$metas[$duration] = $url_part;
+								// Some dont use the prefix 'url=', and the W3C shows an example without it in a documentation page,
+								// so we support non-prefixed values.
+								if (stripos($url_part, 'url=') === 0)
+									$url_part = trim(substr($url_part, 4));
+
+								$metas[$duration] = $url_part;
+							}
 						}
 					}
 				}

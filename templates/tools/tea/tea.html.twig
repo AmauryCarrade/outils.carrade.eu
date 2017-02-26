@@ -16,6 +16,12 @@
 {% endblock %}
 
 {% block container_content %}
+    {% if from_mtp %}
+        <div class="alert alert-info">
+            Bientôt, <strong>my-tea.party</strong> vous permettra de consulter aisément les thés de différents fournisseurs et de mettre de côté les vôtres, avec outils pour faciliter la gestion et l'infusion.<br />
+            En attendant, vous pouvez utiliser cette page.
+        </div>
+    {% endif %}
     <div class="container-content">
         {% if tea.error %}
             <div class="alert alert-danger">
