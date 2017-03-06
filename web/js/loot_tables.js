@@ -38,6 +38,15 @@ function emptyNode(node){
     }
 }
 
+// BEGIN CHANGE CARRADE.EU
+function getJSONTable(){
+    hasError = false;
+    lootObj = buildObject(content);
+
+    if (hasError) return false;
+    else return lootObj;
+}
+// END CHANGE CARRADE.EU
 
 function rebuildOutput(){
     if(importingProcess){
@@ -252,13 +261,18 @@ function removeNode(node){
     rebuildOutput();
 }
 
+// BEGIN CHANGE CARRADE.EU
 function promptImport(){
-    var imported = input.value;//prompt("Enter a loot table");
-    if(imported != null && imported.length > 0){
+    //var imported = input.value;//prompt("Enter a loot table");
+    importFromJSON(input.value);
+}
+
+function importFromJSON(json_string){
+    if(json_string != null && json_string.length > 0){
         importErrorList = [];
         var parsed;
         try{
-            parsed = JSON.parse(imported);
+            parsed = JSON.parse(json_string);
         }catch(error){
             addImportError("Unable to parse JSON : " + error);
         }
@@ -281,6 +295,7 @@ function promptImport(){
         }
     }
 }
+// END CHANGE CARRADE.EU
 
 function setValueFromType(node, obj){
      if(node.classList.contains("nest-obj")){

@@ -10,6 +10,9 @@
 
 {% block javascripts %}
 <script src="{{ global.request.basepath }}/js/loot_tables.js"></script>
+
+<script src="{{ global.request.basepath }}/js/base64.js"></script>
+<script src="{{ global.request.basepath }}/js/loot_tables_custom.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -33,11 +36,22 @@
 </div>
 
 <section class="section-output">
-    <div class="checkbox">
-        <label>
-            <input id="prettyPrint" type="checkbox" checked onChange="rebuildOutput()" /> Pretty print
-        </label>
-    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="checkbox">
+                <label>
+                    <input id="prettyPrint" type="checkbox" checked onChange="rebuildOutput()" /> Pretty print
+                </label>
+            </div>
+        </div>
+        <div class="col-md-3" style="text-align: right;">
+            <div class="checkbox" style="position: relative; top: 5px;">
+                <a href="" id="share_table_link">
+                    Link to this loot table
+                </a>
+                (<a href="" id="share_table_link_short">shortened</a>)
+            </div>
+        </div>
     <div>
         <textarea id="output" rows="15" cols="80" readonly onClick="focusArea(this)" class="form-control"></textarea>
     </div>
@@ -218,7 +232,7 @@
     </div>
 
     <div class="tpl-set_nbt nest-obj inline">
-        <input type="text" key-name="tag" elem-type="string" class="json-elem long-content raw-content"placeholder="Write NBT data here..." />
+        <input type="text" key-name="tag" elem-type="string" class="json-elem long-content raw-content" placeholder="Write NBT data here..." />
     </div>
 
     <div class="tpl-set_attributes nest-obj inline">
@@ -275,7 +289,7 @@
                         <option value="chest">Chest</option>
                         <option value="head">Head</option>
                     </select>
-                    <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this)" class="hideFirst" />
+                    <input type="button" value="×" class="btn btn-default btn-remove hideFirst" onClick="removeNode(this)" />
                 </div>
             </div>
             <div><input type="button" class="btn btn-default" value="Add slot" onClick="addTemplate(this.parentElement.parentElement, 'slot')" /></div>
@@ -292,7 +306,7 @@
             <option value="chest">Chest</option>
             <option value="head">Head</option>
         </select>
-        <input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this)" class="hideFirst" />
+        <input type="button" value="×" class="btn btn-default btn-remove hideFirst" onClick="removeNode(this)" />
     </div>
 
     <div class="tpl-looting_enchant nest-obj inline">

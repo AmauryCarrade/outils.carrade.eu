@@ -205,6 +205,10 @@ $app->get('/steam/{key}/{steamid}', 'AmauryCarrade\\Controllers\\Tools\\SteamCon
     ->bind('tools.steam');
 
 
+    $app->get('/ajax/shorten', 'AmauryCarrade\\Controllers\\AJAXController::shorten')
+        ->bind('ajax.shorten');
+
+
 $app->get('/{type}/{name}', 'AmauryCarrade\\Controllers\\ContentsController::show_content')
     ->bind('show_content');
 
