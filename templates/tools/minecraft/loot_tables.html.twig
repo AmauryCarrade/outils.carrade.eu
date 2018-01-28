@@ -73,7 +73,7 @@
         <div elem-type="obj" class="json-elem">
             <h3><input type="button" value="×" class="btn btn-default btn-remove" onClick="removeNode(this.parentElement.parentElement)" /> Pool</h3>
             <div key-name="rolls" elem-type="range" class="json-elem form-part">
-                <label class="warp-skip">This pool should rolls from <input type="number" min="1" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
+                <label class="warp-skip">This pool should rolls from <input type="number" min="0" key-name="min" elem-type="num" class="warp json-elem" value="1" /></label>
                 <label class="warp-skip"> to <input type="number" min="1" key-name="max" elem-type="num" class="warp json-elem" value="1" /> times;</label>
             </div>
             <div key-name="bonus_rolls" elem-type="range" data-default="0" class="json-elem form-part">
@@ -271,8 +271,8 @@
                 <option value="multiply_total">multiply total by</option>
             </select>
             <div key-name="amount" elem-type="range" class="json-elem inline">
-                <label class="warp-skip">value from<input type="number" min="0" step="any" key-name="min" elem-type="float" class="warp json-elem" value="0" /></label>
-                <label class="warp-skip">to<input type="number" min="0" step="any" key-name="max" elem-type="float" class="warp json-elem" value="0" />.</label>
+                <label class="warp-skip">value from<input type="number" step="any" key-name="min" elem-type="float" class="warp json-elem" value="0" /></label>
+                <label class="warp-skip">to<input type="number" step="any" key-name="max" elem-type="float" class="warp json-elem" value="0" />.</label>
             </div><br />
             <label class="warp-skip">Modifier name: <input type="text" key-name="name" elem-type="string" class="warp long-content json-elem attribute-name" value="" /></label><br />
             <label class="warp-skip">Modifier UUID: <input type="text" key-name="id" elem-type="string" data-default="" class="warp long-content raw-content json-elem attribute-uuid" value="" placeholder="Optional" /></label>
