@@ -2,9 +2,7 @@
 
 {% import _self as shortcuts %}
 
-{% block page_title %}Activité Steam{% endblock %}
-{% block content_title %}Activité Steam{% endblock %}
-{% block content_subtitle %}{{ activity[0]['steam_name'] }} {% if activity[0]['steam_realname'] is not empty %}({{ activity[0]['steam_realname'] }}){% endif %}{% endblock %}
+{% block page_title %}{{ activity[0]['steam_name'] }} &middot; Activité {{ record_type|capitalize }}{% endblock %}
 
 {% macro user_button(user, key) %}
     <a href="{{ path('tools.steam', {'key': key, 'record_type': user['record_type'], 'steamid': user['steam_id']}) }}">
