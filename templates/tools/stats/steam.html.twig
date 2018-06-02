@@ -1,55 +1,98 @@
 {% extends 'base.html.twig' %}
 
+{% import _self as shortcuts %}
+
 {% block page_title %}Activité Steam{% endblock %}
 {% block content_title %}Activité Steam{% endblock %}
 {% block content_subtitle %}{{ activity[0]['steam_name'] }} {% if activity[0]['steam_realname'] is not empty %}({{ activity[0]['steam_realname'] }}){% endif %}{% endblock %}
 
+{% macro user_button(user, key) %}
+    <a href="{{ path('tools.steam', {'key': key, 'record_type': user['record_type'], 'steamid': user['steam_id']}) }}">
+        <div class="row">
+            <div class="col-xs-2 state-icon">
+                {% if user['state'] == 'OFFLINE' %}
+                    <i class="fa fa-user s-offline"></i>
+                {% elseif user['state'] == 'IDLE' %}
+                    <span class="fa fa-user s-online"></span>
+                {% elseif user['state'] == 'MOBILE' %}
+                    <span class="fa fa-phone s-online"></span>
+                {% elseif user['state'] == 'AWAY' %}
+                    <span class="fa fa-coffee s-away"></span>
+                {% elseif user['state'] == 'BUSY' %}
+                    <span class="fa fa-bell-slash s-away"></span>
+                {% elseif user['state'] == 'LOOKING_TO_PLAY' %}
+                    <span class="fa fa-binoculars s-online"></span>
+                {% elseif user['state'] == 'LOOKING_TO_TRADE' %}
+                    <span class="fa fa-money s-online"></span>
+                {% elseif user['state'] == 'IN_GAME' %}
+                    <span class="fa fa-gamepad s-ingame"></span>
+                {% elseif user['state'] == 'UNAVAILABLE' %}
+                    <span class="fa fa-user s-away"></span>
+                {% endif %}
+            </div>
+            <div class="col-xs-10">
+                {{ user['steam_name'] }}
+                {% if user['steam_realname'] is not empty %}
+                    <span class="real-name">{{ user['steam_realname'] }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+{% endmacro %}
+
 {% block content_header %}
 <div class="pull-right">
-    <div class="dropdown">
-        <button class="btn" id="button-available-users" data-toggle="dropdown" role="button" data-target="button-available-users-list" aria-haspopup="true" aria-expanded="false">
-            <span class="visible-xs-inline visible-sm-inline"><span class="fa fa-steam"></span></span>
-            <span class="visible-md-inline visible-lg-inline">Sélection d'une personne</span>
+    {% for tracked_cat, tracked_list in tracked %}
+        <button class="btn" id="modal-select-user-{{ tracked_cat }}-button" style="background: #EEE;" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#modal-select-user-{{ tracked_cat }}">
+            <span class="fa fa-{% if tracked_cat != 'discord' %}{{ tracked_cat }}{% else %}comments-o{% endif %}" title="Sélection d'une personne"></span>
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu pull-right" aria-labelledby="button-available-users" id="button-available-users-list">
-            {% for user in tracked %}
-                <li>
-                    <a href="{{ path('tools.steam', {'key': key, 'steamid': user['steam_id']}) }}">
-                        <span class="pull-right" style="text-align: center; width: 16px;">
-                            {% if user['state'] == 'OFFLINE' %}
-                                <i class="fa fa-user s-offline"></i>
-                            {% elseif user['state'] == 'IDLE' %}
-                                <span class="fa fa-user s-online"></span>
-                            {% elseif user['state'] == 'MOBILE' %}
-                                <span class="fa fa-phone s-online"></span>
-                            {% elseif user['state'] == 'AWAY' %}
-                                <span class="fa fa-coffee s-away"></span>
-                            {% elseif user['state'] == 'BUSY' %}
-                                <span class="fa fa-bell-shash s-away"></span>
-                            {% elseif user['state'] == 'LOOKING_TO_PLAY' %}
-                                <span class="fa fa-binoculars s-online"></span>
-                            {% elseif user['state'] == 'LOOKING_TO_TRADE' %}
-                                <span class="fa fa-money s-online"></span>
-                            {% elseif user['state'] == 'IN_GAME' %}
-                                <span class="fa fa-gamepad s-ingame"></span>
-                            {% elseif user['state'] == 'UNAVAILABLE' %}
-                                <span class="fa fa-user s-away"></span>
-                            {% endif %}
-                        </span>
-                        {{ user['steam_name'] }}{% if user['steam_realname'] is not empty %} ({{ user['steam_realname'] }}){% endif %}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+
+        <div class="modal modal-select-user" id="modal-select-user-{{ tracked_cat }}" tabindex="-1" role="dialog" aria-labelledby="modal-select-user-{{ tracked_cat }}-button">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Sélection d'une personne sur {{ tracked_cat|capitalize }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% if app['credentials']['steam_favorites'][tracked_cat] %}
+                            <ul class="tracked-users-list">
+                                {% for user in tracked_list if user['steam_id'] in app['credentials']['steam_favorites'][tracked_cat] %}
+                                    <li>
+                                        {{ shortcuts.user_button(user, key) }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            <hr />
+                        {% endif %}
+                        <ul class="tracked-users-list">
+                            {% for user in tracked_list %}
+                                <li>
+                                    {{ shortcuts.user_button(user, key) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 <header class="article-header">
-    <h1>Activité Steam</h1>
+    <h1>Activité {{ record_type|capitalize }}</h1>
     <p class="lead">
-        <a href="https://steamcommunity.com/profiles/{{ activity[0]['steam_id'] }}/">
-            <span>{{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}</span>
-        </a>
+        {% if record_type == 'steam' %}<a href="https://steamcommunity.com/profiles/{{ activity[0]['steam_id'] }}/">{% endif %}
+            <span>
+                {% if record_type != 'discord' %}
+                    {{ activity[0]['steam_name'] }}{% if activity[0]['steam_realname'] is not empty %} ({{ activity[0]['steam_realname'] }}){% endif %}
+                {% else %}
+                    {% set discriminator = activity[0]['steam_realname']|split('#')[1] %}
+                    {{ activity[0]['steam_name'] }}<span class="discriminator">#{{ discriminator }}</span>
+                {% endif %}
+            </span>
+        {% if record_type == 'steam' %}</a>{% endif %}
     </p>
 </header>
 {% endblock %}
@@ -63,6 +106,52 @@
         header.article-header a, header.article-header a:hover {
             color: #1d1d1d;
             text-decoration: none;
+        }
+
+        header.article-header .discriminator {
+            color: #666;
+            font-size: .8em;
+        }
+
+        .modal-select-user .modal-dialog {
+            width: 60%;
+        }
+
+        ul.tracked-users-list {
+            list-style-type: none;
+        }
+
+        ul.tracked-users-list li {
+            display: inline-block;
+            margin: .4em 1.6%;
+            padding: 0;
+            height: 3.8em;
+            width: 28%;
+        }
+
+        ul.tracked-users-list li a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            padding: .6em;
+            border: solid 1px #CCC;
+            border-radius: 5px;
+        }
+
+        ul.tracked-users-list li a:hover {
+            text-decoration: none;
+            box-shadow: 0 1px 5px #ddd;
+        }
+
+        ul.tracked-users-list li a .state-icon {
+            text-align: center;
+            padding-top: 1px;
+        }
+
+        ul.tracked-users-list li a .real-name {
+            display: block;
+            font-size: small;
+            color: gray;
         }
 
         .activity {
@@ -88,6 +177,12 @@
 
         .entry h3 {
             font-size: 140%;
+        }
+
+        .discord-game {
+            font-size: small;
+            margin-top: -0.4em;
+            color: #666;
         }
 
         .s-offline { color: gray;      }
@@ -117,6 +212,14 @@
             .entry p .text-muted {
                 display: block;
             }
+
+            .modal-select-user .modal-dialog {
+                width: 95%;
+            }
+
+            ul.tracked-users-list li {
+                width: 88%;
+            }
         }
     </style>
 {% endblock %}
@@ -135,7 +238,7 @@
                 {% elseif entry['state'] == 'AWAY' %}
                     <span class="fa fa-coffee s-away"></span>
                 {% elseif entry['state'] == 'BUSY' %}
-                    <span class="fa fa-bell-shash s-away"></span>
+                    <span class="fa fa-bell-slash s-away"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_PLAY' %}
                     <span class="fa fa-binoculars s-online"></span>
                 {% elseif entry['state'] == 'LOOKING_TO_TRADE' %}
@@ -172,6 +275,11 @@
                     {% endif %}
                 </h3>
                 {% endspaceless %}
+                {% if entry['state'] != 'IN_GAME' and entry['game_name'] %}
+                <p class="discord-game">
+                    Joue à <span>{{ entry['game_name'] }}</span>
+                </p>
+                {% endif %}
                 <p>
                     Pendant
                     {% if entry['duration'] < 3600 %}

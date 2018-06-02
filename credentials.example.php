@@ -27,5 +27,11 @@ return array(
 
     'manager_raw_files_keys' => array(),
 
-    'steam_access_key' => ''
+    'steam_access_key' => '',
+
+    // IDs
+    'steam_favorites' => [
+        'steam' => [],
+        'discord' => []
+    ]
 );

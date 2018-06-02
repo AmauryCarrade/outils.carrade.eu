@@ -201,7 +201,8 @@ $app->match('/chat_highlighter/{format}', 'AmauryCarrade\\Controllers\\Tools\\Hi
     ->bind('tools.highlight.formats');
 
 
-$app->get('/steam/{key}/{steamid}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity')
+$app->get('/steam/{key}/{record_type}/{steamid}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity')
+    ->value('record_type', 'steam')
     ->bind('tools.steam');
 
 
