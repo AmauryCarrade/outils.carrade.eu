@@ -5,7 +5,7 @@
 {% block page_title %}{{ activity[0]['steam_name'] }} &middot; Activité {{ record_type|capitalize }}{% endblock %}
 
 {% macro user_button(user, key) %}
-    <a href="{{ path('tools.steam', {'key': key, 'record_type': user['record_type'], 'steamid': user['steam_id']}) }}">
+    <a href="{{ path('tools.steam', {'key': key, 'record_type': user['record_type'], 'steam_id': user['steam_id']}) }}">
         <div class="row">
             <div class="col-xs-2 state-icon">
                 {% if user['state'] == 'OFFLINE' %}

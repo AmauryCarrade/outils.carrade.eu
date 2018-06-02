@@ -201,13 +201,15 @@ $app->match('/chat_highlighter/{format}', 'AmauryCarrade\\Controllers\\Tools\\Hi
     ->bind('tools.highlight.formats');
 
 
-$app->get('/steam/{key}/{record_type}/{steamid}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity')
-    ->value('record_type', 'steam')
+$app->get('/steam/{key}/{record_type}/{steam_id}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity')
     ->bind('tools.steam');
 
+$app->get('/steam/{key}/{steam_id}', 'AmauryCarrade\\Controllers\\Tools\\SteamController::activity_legacy')
+    ->bind('tools.steam.legacy');
 
-    $app->get('/ajax/shorten', 'AmauryCarrade\\Controllers\\AJAXController::shorten')
-        ->bind('ajax.shorten');
+
+$app->get('/ajax/shorten', 'AmauryCarrade\\Controllers\\AJAXController::shorten')
+    ->bind('ajax.shorten');
 
 
 $app->get('/{type}/{name}', 'AmauryCarrade\\Controllers\\ContentsController::show_content')

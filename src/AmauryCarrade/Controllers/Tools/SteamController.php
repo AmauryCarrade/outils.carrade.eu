@@ -8,29 +8,55 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SteamController
 {
-    public function activity(Application $app, Request $request, $key, $record_type, $steamid)
+    private function get_db_link($app)
     {
-        if ($key != $app['credentials']['steam_access_key'])
-            $app->abort(404);
-
-        // Database connection
         try {
             $pdo = get_db_connector($app, 'steam');
 
             if ($pdo == null) throw new \RuntimeException;
+
+            return $pdo;
         }
         catch(\Exception $e)
         {
             $app->abort(500, "Unable to connect the database.");
         }
+    }
+
+    public function activity_legacy(Application $app, Request $request, $key, $steam_id)
+    {
+        if ($key != $app['credentials']['steam_access_key'])
+            $app->abort(404);
+
+        $pdo = $this->get_db_link($app);
+
+        $category = $pdo->prepare('SELECT record_type FROM steam_track WHERE steam_id = :steam_id LIMIT 1');
+        $category->execute(['steam_id' => $steam_id]);
+
+        if ($category->rowCount() == 0)
+            $app->abort(404);
+
+        return $app->redirect($app['url_generator']->generate('tools.steam', [
+            'key' => $key,
+            'record_type' => $category->fetch(PDO::FETCH_ASSOC)['record_type'],
+            'steam_id' => $steam_id
+        ]), 301);
+    }
+
+    public function activity(Application $app, Request $request, $key, $record_type, $steam_id)
+    {
+        if ($key != $app['credentials']['steam_access_key'])
+            $app->abort(404);
+
+        $pdo = $this->get_db_link($app);
 
         $limit = $request->query->has('limit') ? intval($request->query->get('limit')) : 64;
         $activity = $pdo->prepare('SELECT *, (UNIX_TIMESTAMP(date_end) - UNIX_TIMESTAMP(date_begin)) AS duration
                                    FROM steam_track
-                                   WHERE steam_id = :steamid AND record_type = :record_type
+                                   WHERE steam_id = :steam_id AND record_type = :record_type
                                    ORDER BY date_end DESC, date_begin DESC
                                    LIMIT ' . $limit);
-        $activity->execute(['steamid' => trim($steamid), 'record_type' => trim($record_type)]);
+        $activity->execute(['steam_id' => trim($steam_id), 'record_type' => trim($record_type)]);
 
         if ($activity->rowCount() == 0)
             $app->abort(404);
