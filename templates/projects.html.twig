@@ -59,27 +59,27 @@
                                 </article>
                                 <aside class="col-md-4 col-sm-3 project-meta">
                                     <dl class="dl-horizontal">
-                                        {% if project.type %}
+                                        {% if project.type is defined %}
                                             <dt>Type</dt>
                                             <dd>{{ project.type }}</dd>
                                         {% endif %}
 
-                                        {% if project.version %}
+                                        {% if project.version is defined %}
                                             <dt>Version</dt>
                                             <dd>{{ project.version }}</dd>
                                         {% endif %}
 
-                                        {% if project.status %}
+                                        {% if project.status is defined %}
                                             <dt>État</dt>
                                             <dd>{{ project.status }}</dd>
                                         {% endif %}
 
-                                        {% if project.compatibility %}
+                                        {% if project.compatibility is defined %}
                                             <dt>Compatibilité</dt>
                                             <dd>{{ project.compatibility|raw }}</dd>
                                         {% endif %}
 
-                                        {% if project.license %}
+                                        {% if project.license is defined %}
                                             <dt>Licence</dt>
                                             <dd>
                                                 {% if project.license_link %}
