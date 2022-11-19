@@ -9,7 +9,7 @@
 
 {% block content %}
     <p class="lead" style="margin-bottom: 0;">Je regroupe ici les services que je propose en accès libre sur mon site.</p>
-    <p style="margin-bottom: 40px;">Ces outils sont mis à disposition gratuitement, sur mon temps libre. Si vous remarquez des imperfections, n'hésitez pas à <a href="{{ path('contact') }}">me contacter</a> pour me prévenir. Des chatons vont mourir si vous abusez de ces services.</p>
+    <p style="margin-bottom: 40px;">Ces outils sont mis à disposition gratuitement, sur mon temps libre. Si vous remarquez des imperfections, n'hésitez pas à <a href="https://amaury.carrade.eu/contact">me contacter</a> pour me prévenir. Des chatons vont mourir si vous abusez de ces services.</p>
 
     <h2>Partage de données</h2>
 
@@ -46,9 +46,8 @@
             </a>
         </article>
 
-        <article class="service-box col-md-3 service-box-soon">
-            <a href="#">
-                <div class="banner"><div class="banner-content">Bientôt</div></div>
+        <article class="service-box col-md-3">
+            <a href="https://date.carrade.eu">
                 <div class="service-box-icon"><i class="fa fa-pie-chart"></i></div>
                 <h3>Sondages</h3>
                 <p>Sondages de dates ou génériques, pour convenir de rendez-vous ou de n'importe quoi d'autre.</p>
@@ -80,10 +79,10 @@
 
     <div class="row">
         <article class="service-box col-md-3">
-            <a href="{{ path('tools.tea') }}">
+            <a href="https://my-tea.party">
                 <div class="service-box-icon"><i class="fa fa-coffee"></i></div>
                 <h3>Thé</h3>
-                <p>Recherche de thés Mariage Frère, car leur site est atroce sur téléphone.</p>
+                <p>Recherche de thés Mariage Frère et Newby (pour le moment), car leur site est atroce sur téléphone et pour tout centraliser (à terme). Refonte prévue, un jour…</p>
             </a>
         </article>
 
@@ -110,6 +109,7 @@
     <div class="row">
         <article class="service-box col-md-3">
             <a href="{{ path('tools.minecraft.history') }}">
+                <div class="banner"><div class="banner-content">À réparer</div></div>
                 <div class="service-box-icon"><i class="fa fa-history"></i></div>
                 <h3>Historique de compte</h3>
                 <p>Affiche des infos sur un compte Mojang et les pseudos utilisés par le passé.</p>
@@ -126,9 +126,10 @@
 
         <article class="service-box col-md-3">
             <a href="{{ path('tools.server_stats.home') }}">
-                <div class="service-box-icon"><i class="fa fa-line-chart"></i></div>
+                <div class="banner"><div class="banner-content">En pause</div></div>
+		<div class="service-box-icon"><i class="fa fa-line-chart"></i></div>
                 <h3>Historique de serveur</h3>
-                <p>Affiche l'historique d'un serveur Minecraft. Suivi (public ou privé) sur simple demande. Mumble également supporté.</p>
+                <p>Affiche l'historique d'un serveur Minecraft. Mumble également supporté.</p>
             </a>
         </article>
 
@@ -144,19 +145,21 @@
     <h2>Outils pour développeurs</h2>
 
     <div class="row">
-        <article class="service-box col-md-3">
-            <a href="https://jenkins.carrade.eu">
+        <article class="service-box col-md-3 service-box-soon">
+            <a href="#">
+		<div class="banner"><div class="banner-content">Arrêté</div></div>
                 <div class="service-box-icon"><i class="fa fa-wrench"></i></div>
                 <h3>Intégration continue</h3>
-                <p>Un serveur Jenkins privé d'intégration continu. Je n'exclue pas d'accepter d'autres projets, donc vous pouvez me demander.</p>
+                <p>Un ancien serveur Jenkins privé d'intégration continu.</p>
             </a>
         </article>
 
-        <article class="service-box col-md-3">
-            <a href="https://maven.carrade.eu">
-                <div class="service-box-icon"><i class="fa fa-download"></i></div>
+        <article class="service-box col-md-3 service-box-soon">
+            <a href="#">
+                <div class="banner"><div class="banner-content">Arrêté</div></div>
+		<div class="service-box-icon"><i class="fa fa-download"></i></div>
                 <h3>Dépôt Maven</h3>
-                <p>Le dépôt Maven de mes projets. Je n'exclue pas d'accepter d'autres projets, donc vous pouvez me demander.</p>
+                <p>L’ancien dépôt Maven de mes projets.</p>
             </a>
         </article>
 

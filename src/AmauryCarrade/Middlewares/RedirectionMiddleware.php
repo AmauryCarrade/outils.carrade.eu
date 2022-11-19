@@ -17,6 +17,7 @@ class RedirectionMiddleware
 
         // Old paths
         '/tools/generators/bukkit/permissions.html' => '/bukkit/permissions',
+        '/about' => '/legal',
 
         // Aliases for the chat higlighter
         '/chat_highlight' => '/chat_highlighter',

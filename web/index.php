@@ -80,8 +80,8 @@ if (!$app['debug'])
 
 // Routing
 
-$app->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
-    ->bind('homepage');
+$app->get('/old-home', 'AmauryCarrade\\Controllers\\MainPagesController::homepage')
+    ->bind('services');
 
 $app->get('/contact', 'AmauryCarrade\\Controllers\\MainPagesController::contact')
     ->bind('contact');
@@ -92,8 +92,8 @@ $app->get('/pgp', 'AmauryCarrade\\Controllers\\MainPagesController::pgp')
 $app->get('/donner', 'AmauryCarrade\\Controllers\\MainPagesController::don')
     ->bind('don');
 
-$app->get('/about', 'AmauryCarrade\\Controllers\\MainPagesController::about')
-    ->bind('about');
+$app->get('/legal', 'AmauryCarrade\\Controllers\\MainPagesController::about')
+    ->bind('legal');
 
 
 
@@ -105,8 +105,8 @@ $app->get('/projects/{category}/{name}', 'AmauryCarrade\\Controllers\\MainPagesC
 
 
 
-$app->get('/services', 'AmauryCarrade\\Controllers\\MainPagesController::list_services')
-    ->bind('services');
+$app->get('/', 'AmauryCarrade\\Controllers\\MainPagesController::list_services')
+    ->bind('homepage');
 
 
 

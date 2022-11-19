@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="author" content="Amaury Carrade" />
 
-    <title>{% block page_title %}{% endblock %} &middot; Amaury Carrade</title>
+    <title>{% block page_title %}{% endblock %} &middot; Petits outils d’Amaury Carrade</title>
 
     <link href="{{ global.request.basepath }}/assets/vendor/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{ global.request.basepath }}/assets/vendor/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
@@ -48,16 +48,15 @@
                         <a class="navbar-toggle" type="button" data-toggle="collapse" href="#main-nav" aria-expanded="false" aria-controls="main-nav">
                             Menu <span class="caret"></span>
                         </a>
-                        <div class="navbar-brand brand"><a href="{{ path('homepage') }}">Amaury Carrade</a></div>
+                        <div class="navbar-brand brand"><a href="{{ path('homepage') }}">Petits outils d’Amaury Carrade</a></div>
                     </div>
 
                     <div id="main-nav" class="collapse">
                         <ul class="nav navbar-nav">
-                            <li class="nav-brand"><a href="{{ path('homepage') }}">Amaury Carrade</a></li>
+                            <li class="nav-brand"><a href="{{ path('homepage') }}">Petits outils d’Amaury Carrade</a></li>
                             <li><a href="https://shaarli.amaury.carrade.eu">Liens en vrac</a></li>
                             <li><a href="{{ path('projects') }}">Projets</a></li>
-                            <li><a href="{{ path('services') }}">Services</a></li>
-                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                            <li><a href="https://amaury.carrade.eu/contact">Contact</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav pull-right">
@@ -156,7 +155,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         {% block footer %}{% endblock %}
-                        <p>&copy; {{ 'now'|date('Y', timezone='Europe/Paris') }} Amaury Carrade &middot; Creative Commons BY SA &middot; <a href="{{ path('about') }}">À propos</a> &middot; <a href="https://github.com/AmauryCarrade/Website">Code source</a></p>
+                        <p>&copy; {{ 'now'|date('Y', timezone='Europe/Paris') }} Amaury Carrade &middot; Creative Commons BY SA &middot; <a href="{{ path('legal') }}">Mentions légales</a> &middot; <a href="https://github.com/AmauryCarrade/outils.carrade.eu">Code source</a></p>
                     </div>
                     <div class="col-md-4 text-right">
                         <p><i class="fa fa-heart"></i> <a href="{{ path('don') }}">Faire un don</a></p>
